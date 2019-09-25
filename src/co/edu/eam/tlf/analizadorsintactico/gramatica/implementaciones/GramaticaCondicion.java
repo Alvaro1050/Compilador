@@ -7,7 +7,7 @@ import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Condicion;
 public class GramaticaCondicion implements Gramatica {
 
     @Override
-    public Sentencia analizar(Sentencia padre, FlujoTokens flujoTokens) {
+    public Condicion analizar(Sentencia padre, FlujoTokens flujoTokens) {
         // TODO Auto-generated method stub
         return new Condicion();
     }

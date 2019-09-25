@@ -8,16 +8,9 @@ package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Atributo;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Lista;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Metodo;
-import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.event.TreeModelListener;
-import javax.swing.tree.TreePath;
 
 /**
  * Clase que representa a un atributo como elemeto gramatical.
