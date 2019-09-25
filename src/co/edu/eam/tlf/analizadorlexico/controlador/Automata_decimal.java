@@ -31,7 +31,7 @@ public class Automata_decimal {
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
 
-            return new Lexema("decimal", "Palabra reservada");
+            return new Lexema("decimal", "Tipo Dato");
         } else {
             return null;
         }

@@ -10,12 +10,12 @@ import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 
 /**
  *
- * @author Lenovo
+ * @author juan
  */
-public class Automata_boo {
+public class Automata_Clase {
 
-    int posInicial;
     int cont;
+    int posInicial;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
@@ -26,10 +26,10 @@ public class Automata_boo {
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
+
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-
-            return new Lexema("boo", "Tipo Dato");//retorno de token y tipo lexema
+            return new Lexema("clase", "Palabra reservada");
         } else {
             return null;
         }
@@ -40,7 +40,7 @@ public class Automata_boo {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'b') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == 'c') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
 
@@ -58,7 +58,43 @@ public class Automata_boo {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'o') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == 'l') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+
+                cont++;/*incrememnto mi contador*/
+
+                q2();
+
+            } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
+                aceptada = false;
+
+            }
+        }
+    }
+
+    public void q2() {
+
+        if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
+
+            if (car[cont] == 'a') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+
+                cont++;/*incrememnto mi contador*/
+
+                q3();
+
+            } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
+                aceptada = false;
+
+            }
+        }
+    }
+
+    public void q3() {
+
+        if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
+
+            if (car[cont] == 's') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
 
@@ -75,7 +111,7 @@ public class Automata_boo {
     public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'o' && aceptada == false) {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == 'e' && aceptada == false) {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 aceptada = true;
                 cont++;
@@ -88,7 +124,7 @@ public class Automata_boo {
                 cont--;
 
             } else if (car[cont] == ' ') {
-                validarEspacios();
+                cont++;
             }
         }
     }

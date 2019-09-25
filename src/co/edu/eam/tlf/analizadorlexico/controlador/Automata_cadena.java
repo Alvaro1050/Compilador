@@ -29,7 +29,7 @@ public class Automata_cadena {
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
 
-            return new Lexema("cadena", "Palabra reservada");
+            return new Lexema("cadena", "Tipo Dato");
         } else {
             return null;
         }

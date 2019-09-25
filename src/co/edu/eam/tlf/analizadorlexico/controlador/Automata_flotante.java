@@ -13,6 +13,7 @@ import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
  * @author Lenovo
  */
 public class Automata_flotante {
+
     int posInicial;
 
     int cont;
@@ -26,9 +27,9 @@ public class Automata_flotante {
         posInicial = flujo.getPosActual();
         aceptada = false;
         q0();
-         if (aceptada) {
+        if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema("flotante", "Palabra reservada");
+            return new Lexema("flotante", "Tipo Dato");
         } else {
             return null;
         }
@@ -182,7 +183,7 @@ public class Automata_flotante {
                 aceptada = false;
                 cont--;
 
-             } else if (car[cont] == ' ') {
+            } else if (car[cont] == ' ') {
                 validarEspacios();
             }
         }

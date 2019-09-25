@@ -44,6 +44,7 @@ public class Analizador_lexico {
             automataResolverVectores();
             automataRetornar();
             automataDefecto();
+            automataClase();
             automataNada();
             automataRomper();
             automataCase();
@@ -63,7 +64,8 @@ public class Analizador_lexico {
             automataLlaveCerrado();
             automataParentesisAbierto();
             automataParentesisCerrado();
-            automataDelimitador();
+            automataComa();
+            automataPuntoComa();
             automataIgual();
             automataDiples();
             automataOperadoresRelacionales();
@@ -186,8 +188,16 @@ public class Analizador_lexico {
         }
     }
 
-    public void automataDelimitador() {
-        Automata_Delimitador atf = new Automata_Delimitador();
+    public void automataPuntoComa() {
+        Automata_PuntoComa atf = new Automata_PuntoComa();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataComa() {
+        Automata_Coma atf = new Automata_Coma();
         lexe = atf.inicio(flujo);
         if (lexe != null) {
             listaLexema.add(lexe);
@@ -474,6 +484,14 @@ public class Analizador_lexico {
         }
     }
 
+    public void automataClase() {
+        Automata_Clase atf = new Automata_Clase();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
     public void automataVacio() {
         Automata_vacio atf = new Automata_vacio();
         lexe = atf.inicio(flujo);
@@ -488,6 +506,14 @@ public class Analizador_lexico {
 
     public void setListaLexema(List<Lexema> listaLexema) {
         this.listaLexema = listaLexema;
+    }
+
+    public List<Lexema> getListaErrores() {
+        return listaErrores;
+    }
+
+    public void setListaErrores(List<Lexema> listaErrores) {
+        Analizador_lexico.listaErrores = listaErrores;
     }
 
 }

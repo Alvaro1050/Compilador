@@ -12,7 +12,7 @@ import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
  *
  * @author alvar
  */
-public class Automata_Delimitador {
+public class Automata_Punto {
 
     int posInicial;
     int cont;
@@ -28,7 +28,7 @@ public class Automata_Delimitador {
         q0F();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema(car[posInicial] + "", "Delimitador");
+            return new Lexema(car[posInicial] + "", "Punto");
         } else {
             return null;
         }
@@ -37,13 +37,13 @@ public class Automata_Delimitador {
     public void q0F() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if ((car[cont] == ';' || car[cont] == ',' || car[cont] == '.') && aceptada == false) {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == '.' && aceptada == false) {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;
                 aceptada = true;
                 q0F();
 
-              } else if (car[cont] == ' ') {
+            } else if (car[cont] == ' ') {
                 validarEspacios();
             }
         }

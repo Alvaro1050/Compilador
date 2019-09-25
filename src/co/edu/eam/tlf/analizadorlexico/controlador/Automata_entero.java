@@ -28,7 +28,7 @@ public class Automata_entero {
         q0();
          if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema("entero", "Palabra reservada");
+            return new Lexema("entero", "Tipo Dato");
         } else {
             return null;
         }
