@@ -28,7 +28,12 @@ public class GramaticaIF implements Gramatica {
                     if (lexema.getToken().equals(")")) {
                         lexema= flujoTokens.avanzar();
                         
-                        
+                        if (lexema.getToken().equals("{")) {
+                            lexema= flujoTokens.avanzar();
+                        }
+                            
+                        }
+ 
                         
                         
 
@@ -36,9 +41,15 @@ public class GramaticaIF implements Gramatica {
 
                 }
 
-            }
+            }else{
+            flujoTokens.backTrack();
+            return null;
+        }
+        return null;
 
         }
+}
+
         
     
 
