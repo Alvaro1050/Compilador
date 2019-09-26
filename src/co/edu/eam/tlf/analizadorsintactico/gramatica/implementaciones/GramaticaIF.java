@@ -1,6 +1,7 @@
 package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
+import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Condicion;
@@ -15,10 +16,11 @@ public class GramaticaIF implements Gramatica {
 
         if (lexema.getToken().equals("si")) {
             lexema = flujoTokens.avanzar();
-            if (lexema.getToken().equals("(")) {
+            if (lexema == null) {
+                throw new SintacticException(new Lexema("", ""), "(");
+            } else if (lexema.getToken().equals("(")) {
                 GramaticaCondicion gc = new GramaticaCondicion();
                 lexema = flujoTokens.avanzar();
-
                 Condicion condicion = gc.analizar(si, flujoTokens);
 
                 if (condicion != null) {
