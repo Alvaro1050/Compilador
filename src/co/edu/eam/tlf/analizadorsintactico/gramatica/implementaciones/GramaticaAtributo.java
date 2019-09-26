@@ -30,7 +30,7 @@ public class GramaticaAtributo implements Gramatica {
         Lexema lexema = flujoTokens.getTokenActual();
 
         //tipo de dato.....
-        if (lexema.getTipoLexema().equals("Identificador") || lexema.getTipoLexema().equals("Tipo Dato")) {
+        if (lexema.getTipoLexema().equals("Tipo Dato")) {
             atributo.setTipoDato(lexema);
             lexema = flujoTokens.avanzar();
 

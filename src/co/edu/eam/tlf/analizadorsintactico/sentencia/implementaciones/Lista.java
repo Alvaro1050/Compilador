@@ -53,7 +53,7 @@ public class Lista<T extends Sentencia> extends Sentencia {
     @Override
     public String toString() {
 
-        return "Lista de " + (!hijos.isEmpty() ? hijos.get(0).getClass().getSimpleName() : "");
+        return "Lista de " + (hijos);
 
     }
 

@@ -21,31 +21,34 @@ public class GramaticaIF implements Gramatica {
             if (lexema == null) {
                 throw new SintacticException(new Lexema("", ""), "(");
             } else if (lexema.getToken().equals("(")) {
-                GramaticaCondicion gc = new GramaticaCondicion();
-                lexema = flujoTokens.avanzar();
-                Condicion condicion = gc.analizar(si, flujoTokens);
+                /*  GramaticaCondicion gc = new GramaticaCondicion();
+                 lexema = flujoTokens.avanzar();
+                 Condicion condicion = gc.analizar(si, flujoTokens);
 
-                if (condicion != null) {
-                    si.setCondicion(condicion);
-                    lexema = flujoTokens.avanzar();
-                } else if (lexema == null) {
-                    throw new SintacticException(new Lexema("", ""), ")");
-                }
+                 if (condicion != null) {
+                 si.setCondicion(condicion);
+                 lexema = flujoTokens.avanzar();
+                 } else if (lexema == null) {
+                 throw new SintacticException(new Lexema("", ""), ")");
+                 }*/
 
                 if (lexema.getToken().equals(")")) {
                     lexema = flujoTokens.avanzar();
+                    if (lexema.getToken().equals("{")) {
+                        lexema = flujoTokens.avanzar();
+
+                        if (lexema.getToken().equals("}")) {
+                            return si;
+                        }
+                    } else if (lexema == null) {
+                        throw new SintacticException(new Lexema("", ""), "}");
+                    }
                 } else if (lexema == null) {
                     throw new SintacticException(new Lexema("", ""), "{");
                 }
 
-                if (lexema.getToken().equals("{")) {
-                    lexema = flujoTokens.avanzar();
-                } else if (lexema == null) {
-                    throw new SintacticException(new Lexema("", ""), "}");
-                }
-                if (lexema.getToken().equals("}")) {
-                    flujoTokens.backTrack();
-                }
+            } else {
+                throw new SintacticException(lexema, "(");
             }
 
         } else {

@@ -12,9 +12,6 @@ import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Atributo;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Clase;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Metodo;
-import java.util.List;
-import javax.swing.event.TreeModelListener;
-import javax.swing.tree.TreePath;
 
 /**
  * Gramatica que representa la regla de una clase.

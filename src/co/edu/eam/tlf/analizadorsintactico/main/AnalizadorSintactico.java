@@ -60,6 +60,10 @@ public class AnalizadorSintactico {
 
             unidadCompilacion = gramm.analizar(null, flujo);
 
+            unidadCompilacion.llenarHijos();
+
+            System.out.println(unidadCompilacion.getHijos());
+
         }
     }
 
