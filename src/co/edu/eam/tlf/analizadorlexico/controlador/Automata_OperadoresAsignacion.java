@@ -62,14 +62,14 @@ public class Automata_OperadoresAsignacion {
                 cont++;
                 aceptada = true;
                 qF();
-             } else if (car[cont] == ' ') {
+             } else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
     }
 
     public void validarEspacios() {
-        if (car[cont] == ' ') {
+        if (car[cont] == ' ' || car[cont] == '\n') {
             cont++;
             validarEspacios();
         }

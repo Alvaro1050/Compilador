@@ -45,6 +45,7 @@ public class AnalizadorSintactico {
      */
     public void analizar(String codigo) {
         caracteres = codigo.toCharArray();
+
         Flujo_caracteres fc = new Flujo_caracteres(0, caracteres);
         analizadorLexico.analizar(fc);
         List<Lexema> tokens = analizadorLexico.getListaLexema();

@@ -77,7 +77,7 @@ public class Automata_comentario {
     }
 
     public void validarEspacios() {
-        if (car[cont] == ' ') {
+        if (car[cont] == ' ' || car[cont] == '\n') {
             cont++;
             validarEspacios();
         }

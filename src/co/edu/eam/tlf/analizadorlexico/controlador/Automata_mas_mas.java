@@ -63,14 +63,14 @@ public class Automata_mas_mas {
                 aceptada = true;
                 qF();
 
-            } else if (car[cont] == ' ') {
+            } else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
     }
 
     public void validarEspacios() {
-        if (car[cont] == ' ') {
+        if (car[cont] == ' ' || car[cont] == '\n') {
             cont++;
             validarEspacios();
         }

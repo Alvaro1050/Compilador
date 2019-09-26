@@ -43,14 +43,14 @@ public class Automata_Punto {
                 aceptada = true;
                 q0F();
 
-            } else if (car[cont] == ' ') {
+            } else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
     }
 
     public void validarEspacios() {
-        if (car[cont] == ' ') {
+        if (car[cont] == ' ' || car[cont] == '\n') {
             cont++;
             validarEspacios();
         }

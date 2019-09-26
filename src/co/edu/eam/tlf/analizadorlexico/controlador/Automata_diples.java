@@ -44,14 +44,14 @@ public class Automata_diples {
                 aceptada = true;
                 q0();
 
-            } else if (car[cont] == ' ') {
+            }  else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
     }
 
     public void validarEspacios() {
-        if (car[cont] == ' ') {
+        if (car[cont] == ' ' || car[cont] == '\n') {
             cont++;
             validarEspacios();
         }
