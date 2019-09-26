@@ -29,7 +29,7 @@ public class GramaticaParametro implements Gramatica {
         Lexema lexema = flujoTokens.getTokenActual();
 
         //si empieza con identificador o tipo de dato
-        if (lexema.getTipoLexema().equals("Identificador") || lexema.getTipoLexema().equals("Tipo Dato")) {
+        if (lexema.getTipoLexema().equals("Tipo Dato")) {
             tipo = lexema;
             lexema = flujoTokens.avanzar();
             //luego se espera indentificador.

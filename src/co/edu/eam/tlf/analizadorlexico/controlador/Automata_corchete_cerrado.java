@@ -30,7 +30,7 @@ public class Automata_corchete_cerrado {
         q0F();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema(car[posInicial] + "", "corchete abierto");
+            return new Lexema(car[posInicial] + "", "corchete cerrado");
 
         } else {
             return null;

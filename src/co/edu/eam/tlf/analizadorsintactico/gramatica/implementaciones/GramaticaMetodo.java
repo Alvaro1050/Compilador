@@ -8,15 +8,10 @@ package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Clase;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Lista;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Metodo;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Parametro;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.event.TreeModelListener;
-import javax.swing.tree.TreePath;
 
 /**
  * Clase que represetna la gramatica de un metodo.
@@ -37,7 +32,9 @@ public class GramaticaMetodo implements Gramatica {
         if (lexema.getTipoLexema().equals("Tipo Dato")) {
             metodo.setRetorno(lexema);
             lexema = flujoTokens.avanzar();
-
+            if (lexema == null) {
+                throw new SintacticException(new Lexema("", ""), "Identificador");
+            }
             //nombre del metodo....
             if (lexema.getTipoLexema().equals("Identificador")) {
                 metodo.setNombre(lexema);
@@ -65,12 +62,12 @@ public class GramaticaMetodo implements Gramatica {
                     metodo.setListaParametros(parametros);//se setean los parametros.
                     lexema = flujoTokens.avanzar();
                     //se espera llave abierta.....
-                    if (lexema.getTipoLexema().equals("Llave abierta")) {
+                    if (lexema.getTipoLexema().equals("corchete abierto")) {
                            //se analiza el cuerpo del metodo.....
 
                         //se acabo el metodo.....
                         lexema = flujoTokens.avanzar();
-                        if (lexema.getTipoLexema().equals("Llave cerrada")) {
+                        if (lexema.getTipoLexema().equals("corchete cerrado")) {
 
                             return metodo;
                         } else {//si no se termina con llave cerrada, excepcion...

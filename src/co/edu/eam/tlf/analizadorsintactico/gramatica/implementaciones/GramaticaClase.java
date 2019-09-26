@@ -62,7 +62,7 @@ public class GramaticaClase implements Gramatica {
                     } while (continuar);
 
                     //se acabo el metodo.....
-                    if (lexema.getTipoLexema().equals("Llave cerrada")) {
+                    if (lexema.getTipoLexema().equals("corchete cerrado")) {
 
                         return clase;
                     } else {//si no se termina con llave cerrada, excepcion...
