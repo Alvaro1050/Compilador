@@ -7,6 +7,7 @@ package co.edu.eam.tlf.analizadorlexico.vista;
 
 import co.edu.eam.tlf.analizadorlexico.controlador.Analizador_lexico;
 import co.edu.eam.tlf.analizadorlexico.modelo.Flujo_caracteres;
+import co.edu.eam.tlf.analizadorsintactico.main.AnalizadorSintactico;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -184,18 +185,14 @@ public class FrmAnalizar extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         Analizador_lexico.listaLexema.removeAll(Analizador_lexico.listaLexema);
-        char[] caracteres;
         if (txaIngrese.getText().equals("")) {
 
         } else {
             cadena = txaIngrese.getText();
         }
-        caracteres = cadena.toCharArray();
-        Flujo_caracteres fc = new Flujo_caracteres(0, caracteres);
+        AnalizadorSintactico analexico = new AnalizadorSintactico();
 
-        Analizador_lexico analexi = new Analizador_lexico();
-
-        analexi.analizar(fc);
+        analexico.analizar(cadena);
 
         listar();
         listarErrores();
@@ -251,11 +248,11 @@ public class FrmAnalizar extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jtbErrores;
-    private javax.swing.JTable jtbLexemas;
+    public static javax.swing.JTable jtbErrores;
+    public static javax.swing.JTable jtbLexemas;
     private javax.swing.JTextArea txaIngrese;
     // End of variables declaration//GEN-END:variables
-     public void listar() {
+     public static  void listar() {
 
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Token");
@@ -270,7 +267,7 @@ public class FrmAnalizar extends javax.swing.JFrame {
         jtbLexemas.setModel(modelo);
     }
 
-    public void listarErrores() {
+    public static  void listarErrores() {
 
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Token");

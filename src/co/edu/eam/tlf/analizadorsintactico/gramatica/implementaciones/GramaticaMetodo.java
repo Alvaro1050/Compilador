@@ -34,7 +34,7 @@ public class GramaticaMetodo implements Gramatica {
         Lexema lexema = flujoTokens.getTokenActual();
 
         //tipo de retorno.....
-        if (lexema.getTipoLexema().equals("Identificador") || lexema.getTipoLexema().equals("Tipo Dato")) {
+        if (lexema.getTipoLexema().equals("Tipo Dato")) {
             metodo.setRetorno(lexema);
             lexema = flujoTokens.avanzar();
 

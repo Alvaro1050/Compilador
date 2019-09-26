@@ -26,31 +26,23 @@ public class GramaticaIF implements Gramatica {
                     lexema = flujoTokens.avanzar();
 
                     if (lexema.getToken().equals(")")) {
-                        lexema= flujoTokens.avanzar();
-                        
+                        lexema = flujoTokens.avanzar();
+
                         if (lexema.getToken().equals("{")) {
-                            lexema= flujoTokens.avanzar();
+                            lexema = flujoTokens.avanzar();
                         }
-                            
-                        }
- 
-                        
-                        
 
                     }
 
                 }
 
-            }else{
+            }
+
+        } else {
             flujoTokens.backTrack();
             return null;
         }
         return null;
 
-        }
+    }
 }
-
-        
-    
-
-

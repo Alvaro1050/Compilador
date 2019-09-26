@@ -9,6 +9,7 @@ import co.edu.eam.tlf.analizadorlexico.controlador.Analizador_lexico;
 import co.edu.eam.tlf.analizadorlexico.modelo.Flujo_caracteres;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones.FlujoTokens;
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
+import co.edu.eam.tlf.analizadorlexico.vista.FrmAnalizar;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones.GramaticaClase;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import java.util.List;
@@ -48,6 +49,9 @@ public class AnalizadorSintactico {
         analizadorLexico.analizar(fc);
         List<Lexema> tokens = analizadorLexico.getListaLexema();
         List<Lexema> errores = analizadorLexico.getListaErrores();
+
+        FrmAnalizar.listar();
+        FrmAnalizar.listarErrores();
         //si no hay errores, se continua con el analisis semantico.
         if (errores.isEmpty()) {
             FlujoTokens flujo = new FlujoTokens(tokens);

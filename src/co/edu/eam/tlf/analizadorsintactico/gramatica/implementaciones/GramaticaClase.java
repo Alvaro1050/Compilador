@@ -32,11 +32,14 @@ public class GramaticaClase implements Gramatica {
         //palabra reservada class....
         if (lexema.getToken().equals("clase")) {
             lexema = flujoTokens.avanzar();
-            if (lexema.getTipoLexema().equals("Identificador")) {
+            if (lexema == null) {
+                throw new SintacticException(new Lexema("", ""), "Identificador");
+            } else if (lexema.getTipoLexema().equals("Identificador")) {
                 clase.setNombreClase(lexema);
                 lexema = flujoTokens.avanzar();
-
-                if (lexema.getTipoLexema().equals("corchete abierto")) {
+                if (lexema == null) {
+                    throw new SintacticException(new Lexema("", ""), "{");
+                } else if (lexema.getTipoLexema().equals("corchete abierto")) {
                     //se analiza el cuerpo del metodo.....
                     boolean continuar = true;
                     GramaticaAtributo gramaticaAtributo = new GramaticaAtributo();
