@@ -12,6 +12,8 @@ public class GramaticaIF implements Gramatica {
     @Override
     public IF analizar(Sentencia raiz, FlujoTokens flujoTokens) {
         IF si = new IF();
+        flujoTokens.guardarPosicion();
+
         Lexema lexema = flujoTokens.getTokenActual();
 
         if (lexema.getToken().equals("si")) {
@@ -26,24 +28,31 @@ public class GramaticaIF implements Gramatica {
                 if (condicion != null) {
                     si.setCondicion(condicion);
                     lexema = flujoTokens.avanzar();
-
-                    if (lexema.getToken().equals(")")) {
-                        lexema = flujoTokens.avanzar();
-
-                        if (lexema.getToken().equals("{")) {
-                            lexema = flujoTokens.avanzar();
-                        }
-
-                    }
-
+                } else if (lexema == null) {
+                    throw new SintacticException(new Lexema("", ""), ")");
                 }
 
+                if (lexema.getToken().equals(")")) {
+                    lexema = flujoTokens.avanzar();
+                } else if (lexema == null) {
+                    throw new SintacticException(new Lexema("", ""), "{");
+                }
+
+                if (lexema.getToken().equals("{")) {
+                    lexema = flujoTokens.avanzar();
+                } else if (lexema == null) {
+                    throw new SintacticException(new Lexema("", ""), "}");
+                }
+                if (lexema.getToken().equals("}")) {
+                    flujoTokens.backTrack();
+                }
             }
 
         } else {
             flujoTokens.backTrack();
             return null;
         }
+
         return null;
 
     }
