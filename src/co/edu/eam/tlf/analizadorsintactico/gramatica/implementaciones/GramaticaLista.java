@@ -28,6 +28,7 @@ public class GramaticaLista<T extends Sentencia> {
      */
     public Lista<T> analizar(Gramatica gramma, Sentencia raiz, FlujoTokens flujoTokens, String separador) {
 
+        
         List<T> sentencias = new ArrayList<>();
         T parametro = null;
         boolean go = true;
