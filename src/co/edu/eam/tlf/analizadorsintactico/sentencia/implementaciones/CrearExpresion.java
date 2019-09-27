@@ -29,8 +29,9 @@ class CrearExpresion extends Sentencia {
         this.tipoEspecificador = tipoEspecificador;
         this.listaParametros = listaParametros;
     }
-    
+
     public CrearExpresion() {
+        listaParametros = new Lista<>();
     }
 
     public Expresion getExpresion() {
@@ -73,25 +74,21 @@ class CrearExpresion extends Sentencia {
         this.listaParametros = listaParametros;
     }
 
-   
-    
-
     @Override
     public List<Sentencia> llenarHijos() {
- hijos = new ArrayList<>();
+        hijos = new ArrayList<>();
         hijos.add(expresion);
-        
-         hijos.add(new SentenciaToken(neu));
+
+        hijos.add(new SentenciaToken(neu));
         hijos.add(new SentenciaToken(identificador));
-                hijos.add(new SentenciaToken(tipoEspecificador));
+        hijos.add(new SentenciaToken(tipoEspecificador));
 
-
-        if (!listaParametros.getSentencias().isEmpty()){
+        if (!listaParametros.getSentencias().isEmpty()) {
             hijos.add(listaParametros);
         }
-       
+
         return hijos;
-    
+
     }
 
     @Override
