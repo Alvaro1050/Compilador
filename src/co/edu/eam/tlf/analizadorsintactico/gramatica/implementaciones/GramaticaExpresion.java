@@ -5,10 +5,18 @@
  */
 package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 
+import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
+import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
+
 /**
  *
  * @author Lenovo
  */
-public class GramaticaExpresion {
+public class GramaticaExpresion implements Gramatica{
+
+    @Override
+    public Sentencia analizar(Sentencia padre, FlujoTokens flujoTokens) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
