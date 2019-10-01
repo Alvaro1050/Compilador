@@ -48,6 +48,7 @@ public class Analizador_lexico {
             automataNada();
             automataRomper();
             automataCase();
+            automataSi();
             automataCapturarDato();
             automataContrario();
             automataDecimal();
@@ -468,6 +469,14 @@ public class Analizador_lexico {
         }
     }
 
+    public void automataSi() {
+        Automata_si atf = new Automata_si();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
     public void automataMesaje() {
         Automata_Mensaje atf = new Automata_Mensaje();
         lexe = atf.inicio(flujo);
@@ -515,6 +524,5 @@ public class Analizador_lexico {
     public void setListaErrores(List<Lexema> listaErrores) {
         Analizador_lexico.listaErrores = listaErrores;
     }
-
 
 }

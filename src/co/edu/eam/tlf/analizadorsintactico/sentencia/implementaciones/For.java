@@ -18,17 +18,16 @@ public class For extends Sentencia {
     private DeclaradorVariable declaradorVariable;
     private Expresion expresion;
     private ExpresionLogica expresionLogica;
-    private BloqueSentencia bloqueSentencia;
+    private Lista<Sentencia> listaSentencia;
 
-    public For(DeclaradorVariable declaradorVariable, Expresion expresion, ExpresionLogica expresionLogica, BloqueSentencia bloqueSentencia) {
+    public For(DeclaradorVariable declaradorVariable, Expresion expresion, ExpresionLogica expresionLogica, Lista<Sentencia> listaSentencia) {
         this.declaradorVariable = declaradorVariable;
         this.expresion = expresion;
         this.expresionLogica = expresionLogica;
-        this.bloqueSentencia = bloqueSentencia;
+        this.listaSentencia = listaSentencia;
     }
 
     public For() {
-
     }
 
     public DeclaradorVariable getDeclaradorVariable() {
@@ -55,12 +54,12 @@ public class For extends Sentencia {
         this.expresionLogica = expresionLogica;
     }
 
-    public BloqueSentencia getBloqueSentencia() {
-        return bloqueSentencia;
+    public Lista<Sentencia> getListaSentencia() {
+        return listaSentencia;
     }
 
-    public void setBloqueSentencia(BloqueSentencia bloqueSentencia) {
-        this.bloqueSentencia = bloqueSentencia;
+    public void setListaSentencia(Lista<Sentencia> listaSentencia) {
+        this.listaSentencia = listaSentencia;
     }
 
     @Override
@@ -68,9 +67,9 @@ public class For extends Sentencia {
         hijos = new ArrayList<>();
         hijos.add(expresion);
         hijos.add(expresionLogica);
-        hijos.add(bloqueSentencia);
+        hijos.add(listaSentencia);
         hijos.add(declaradorVariable);
-       
+
         return hijos;
     }
 

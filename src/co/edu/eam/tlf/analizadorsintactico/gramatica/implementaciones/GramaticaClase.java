@@ -11,6 +11,8 @@ import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Atributo;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Clase;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Constructor;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Main;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Metodo;
 
 /**
@@ -40,7 +42,9 @@ public class GramaticaClase implements Gramatica {
                     //se analiza el cuerpo del metodo.....
                     boolean continuar = true;
                     GramaticaAtributo gramaticaAtributo = new GramaticaAtributo();
-                    GramaticaMetodo gramaticaMetodo = new GramaticaMetodo();
+                    GramaticaMetodoDeclaracion gramaticaMetodo = new GramaticaMetodoDeclaracion();
+                    GramaticaDeclararConstructor gramaticaConstructor = new GramaticaDeclararConstructor();
+                    GramaticaMain gramaticaMain = new GramaticaMain();
                     do {
                         lexema = flujoTokens.avanzar();
                         Metodo met = gramaticaMetodo.analizar(clase, flujoTokens);
@@ -53,6 +57,20 @@ public class GramaticaClase implements Gramatica {
                         if (atributo != null) {
                             clase.getListaAtributos().add(atributo);
                             continue;
+                        }
+
+                        Constructor constructor = gramaticaConstructor.analizar(clase, flujoTokens);
+                        if (constructor != null) {
+                            clase.getListaSentencia().add(constructor);
+                            continue;
+
+                        }
+
+                        Main main = gramaticaMain.analizar(clase, flujoTokens);
+                        if (main != null) {
+                            clase.getListaSentencia().add(main);
+                            continue;
+
                         }
                         continuar = false;
 

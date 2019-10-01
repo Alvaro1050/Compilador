@@ -6,7 +6,6 @@
 package co.edu.eam.tlf.analizadorlexico.vista;
 
 import co.edu.eam.tlf.analizadorlexico.controlador.Analizador_lexico;
-import co.edu.eam.tlf.analizadorlexico.modelo.Flujo_caracteres;
 import co.edu.eam.tlf.analizadorsintactico.main.AnalizadorSintactico;
 import java.io.File;
 import java.io.FileNotFoundException;

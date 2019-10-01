@@ -29,6 +29,7 @@ public class Clase extends Sentencia {
      */
     private Lista<Atributo> listaAtributos;
 
+    private Lista<Sentencia> listaSentencia;
     /**
      * Nombre de la clase.
      */
@@ -37,6 +38,7 @@ public class Clase extends Sentencia {
     public Clase() {
         listaAtributos = new Lista();
         listaMetodos = new Lista<>();
+        listaSentencia = new Lista<>();
     }
 
     @Override
@@ -73,6 +75,14 @@ public class Clase extends Sentencia {
 
     public void setListaAtributos(Lista<Atributo> listaAtributos) {
         this.listaAtributos = listaAtributos;
+    }
+
+    public Lista<Sentencia> getListaSentencia() {
+        return listaSentencia;
+    }
+
+    public void setListaSentencia(Lista<Sentencia> listaSentencia) {
+        this.listaSentencia = listaSentencia;
     }
 
     public Lexema getNombreClase() {

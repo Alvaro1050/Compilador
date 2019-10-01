@@ -14,48 +14,39 @@ import java.util.List;
  *
  * @author Lenovo
  */
-public class Main extends Sentencia {
+public class Constructor extends Sentencia {
 
-    private Lexema retorno;
-    private Lexema main;
-    private Lexema tipoIdentidicador;
-    private Lexema nombreParametro;
-    private Lista<Sentencia> listaSentencia;
+    Lexema nombre;
 
-    public Main() {
+    Lista<Parametro> listaParametros;
+
+    Lista<Sentencia> listaSentencia;
+
+    public Constructor(Lexema nombre, Lista<Parametro> listaParametros, Lista<Sentencia> listaSentencia) {
+        this.nombre = nombre;
+        this.listaParametros = listaParametros;
+        this.listaSentencia = listaSentencia;
+    }
+
+    public Constructor() {
+        listaParametros = new Lista<>();
         listaSentencia = new Lista<>();
     }
 
-    public Lexema getRetorno() {
-        return retorno;
+    public Lexema getNombre() {
+        return nombre;
     }
 
-    public void setRetorno(Lexema retorno) {
-        this.retorno = retorno;
+    public void setNombre(Lexema nombre) {
+        this.nombre = nombre;
     }
 
-    public Lexema getMain() {
-        return main;
+    public Lista<Parametro> getListaParametros() {
+        return listaParametros;
     }
 
-    public void setMain(Lexema main) {
-        this.main = main;
-    }
-
-    public Lexema getTipoIdentidicador() {
-        return tipoIdentidicador;
-    }
-
-    public void setTipoIdentidicador(Lexema tipoIdentidicador) {
-        this.tipoIdentidicador = tipoIdentidicador;
-    }
-
-    public Lexema getNombreParametro() {
-        return nombreParametro;
-    }
-
-    public void setNombreParametro(Lexema nombreParametro) {
-        this.nombreParametro = nombreParametro;
+    public void setListaParametros(Lista<Parametro> listaParametros) {
+        this.listaParametros = listaParametros;
     }
 
     public Lista<Sentencia> getListaSentencia() {
@@ -68,13 +59,7 @@ public class Main extends Sentencia {
 
     @Override
     public List<Sentencia> llenarHijos() {
-
-        hijos = new ArrayList<>();
-
-        hijos.add(new SentenciaToken(main));
-        hijos.add(new SentenciaToken(retorno));
-
-        return hijos;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -86,4 +71,5 @@ public class Main extends Sentencia {
     public String parse() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }
