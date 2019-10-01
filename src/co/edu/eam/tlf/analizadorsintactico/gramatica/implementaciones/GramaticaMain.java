@@ -41,7 +41,7 @@ public class GramaticaMain implements Gramatica {
             }
             //parentesis.......
             if (lexema.getToken().equals("main")) {
-
+                main.setMain(lexema);
                 lexema = flujoTokens.avanzar();
 
                 if (lexema == null) {
@@ -56,6 +56,7 @@ public class GramaticaMain implements Gramatica {
                     }
 
                     if (lexema.getTipoLexema().equals("Tipo Dato")) {
+                        main.setTipoIdentidicador(lexema);
                         lexema = flujoTokens.avanzar();
 
                         if (lexema == null) {
@@ -76,6 +77,7 @@ public class GramaticaMain implements Gramatica {
                                 }
 
                                 if (lexema.getTipoLexema().equals("Identificador")) {
+                                    main.setNombreParametro(lexema);
                                     lexema = flujoTokens.avanzar();
 
                                     if (lexema == null) {
