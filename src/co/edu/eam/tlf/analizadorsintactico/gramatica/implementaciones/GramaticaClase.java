@@ -12,6 +12,7 @@ import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Atributo;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Clase;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Constructor;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.DeclaradorVariable;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Main;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Metodo;
 
@@ -73,6 +74,14 @@ public class GramaticaClase implements Gramatica {
                             continue;
 
                         }
+                        
+                        DeclaradorVariable declaradorVariable = gramaticaDeclaradorVariable.analizar(clase, flujoTokens);
+                        if (declaradorVariable != null) {
+                            clase.getListaSentencia().add(declaradorVariable);
+                            continue;
+
+                        }
+                        
                         continuar = false;
 
                     } while (continuar);
