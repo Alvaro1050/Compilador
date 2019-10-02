@@ -45,6 +45,7 @@ public class GramaticaClase implements Gramatica {
                     GramaticaMetodoDeclaracion gramaticaMetodo = new GramaticaMetodoDeclaracion();
                     GramaticaDeclararConstructor gramaticaConstructor = new GramaticaDeclararConstructor();
                     GramaticaMain gramaticaMain = new GramaticaMain();
+                    GramaticaDeclaradorVariable gramaticaDeclaradorVariable = new GramaticaDeclaradorVariable();
                     do {
                         lexema = flujoTokens.avanzar();
                         Metodo met = gramaticaMetodo.analizar(clase, flujoTokens);

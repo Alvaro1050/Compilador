@@ -6,7 +6,6 @@
 package co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones;
 
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
-import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,17 +13,11 @@ import java.util.List;
  *
  * @author Lenovo
  */
-class DeclaradorVariable extends Sentencia {
+public class DeclaradorVariable extends co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia {
 
     private Lexema tipo;
     private Lexema identificador;
-    Lista<DeclaradorVariable> listaDeclaradorVariable;
-
-    public DeclaradorVariable(Lexema tipo, Lexema identificador, Lista<DeclaradorVariable> listaDeclaradorVariable) {
-        this.tipo = tipo;
-        this.identificador = identificador;
-        this.listaDeclaradorVariable = listaDeclaradorVariable;
-    }
+    private Lista<DeclaradorVariable> listaDeclaradorVariable;
 
     public DeclaradorVariable() {
         listaDeclaradorVariable = new Lista<>();
@@ -55,7 +48,7 @@ class DeclaradorVariable extends Sentencia {
     }
 
     @Override
-    public List<Sentencia> llenarHijos() {
+    public List<co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
 
         hijos.add(new SentenciaToken(tipo));

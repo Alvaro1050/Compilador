@@ -15,7 +15,7 @@ import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
  *
  * @author alvar
  */
-public class GramaticaFor implements Gramatica {
+public class GramaticaPara implements Gramatica {
 
     @Override
     public IF analizar(Sentencia raiz, FlujoTokens flujoTokens) {

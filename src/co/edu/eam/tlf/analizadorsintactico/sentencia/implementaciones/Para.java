@@ -13,21 +13,21 @@ import java.util.List;
  *
  * @author Lenovo
  */
-public class For extends Sentencia {
+public class Para extends Sentencia {
 
     private DeclaradorVariable declaradorVariable;
     private Expresion expresion;
     private ExpresionLogica expresionLogica;
     private Lista<Sentencia> listaSentencia;
 
-    public For(DeclaradorVariable declaradorVariable, Expresion expresion, ExpresionLogica expresionLogica, Lista<Sentencia> listaSentencia) {
+    public Para(DeclaradorVariable declaradorVariable, Expresion expresion, ExpresionLogica expresionLogica, Lista<Sentencia> listaSentencia) {
         this.declaradorVariable = declaradorVariable;
         this.expresion = expresion;
         this.expresionLogica = expresionLogica;
         this.listaSentencia = listaSentencia;
     }
 
-    public For() {
+    public Para() {
     }
 
     public DeclaradorVariable getDeclaradorVariable() {
