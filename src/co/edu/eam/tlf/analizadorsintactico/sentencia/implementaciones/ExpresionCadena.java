@@ -5,6 +5,7 @@
  */
 package co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones;
 
+import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import java.util.ArrayList;
 import java.util.List;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
@@ -15,28 +16,42 @@ import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
  */
 public class ExpresionCadena extends Sentencia {
 
-    private Expresion expresion;
-
-    public ExpresionCadena(Expresion expresion) {
-        this.expresion = expresion;
-    }
+    private Lexema expresion1;
+    private Lexema expresion2;
+    private Lexema operador;
 
     public ExpresionCadena() {
 
     }
 
-    public Expresion getExpresion() {
-        return expresion;
+    public Lexema getExpresion1() {
+        return expresion1;
     }
 
-    public void setExpresion(Expresion expresion) {
-        this.expresion = expresion;
+    public void setExpresion1(Lexema expresion1) {
+        this.expresion1 = expresion1;
+    }
+
+    public Lexema getExpresion2() {
+        return expresion2;
+    }
+
+    public void setExpresion2(Lexema expresion2) {
+        this.expresion2 = expresion2;
+    }
+
+    public Lexema getOperador() {
+        return operador;
+    }
+
+    public void setOperador(Lexema operador) {
+        this.operador = operador;
     }
 
     @Override
     public List<co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia> llenarHijos() {
+
         hijos = new ArrayList<>();
-        hijos.add(expresion);
 
         return hijos;
 
@@ -51,4 +66,5 @@ public class ExpresionCadena extends Sentencia {
     public String parse() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

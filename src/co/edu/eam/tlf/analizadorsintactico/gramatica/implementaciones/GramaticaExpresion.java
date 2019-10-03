@@ -9,7 +9,6 @@ import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Expresion;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionCadena;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionLogica;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionNumerica;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionTest;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
@@ -31,7 +30,6 @@ public class GramaticaExpresion implements Gramatica {
 
         GramaticaExpresionNumerica gramaticaExpresionNumerica = new GramaticaExpresionNumerica();
         GramaticaExpresionTest gramaticaExpresionTest = new GramaticaExpresionTest();
-        GramaticaExpresionLogica gramaticaExpresionLogica = new GramaticaExpresionLogica();
         GramaticaExpresionCadena gramaticaExpresionCadena = new GramaticaExpresionCadena();
 
         boolean continuar = true;
@@ -48,13 +46,19 @@ public class GramaticaExpresion implements Gramatica {
                 expresion.setExpresionTest(expresionTest);
                 continue;
             }
+            ExpresionCadena expresionCadena = gramaticaExpresionCadena.analizar(expresion, flujoTokens);
+
+            if (expresionCadena != null) {
+                expresion.setExpresionCadena(expresionCadena);
+                continue;
+            }
 
             continuar = false;
         } while (continuar);
 
         lexema = flujoTokens.getTokenActual();
 
-        if (expresion.getExpresionNumerica() == null && expresion.getExpresionTest() == null) {
+        if (expresion.getExpresionNumerica() == null && expresion.getExpresionTest() == null && expresion.getExpresionCadena() == null) {
             return null;
         } else {
             return expresion;
