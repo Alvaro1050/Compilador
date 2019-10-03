@@ -142,7 +142,7 @@ public class Analizador_lexico {
     }
 
     public int validarEspacios(int pos) {
-        if (flujo.getCaracteres()[pos] == ' ') {
+        if (flujo.getCaracteres()[pos] == ' ' || flujo.getCaracteres()[pos] == '\n') {
             pos++;
             validarEspacios(pos);
         }

@@ -18,9 +18,7 @@ public class Expresion extends Sentencia {
 
     private ExpresionNumerica expresionNumerica;
     private ExpresionTest expresionTest;
-    private ExpresionLogica expresionLogica;
     private ExpresionCadena expresionCadena;
-    private CastExpresion castExpresion;
     private CrearExpresion crearExpresion;
     private Lexema tipo;
     private Lista<Parametro> listaArgumentos;
@@ -28,17 +26,6 @@ public class Expresion extends Sentencia {
     public Expresion() {
         listaArgumentos = new Lista<>();
 
-    }
-
-    public Expresion(ExpresionNumerica expresionNumerica, ExpresionTest expresionTest, ExpresionLogica expresionLogica, ExpresionCadena expresionCadena, CastExpresion castExpresion, CrearExpresion crearExpresion, Lexema tipo, Lista<Parametro> listaArgumentos) {
-        this.expresionNumerica = expresionNumerica;
-        this.expresionTest = expresionTest;
-        this.expresionLogica = expresionLogica;
-        this.expresionCadena = expresionCadena;
-        this.castExpresion = castExpresion;
-        this.crearExpresion = crearExpresion;
-        this.tipo = tipo;
-        this.listaArgumentos = listaArgumentos;
     }
 
     public Lexema getTipo() {
@@ -49,7 +36,6 @@ public class Expresion extends Sentencia {
         this.tipo = tipo;
     }
 
-    
     public ExpresionNumerica getExpresionNumerica() {
         return expresionNumerica;
     }
@@ -66,28 +52,12 @@ public class Expresion extends Sentencia {
         this.expresionTest = expresionTest;
     }
 
-    public ExpresionLogica getExpresionLogica() {
-        return expresionLogica;
-    }
-
-    public void setExpresionLogica(ExpresionLogica expresionLogica) {
-        this.expresionLogica = expresionLogica;
-    }
-
     public ExpresionCadena getExpresionCadena() {
         return expresionCadena;
     }
 
     public void setExpresionCadena(ExpresionCadena expresionCadena) {
         this.expresionCadena = expresionCadena;
-    }
-
-    public CastExpresion getCastExpresion() {
-        return castExpresion;
-    }
-
-    public void setCastExpresion(CastExpresion castExpresion) {
-        this.castExpresion = castExpresion;
     }
 
     public CrearExpresion getCrearExpresion() {
@@ -116,7 +86,7 @@ public class Expresion extends Sentencia {
         if (!listaArgumentos.getSentencias().isEmpty()) {
             hijos.add(listaArgumentos);
         }
-       
+
         return hijos;
 
     }

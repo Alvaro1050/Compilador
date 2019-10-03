@@ -49,6 +49,12 @@ public class FlujoTokens {
         return getTokenActual();
     }
 
+    public Lexema retroceder() {
+        posActual--;
+
+        return getTokenActual();
+    }
+
     /**
      * Metodo para retornar el caracter en el que va el flujo de caracteres.
      *

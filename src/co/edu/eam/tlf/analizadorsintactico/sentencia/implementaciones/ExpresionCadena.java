@@ -5,17 +5,17 @@
  */
 package co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones;
 
-import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
+import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 
 /**
  *
- * @author Lenovo
+ * @author alvar
  */
-class ExpresionCadena extends Sentencia {
+public class ExpresionCadena extends Sentencia {
 
-   private Expresion expresion;
+    private Expresion expresion;
 
     public ExpresionCadena(Expresion expresion) {
         this.expresion = expresion;
@@ -34,7 +34,7 @@ class ExpresionCadena extends Sentencia {
     }
 
     @Override
-    public List<Sentencia> llenarHijos() {
+    public List<co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         hijos.add(expresion);
 
@@ -51,5 +51,4 @@ class ExpresionCadena extends Sentencia {
     public String parse() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

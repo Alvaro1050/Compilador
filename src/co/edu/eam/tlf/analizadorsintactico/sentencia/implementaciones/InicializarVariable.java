@@ -6,26 +6,29 @@
 package co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones;
 
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
-import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
+import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 
 /**
  *
  * @author Lenovo
  */
-class CastExpresion extends Sentencia {
+public class InicializarVariable extends Sentencia {
 
+    private Lexema variable;
     private Expresion expresion;
-    private Lexema tipo;
+    private Lexema valor;
 
-    public CastExpresion(Expresion expresion, Lexema tipo) {
-        this.expresion = expresion;
-        this.tipo = tipo;
+    public InicializarVariable() {
     }
 
-    public CastExpresion() {
+    public Lexema getVariable() {
+        return variable;
+    }
 
+    public void setVariable(Lexema variable) {
+        this.variable = variable;
     }
 
     public Expresion getExpresion() {
@@ -36,21 +39,17 @@ class CastExpresion extends Sentencia {
         this.expresion = expresion;
     }
 
-    public Lexema getTipo() {
-        return tipo;
+    public Lexema getValor() {
+        return valor;
     }
 
-    public void setTipo(Lexema tipo) {
-        this.tipo = tipo;
+    public void setValor(Lexema valor) {
+        this.valor = valor;
     }
 
     @Override
     public List<Sentencia> llenarHijos() {
-
         hijos = new ArrayList<>();
-
-        hijos.add(expresion);
-        hijos.add(new SentenciaToken(tipo));
 
         return hijos;
 

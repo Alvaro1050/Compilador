@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class IF extends Sentencia {
 
-    private Condicion condicion;
+    private ExpresionLogica condicion;
 
     private Lista<Sentencia> listaSentenciaSI;
 
@@ -21,7 +21,7 @@ public class IF extends Sentencia {
         listaSentenciaSI = new Lista<>();
     }
 
-    public IF(Condicion condicion, Lista<Sentencia> listaSentenciaSI, Lista<Sentencia> listaSentenciaContrario, IF contrario) {
+    public IF(ExpresionLogica condicion, Lista<Sentencia> listaSentenciaSI, Lista<Sentencia> listaSentenciaContrario, IF contrario) {
         this.condicion = condicion;
         this.listaSentenciaSI = listaSentenciaSI;
         this.listaSentenciaContrario = listaSentenciaContrario;
@@ -99,7 +99,7 @@ public class IF extends Sentencia {
         return str.toString();
     }
 
-    public void setCondicion(Condicion condicion) {
+    public void setCondicion(ExpresionLogica condicion) {
         this.condicion = condicion;
     }
 

@@ -31,10 +31,10 @@ public class GramaticaDeclaradorVariable implements Gramatica {
             lexema = flujoTokens.avanzar();
 
             if (lexema == null) {
-                throw new SintacticException(new Lexema("", ""), "identificador");
+                throw new SintacticException(new Lexema("", ""), "Identificador");
 
             }
-            if (lexema.getTipoLexema().equals("identificador")) {
+            if (lexema.getTipoLexema().equals("Identificador")) {
 
                 declaradorVariable.setIdentificador(lexema);
                 lexema = flujoTokens.avanzar();
@@ -50,7 +50,13 @@ public class GramaticaDeclaradorVariable implements Gramatica {
 
                         if (decla != null) {
                             declaradorVariable.getListaDeclaradorVariable().add(decla);
-                            continue;
+                            lexema = flujoTokens.getTokenActual();
+                            if (lexema.getToken().equals(";")) {
+
+                            } else {
+                                continue;
+                            }
+
                         }
                         continuar = false;
                     } while (continuar);

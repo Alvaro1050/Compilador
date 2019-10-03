@@ -5,18 +5,60 @@
  */
 package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 
+import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Expresion;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionCadena;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionLogica;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionNumerica;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionTest;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 
 /**
  *
  * @author Lenovo
  */
-public class GramaticaExpresion implements Gramatica{
+public class GramaticaExpresion implements Gramatica {
 
     @Override
-    public Sentencia analizar(Sentencia padre, FlujoTokens flujoTokens) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Expresion analizar(Sentencia padre, FlujoTokens flujoTokens) {
+
+        Expresion expresion = new Expresion();
+
+        flujoTokens.guardarPosicion();
+
+        Lexema lexema = flujoTokens.getTokenActual();
+
+        GramaticaExpresionNumerica gramaticaExpresionNumerica = new GramaticaExpresionNumerica();
+        GramaticaExpresionTest gramaticaExpresionTest = new GramaticaExpresionTest();
+        GramaticaExpresionLogica gramaticaExpresionLogica = new GramaticaExpresionLogica();
+        GramaticaExpresionCadena gramaticaExpresionCadena = new GramaticaExpresionCadena();
+
+        boolean continuar = true;
+        do {
+            ExpresionNumerica expresionNumerica = gramaticaExpresionNumerica.analizar(expresion, flujoTokens);
+
+            if (expresionNumerica != null) {
+                expresion.setExpresionNumerica(expresionNumerica);
+                continue;
+            }
+            ExpresionTest expresionTest = gramaticaExpresionTest.analizar(expresion, flujoTokens);
+
+            if (expresionTest != null) {
+                expresion.setExpresionTest(expresionTest);
+                continue;
+            }
+
+            continuar = false;
+        } while (continuar);
+
+        lexema = flujoTokens.getTokenActual();
+
+        if (expresion.getExpresionNumerica() == null && expresion.getExpresionTest() == null) {
+            return null;
+        } else {
+            return expresion;
+        }
+
     }
-    
 }

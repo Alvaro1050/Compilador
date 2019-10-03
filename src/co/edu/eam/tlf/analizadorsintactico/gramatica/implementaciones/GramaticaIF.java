@@ -4,7 +4,7 @@ import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Condicion;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionLogica;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.IF;
 
 public class GramaticaIF implements Gramatica {
@@ -21,17 +21,16 @@ public class GramaticaIF implements Gramatica {
             if (lexema == null) {
                 throw new SintacticException(new Lexema("", ""), "(");
             } else if (lexema.getToken().equals("(")) {
-                /*  GramaticaCondicion gc = new GramaticaCondicion();
-                 lexema = flujoTokens.avanzar();
-                 Condicion condicion = gc.analizar(si, flujoTokens);
-
-                 if (condicion != null) {
-                 si.setCondicion(condicion);
-                 lexema = flujoTokens.avanzar();
-                 } else if (lexema == null) {
-                 throw new SintacticException(new Lexema("", ""), ")");
-                 }*/
+                GramaticaExpresionLogica gramaticaExpresionLogica = new GramaticaExpresionLogica();
                 lexema = flujoTokens.avanzar();
+                ExpresionLogica expresionLogica = gramaticaExpresionLogica.analizar(si, flujoTokens);
+
+                if (expresionLogica != null) {
+                    si.setCondicion(expresionLogica);
+                    lexema = flujoTokens.getTokenActual();
+                } else {
+                    throw new SintacticException(lexema, "condicion");
+                }
 
                 if (lexema.getToken().equals(")")) {
                     lexema = flujoTokens.avanzar();

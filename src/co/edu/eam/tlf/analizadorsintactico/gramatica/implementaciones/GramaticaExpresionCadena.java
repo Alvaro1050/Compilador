@@ -6,6 +6,7 @@
 package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionCadena;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 
 /**
@@ -15,7 +16,7 @@ import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 public class GramaticaExpresionCadena implements Gramatica{
 
     @Override
-    public Sentencia analizar(Sentencia padre, FlujoTokens flujoTokens) {
+    public ExpresionCadena analizar(Sentencia padre, FlujoTokens flujoTokens) {
 
     return null;
     

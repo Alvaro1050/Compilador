@@ -13,6 +13,7 @@ import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Atributo;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Clase;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Constructor;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.DeclaradorVariable;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Expresion;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Main;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Metodo;
 
@@ -47,6 +48,9 @@ public class GramaticaClase implements Gramatica {
                     GramaticaDeclararConstructor gramaticaConstructor = new GramaticaDeclararConstructor();
                     GramaticaMain gramaticaMain = new GramaticaMain();
                     GramaticaDeclaradorVariable gramaticaDeclaradorVariable = new GramaticaDeclaradorVariable();
+                    /* prueba gramatica expresion*/
+
+                    GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
                     do {
                         lexema = flujoTokens.avanzar();
                         Metodo met = gramaticaMetodo.analizar(clase, flujoTokens);
@@ -55,6 +59,14 @@ public class GramaticaClase implements Gramatica {
                             continue;
                         }
 
+                        Expresion expresion = gramaticaExpresion.analizar(clase, flujoTokens);
+
+                        if (expresion != null) {
+                            clase.getListaSentencia().add(expresion);
+                            lexema = flujoTokens.getTokenActual();
+                            lexema = flujoTokens.retroceder();
+                            continue;
+                        }
                         Atributo atributo = gramaticaAtributo.analizar(clase, flujoTokens);
                         if (atributo != null) {
                             clase.getListaAtributos().add(atributo);
@@ -74,14 +86,14 @@ public class GramaticaClase implements Gramatica {
                             continue;
 
                         }
-                        
+
                         DeclaradorVariable declaradorVariable = gramaticaDeclaradorVariable.analizar(clase, flujoTokens);
                         if (declaradorVariable != null) {
                             clase.getListaSentencia().add(declaradorVariable);
                             continue;
 
                         }
-                        
+
                         continuar = false;
 
                     } while (continuar);
@@ -91,7 +103,7 @@ public class GramaticaClase implements Gramatica {
 
                         return clase;
                     } else {//si no se termina con llave cerrada, excepcion...
-                        throw new SintacticException(lexema, "Llave cerrada");
+                        throw new SintacticException(lexema, "corchete cerrado");
                     }
 
                 } else {//si no se empieza con llave abierta, error.
