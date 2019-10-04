@@ -31,6 +31,28 @@ public class AnalizadorSintactico {
     private Sentencia unidadCompilacion;
     private char[] caracteres;
 
+    List<Lexema> tokens;
+    List<Lexema> errores;
+
+    public List<Lexema> getTokens() {
+        return tokens;
+    }
+
+    public void setTokens(List<Lexema> tokens) {
+        this.tokens = tokens;
+    }
+
+    public List<Lexema> getErrores() {
+        return errores;
+    }
+
+    public void setErrores(List<Lexema> errores) {
+        this.errores = errores;
+    }
+    
+    
+    
+
     /**
      * Constrctor
      */
@@ -48,8 +70,8 @@ public class AnalizadorSintactico {
 
         Flujo_caracteres fc = new Flujo_caracteres(0, caracteres);
         analizadorLexico.analizar(fc);
-        List<Lexema> tokens = analizadorLexico.getListaLexema();
-        List<Lexema> errores = analizadorLexico.getListaErrores();
+        tokens = analizadorLexico.getListaLexema();
+        errores = analizadorLexico.getListaErrores();
 
         FrmAnalizar.listar();
         FrmAnalizar.listarErrores();

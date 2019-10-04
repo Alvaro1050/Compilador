@@ -28,7 +28,7 @@ public class Automata_OperadoresAritmeticos {
         q0F();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema(car[posInicial] + "", "Operador arirmetico");
+            return new Lexema(car[posInicial] + "", "Operador aritmetico");
         } else {
             return null;
         }
