@@ -8,9 +8,8 @@ package TestSictactico;
 import co.edu.eam.tlf.analizadorlexico.controlador.Analizador_lexico;
 import co.edu.eam.tlf.analizadorlexico.modelo.Flujo_caracteres;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones.FlujoTokens;
-import co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones.GramaticaMetodoDeclaracion;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Metodo;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.MetodoDeclaracion;
+import co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones.GramaticaAtributo;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Atributo;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,11 +17,11 @@ import static org.junit.Assert.*;
  *
  * @author Lenovo
  */
-public class GramaticaMetodoDeclaracionTest {
+public class GramaticaAtributoTest {
     
     @Test
-    public void GramaticaMetodoDeclaracionTest() {
-    String texto = "entero quirama() {}";
+    public void GramaticaAtributoTest() {
+   String texto = "flotante numero ;";
         char[] caracteres = texto.toCharArray();
 
         Flujo_caracteres fc = new Flujo_caracteres(0, caracteres);
@@ -32,11 +31,11 @@ public class GramaticaMetodoDeclaracionTest {
 
         FlujoTokens flujo = new FlujoTokens(analizador_lexico.getListaLexema());
 
-        GramaticaMetodoDeclaracion gramaticaMetodoDeclaracion = new GramaticaMetodoDeclaracion();
+        GramaticaAtributo gramaticaAtributo = new GramaticaAtributo();
 
-        Metodo metodoDeclaracion = gramaticaMetodoDeclaracion.analizar(null, flujo);
+        Atributo atributo = gramaticaAtributo.analizar(null, flujo);
 
-        assertNotNull(metodoDeclaracion);
+        assertNotNull(atributo);
 
     }
 
