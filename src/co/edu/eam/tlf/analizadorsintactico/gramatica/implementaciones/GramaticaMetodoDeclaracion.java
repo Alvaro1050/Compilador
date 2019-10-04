@@ -60,7 +60,9 @@ public class GramaticaMetodoDeclaracion implements Gramatica {
                 metodo.setListaParametros(parametros);
                 lexema = flujoTokens.getTokenActual();
                 if (lexema.getTipoLexema().equals("parentesis cerrado")) {
-                    metodo.setListaParametros(parametros);//se setean los parametros.
+                    if (parametros != null) {
+                        metodo.setListaParametros(parametros);//se setean los parametros.
+                    }
                     lexema = flujoTokens.avanzar();
                     //se espera llave abierta.....
                     if (lexema.getTipoLexema().equals("corchete abierto")) {

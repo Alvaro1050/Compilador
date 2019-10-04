@@ -6,32 +6,32 @@
 package co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones;
 
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
-import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
+import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 
 /**
  *
- * @author Lenovo
+ * @author alvar
  */
-class CrearExpresion extends Sentencia {
+public class CrearExpresion extends Sentencia {
 
     private Expresion expresion;
-    private Lexema neu;
+    private Expresion expresion2;
     private Lexema identificador;
     private Lexema tipoEspecificador;
-    private Lista<Parametro> listaParametros;
-
-    public CrearExpresion(Expresion expresion, Lexema neu, Lexema identificador, Lexema tipoEspecificador, Lista<Parametro> listaParametros) {
-        this.expresion = expresion;
-        this.neu = neu;
-        this.identificador = identificador;
-        this.tipoEspecificador = tipoEspecificador;
-        this.listaParametros = listaParametros;
-    }
+    private Lista<Argumento> listaArgumentos;
 
     public CrearExpresion() {
-        listaParametros = new Lista<>();
+        listaArgumentos = new Lista<>();
+    }
+
+    public Expresion getExpresion2() {
+        return expresion2;
+    }
+
+    public void setExpresion2(Expresion expresion2) {
+        this.expresion2 = expresion2;
     }
 
     public Expresion getExpresion() {
@@ -40,14 +40,6 @@ class CrearExpresion extends Sentencia {
 
     public void setExpresion(Expresion expresion) {
         this.expresion = expresion;
-    }
-
-    public Lexema getNeu() {
-        return neu;
-    }
-
-    public void setNeu(Lexema neu) {
-        this.neu = neu;
     }
 
     public Lexema getIdentificador() {
@@ -66,25 +58,24 @@ class CrearExpresion extends Sentencia {
         this.tipoEspecificador = tipoEspecificador;
     }
 
-    public Lista<Parametro> getListaParametros() {
-        return listaParametros;
+    public Lista<Argumento> getListaArgumentos() {
+        return listaArgumentos;
     }
 
-    public void setListaParametros(Lista<Parametro> listaParametros) {
-        this.listaParametros = listaParametros;
+    public void setListaArgumentos(Lista<Argumento> listaArgumentos) {
+        this.listaArgumentos = listaArgumentos;
     }
 
     @Override
-    public List<Sentencia> llenarHijos() {
+    public List<co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         hijos.add(expresion);
 
-        hijos.add(new SentenciaToken(neu));
         hijos.add(new SentenciaToken(identificador));
         hijos.add(new SentenciaToken(tipoEspecificador));
 
-        if (!listaParametros.getSentencias().isEmpty()) {
-            hijos.add(listaParametros);
+        if (!listaArgumentos.getSentencias().isEmpty()) {
+            hijos.add(listaArgumentos);
         }
 
         return hijos;
@@ -100,5 +91,4 @@ class CrearExpresion extends Sentencia {
     public String parse() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

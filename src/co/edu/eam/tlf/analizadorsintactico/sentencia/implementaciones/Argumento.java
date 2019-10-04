@@ -6,53 +6,36 @@
 package co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones;
 
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
-import java.util.ArrayList;
-import java.util.List;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
+import java.util.List;
 
 /**
  *
- * @author Lenovo
+ * @author alvar
  */
-public class InicializarVariable extends Sentencia {
+public class Argumento extends Sentencia {
 
-    private Lexema variable;
-    private Expresion expresion;
-    private Lexema valor;
+    private Lexema nombre;
 
-    public InicializarVariable() {
+    public Argumento() {
     }
 
-    public Lexema getVariable() {
-        return variable;
+    public Argumento(Lexema nombre) {
+        this.nombre = nombre;
     }
 
-    public void setVariable(Lexema variable) {
-        this.variable = variable;
+    
+    public Lexema getNombre() {
+        return nombre;
     }
 
-    public Expresion getExpresion() {
-        return expresion;
-    }
-
-    public void setExpresion(Expresion expresion) {
-        this.expresion = expresion;
-    }
-
-    public Lexema getValor() {
-        return valor;
-    }
-
-    public void setValor(Lexema valor) {
-        this.valor = valor;
+    public void setNombre(Lexema nombre) {
+        this.nombre = nombre;
     }
 
     @Override
     public List<Sentencia> llenarHijos() {
-        hijos = new ArrayList<>();
-
-        return hijos;
-
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

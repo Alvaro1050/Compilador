@@ -7,6 +7,7 @@ package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.CrearExpresion;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Expresion;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionCadena;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionNumerica;
@@ -31,6 +32,7 @@ public class GramaticaExpresion implements Gramatica {
         GramaticaExpresionNumerica gramaticaExpresionNumerica = new GramaticaExpresionNumerica();
         GramaticaExpresionTest gramaticaExpresionTest = new GramaticaExpresionTest();
         GramaticaExpresionCadena gramaticaExpresionCadena = new GramaticaExpresionCadena();
+        GramaticaCrearExpresion gramaticaCrearExpresion = new GramaticaCrearExpresion();
 
         boolean continuar = true;
         do {
@@ -46,12 +48,21 @@ public class GramaticaExpresion implements Gramatica {
                 expresion.setExpresionTest(expresionTest);
                 continue;
             }
-            ExpresionCadena expresionCadena = gramaticaExpresionCadena.analizar(expresion, flujoTokens);
 
-            if (expresionCadena != null) {
-                expresion.setExpresionCadena(expresionCadena);
+            CrearExpresion crearExpresion = gramaticaCrearExpresion.analizar(expresion, flujoTokens);
+
+            if (crearExpresion != null) {
+                expresion.setCrearExpresion(crearExpresion);
                 continue;
             }
+            /*
+             ExpresionCadena expresionCadena = gramaticaExpresionCadena.analizar(expresion, flujoTokens);
+
+             if (expresionCadena != null) {
+             expresion.setExpresionCadena(expresionCadena);
+             continue;
+             }
+             */
 
             continuar = false;
         } while (continuar);

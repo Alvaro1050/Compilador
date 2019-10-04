@@ -28,10 +28,8 @@ public class GramaticaLista<T extends Sentencia> {
      */
     public Lista<T> analizar(Gramatica gramma, Sentencia raiz, FlujoTokens flujoTokens, String separador) {
 
-        
         List<T> sentencias = new ArrayList<>();
         T parametro = null;
-        T If = null;
         boolean go = true;
         do {
             Lexema lexema = flujoTokens.avanzar();
@@ -43,18 +41,11 @@ public class GramaticaLista<T extends Sentencia> {
                 if (lexema.getTipoLexema() != separador) {
                     break;
                 }
+                continue;
 
-            } else {
-
-                If = (T) gramma.analizar(raiz, flujoTokens);
-                if (If != null) {
-                    sentencias.add(If);
-                    lexema = flujoTokens.avanzar();
-                    break;
-                } else {
-                    go = false;
-                }
             }
+
+            go = false;
 
         } while (go);
 

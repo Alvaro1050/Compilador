@@ -47,7 +47,7 @@ public class GramaticaExpresionLogica implements Gramatica {
         Expresion expresion = gramaticaExpresion.analizar(expresionLogica, flujoTokens);
         if (expresion != null) {
             expresionLogica.setExpresion(expresion);
-
+            lexema = flujoTokens.getTokenActual();
             if (lexema.getToken().equals("&") || lexema.getToken().equals("|")) {
                 expresionLogica.setOperador(lexema);
                 lexema = flujoTokens.avanzar();
