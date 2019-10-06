@@ -27,55 +27,58 @@ public class GramaticaExpresionLogica implements Gramatica {
 
         Lexema lexema = flujoTokens.getTokenActual();
 
-        if (lexema.getToken().equals("!")) {
-
-            expresionLogica.setOperador(lexema);
-            lexema = flujoTokens.avanzar();
-
-            GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
+        GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
+        boolean continuar = true;
+        do {
 
             Expresion expresion = gramaticaExpresion.analizar(expresionLogica, flujoTokens);
+
             if (expresion != null) {
-                expresionLogica.setExpresion(expresion);
-                return expresionLogica;
+                expresionLogica.getExpresiones().add(expresion);
+                lexema = flujoTokens.getTokenActual();
+                if (lexema.getToken().equals("&") || lexema.getToken().equals("|")) {
+                    expresionLogica.getOperadores().add(lexema);
+                    lexema = flujoTokens.avanzar();
+
+                    if (lexema == null) {
+                        throw new SintacticException(new Lexema("", ""), "expresion");
+                    }
+
+                    if (lexema.getToken().equals("!")) {
+                        lexema = flujoTokens.avanzar();
+                    }
+
+                    continue;
+                }
             }
 
-        }
-
-        GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
-
-        Expresion expresion = gramaticaExpresion.analizar(expresionLogica, flujoTokens);
-        if (expresion != null) {
-            expresionLogica.setExpresion(expresion);
-            lexema = flujoTokens.getTokenActual();
-            if (lexema.getToken().equals("&") || lexema.getToken().equals("|")) {
-                expresionLogica.setOperador(lexema);
+            if (lexema.getTipoLexema().equals("Identificador")) {
+                expresionLogica.getIdentificadores().add(lexema);
                 lexema = flujoTokens.avanzar();
+                if (lexema.getToken().equals("&") || lexema.getToken().equals("|")) {
+                    expresionLogica.getOperadores().add(lexema);
+                    lexema = flujoTokens.avanzar();
 
-                if (lexema == null) {
-                    throw new SintacticException(new Lexema("", ""), "expresion");
+                    if (lexema == null) {
+                        throw new SintacticException(new Lexema("", ""), "expresion");
+                    }
+
+                    if (lexema.getToken().equals("!")) {
+                        lexema = flujoTokens.avanzar();
+                    }
+
+                    continue;
                 }
-
-                Expresion expresion1 = gramaticaExpresion.analizar(expresionLogica, flujoTokens);
-                if (expresion1 != null) {
-                    expresionLogica.setExpresion2(expresion1);
-                    return expresionLogica;
-                } else {
-                    throw new SintacticException(lexema, "expresion");
-
-                }
-
-            } else {
-                throw new SintacticException(lexema, "operador");
-
             }
-        }
 
-        if (lexema.getTipoLexema().equals("Identificador")) {
-            expresionLogica.setIdentificador(lexema);
+            continuar = false;
+        } while (continuar);
+
+        if (!expresionLogica.getExpresiones().isEmpty() || !expresionLogica.getIdentificadores().isEmpty()) {
             return expresionLogica;
+        } else {
+            return null;
         }
-        return null;
 
     }
 

@@ -22,18 +22,37 @@ public class Expresion extends Sentencia {
     private CrearExpresion crearExpresion;
     private Lexema identificador;
     private Lista<Parametro> listaArgumentos;
+    private List<Expresion> expresiones;
+    private List<Expresion2> expresion2s;
 
     public Expresion() {
         listaArgumentos = new Lista<>();
-
+        expresiones = new ArrayList<>();
+        expresion2s = new ArrayList<>();
     }
 
     public Lexema getIdentificador() {
         return identificador;
     }
 
+    public List<Expresion2> getExpresion2s() {
+        return expresion2s;
+    }
+
+    public void setExpresion2s(List<Expresion2> expresion2s) {
+        this.expresion2s = expresion2s;
+    }
+
     public void setIdentificador(Lexema identificador) {
         this.identificador = identificador;
+    }
+
+    public List<Expresion> getExpresiones() {
+        return expresiones;
+    }
+
+    public void setExpresiones(List<Expresion> expresiones) {
+        this.expresiones = expresiones;
     }
 
     public ExpresionNumerica getExpresionNumerica() {

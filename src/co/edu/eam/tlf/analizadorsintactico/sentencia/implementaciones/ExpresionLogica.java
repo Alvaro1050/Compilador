@@ -16,51 +16,46 @@ import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
  */
 public class ExpresionLogica extends Sentencia {
 
-    private Expresion expresion;
-    private Expresion expresion2;
-    private Lexema operador;
-    private Lexema identificador;
+    private List<Expresion> expresiones;
+    private List<Lexema> operadores;
+    private List<Lexema> identificadores;
 
     public ExpresionLogica() {
-
+        expresiones = new ArrayList<>();
+        operadores = new ArrayList<>();
+        identificadores = new ArrayList<>();
     }
 
-    public Expresion getExpresion2() {
-        return expresion2;
+    public List<Expresion> getExpresiones() {
+        return expresiones;
     }
 
-    public void setExpresion2(Expresion expresion2) {
-        this.expresion2 = expresion2;
+    public void setExpresiones(List<Expresion> expresiones) {
+        this.expresiones = expresiones;
     }
 
-    public Lexema getIdentificador() {
-        return identificador;
+    public List<Lexema> getOperadores() {
+        return operadores;
     }
 
-    public void setIdentificador(Lexema identificador) {
-        this.identificador = identificador;
+    public void setOperadores(List<Lexema> operadores) {
+        this.operadores = operadores;
     }
 
-    public Lexema getOperador() {
-        return operador;
+    public List<Lexema> getIdentificadores() {
+        return identificadores;
     }
 
-    public void setOperador(Lexema operador) {
-        this.operador = operador;
-    }
-
-    public Expresion getExpresion() {
-        return expresion;
-    }
-
-    public void setExpresion(Expresion expresion) {
-        this.expresion = expresion;
+    public void setIdentificadores(List<Lexema> identificadores) {
+        this.identificadores = identificadores;
     }
 
     @Override
     public List<co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        hijos.add(expresion);
+        for (int i = 0; i < expresiones.size(); i++) {
+            hijos.add(expresiones.get(i));
+        }
 
         return hijos;
 

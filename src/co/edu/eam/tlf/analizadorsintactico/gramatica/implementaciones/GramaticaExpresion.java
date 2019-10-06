@@ -6,12 +6,16 @@
 package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
+import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Argumento;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.CrearExpresion;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Expresion;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Expresion2;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionCadena;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionNumerica;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionTest;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Lista;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 
 /**
@@ -31,8 +35,9 @@ public class GramaticaExpresion implements Gramatica {
 
         GramaticaExpresionNumerica gramaticaExpresionNumerica = new GramaticaExpresionNumerica();
         GramaticaExpresionTest gramaticaExpresionTest = new GramaticaExpresionTest();
-        GramaticaExpresionCadena gramaticaExpresionCadena = new GramaticaExpresionCadena();
+        GramaticaExpresion2 gramaticaExpresion2 = new GramaticaExpresion2();
         GramaticaCrearExpresion gramaticaCrearExpresion = new GramaticaCrearExpresion();
+        GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
 
         boolean continuar = true;
         do {
@@ -62,14 +67,43 @@ public class GramaticaExpresion implements Gramatica {
                 lexema = flujoTokens.avanzar();
                 continue;
             }
-            /*
-             ExpresionCadena expresionCadena = gramaticaExpresionCadena.analizar(expresion, flujoTokens);
 
-             if (expresionCadena != null) {
-             expresion.setExpresionCadena(expresionCadena);
-             continue;
-             }
-             */
+            if (lexema.getToken().equals("vacio")) {
+                expresion.setIdentificador(lexema);
+                lexema = flujoTokens.avanzar();
+                continue;
+            }
+
+            if (lexema.getToken().equals("(")) {
+                lexema = flujoTokens.avanzar();
+
+                if (lexema == null) {
+                    throw new SintacticException(new Lexema("", ""), "expresion");
+                }
+
+                Expresion expresion1 = gramaticaExpresion.analizar(expresion, flujoTokens);
+
+                if (expresion1 != null) {
+                    expresion.getExpresiones().add(expresion);
+                    lexema = flujoTokens.getTokenActual();
+                    if (lexema.getToken().equals(")")) {
+                        lexema = flujoTokens.avanzar();
+                        continue;
+                    } else {
+                        throw new SintacticException(lexema, ")");
+                    }
+                } else {
+                    throw new SintacticException(lexema, "expresion");
+                }
+            }
+
+            Expresion2 expresiona = gramaticaExpresion2.analizar(expresion, flujoTokens);
+
+            if (expresiona != null) {
+                expresion.getExpresion2s().add(expresiona);
+                lexema = flujoTokens.getTokenActual();
+                continue;
+            }
 
             continuar = false;
         } while (continuar);
