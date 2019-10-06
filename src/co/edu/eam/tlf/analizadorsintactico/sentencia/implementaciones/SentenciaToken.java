@@ -9,6 +9,7 @@ import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
+import javax.crypto.SealedObject;
 
 /**
  *
@@ -27,7 +28,10 @@ public class SentenciaToken extends Sentencia {
 
     @Override
     public List<Sentencia> llenarHijos() {
-        return new ArrayList<>();
+        hijos = new ArrayList<>();
+        hijos.add(new SentenciaToken(simbolo));
+        return hijos;
+
     }
 
     @Override

@@ -51,7 +51,7 @@ public class ExpresionLogica extends Sentencia {
     }
 
     @Override
-    public List<co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia> llenarHijos() {
+    public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
         for (int i = 0; i < expresiones.size(); i++) {
             hijos.add(expresiones.get(i));

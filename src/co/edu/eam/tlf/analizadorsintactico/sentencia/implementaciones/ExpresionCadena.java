@@ -53,6 +53,10 @@ public class ExpresionCadena extends Sentencia {
 
         hijos = new ArrayList<>();
 
+        hijos.add(new SentenciaToken(expresion1));
+        hijos.add(new SentenciaToken(expresion2));
+        hijos.add(new SentenciaToken(operador));
+
         return hijos;
 
     }

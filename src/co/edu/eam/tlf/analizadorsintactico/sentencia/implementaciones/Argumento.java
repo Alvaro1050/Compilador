@@ -7,6 +7,7 @@ package co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones;
 
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +25,6 @@ public class Argumento extends Sentencia {
         this.nombre = nombre;
     }
 
-    
     public Lexema getNombre() {
         return nombre;
     }
@@ -35,17 +35,28 @@ public class Argumento extends Sentencia {
 
     @Override
     public List<Sentencia> llenarHijos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        hijos = new ArrayList<>();
+
+        hijos.add(new SentenciaToken(nombre));
+
+        return hijos;
+
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Argumento:  " + nombre.getToken();
+
     }
 
     @Override
     public String parse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          StringBuilder str = new StringBuilder();
+        str.append("Argumento ");
+
+        str.append("con nombre ").append(nombre.getToken());
+
+        return str.toString();
     }
 
 }

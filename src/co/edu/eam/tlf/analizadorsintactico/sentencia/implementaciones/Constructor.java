@@ -59,12 +59,26 @@ public class Constructor extends Sentencia {
 
     @Override
     public List<Sentencia> llenarHijos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        
+        hijos = new ArrayList<>();
+
+        hijos.add(new SentenciaToken(nombre));
+        if (!listaParametros.getSentencias().isEmpty()) {
+            hijos.add(listaParametros);
+        }
+        if (!listaSentencia.getSentencias().isEmpty()) {
+            hijos.add(listaSentencia);
+        }
+        return hijos;
+    
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+            return "Constructor:" + nombre.getToken();
+
     }
 
     @Override

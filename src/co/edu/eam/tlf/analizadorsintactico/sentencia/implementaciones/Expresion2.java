@@ -31,7 +31,6 @@ public class Expresion2 extends Sentencia {
     public void setIdentificador(Lexema identificador) {
         this.identificador = identificador;
     }
-    
 
     public Lista<Argumento> getListaArg() {
         return listaArg;
@@ -51,7 +50,16 @@ public class Expresion2 extends Sentencia {
 
     @Override
     public List<Sentencia> llenarHijos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        hijos = new ArrayList<>();
+        hijos.add(expresion);
+        hijos.add(new SentenciaToken(identificador));
+        if (!listaArg.getSentencias().isEmpty()) {
+            hijos.add(listaArg);
+        }
+
+        return hijos;
+
     }
 
     @Override

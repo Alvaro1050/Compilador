@@ -49,9 +49,12 @@ public class ExpresionTest extends Sentencia {
     }
 
     @Override
-    public List<co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia> llenarHijos() {
+    public List<Sentencia> llenarHijos() {
 
         hijos = new ArrayList<>();
+        hijos.add(new SentenciaToken(expresion1));
+        hijos.add(new SentenciaToken(expresion2));
+        hijos.add(new SentenciaToken(operador));
 
         return hijos;
     }

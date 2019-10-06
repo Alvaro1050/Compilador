@@ -73,8 +73,15 @@ public class Main extends Sentencia {
 
         hijos.add(new SentenciaToken(main));
         hijos.add(new SentenciaToken(retorno));
+        hijos.add(new SentenciaToken(nombreParametro));
+        hijos.add(new SentenciaToken(tipoIdentidicador));
 
+        if (!listaSentencia.getSentencias().isEmpty()) {
+            hijos.add(listaSentencia);
+        }
         return hijos;
+        
+        
     }
 
     @Override

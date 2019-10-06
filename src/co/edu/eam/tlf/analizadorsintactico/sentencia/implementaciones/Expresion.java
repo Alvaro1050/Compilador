@@ -20,23 +20,23 @@ public class Expresion extends Sentencia {
     private ExpresionTest expresionTest;
     private CrearExpresion crearExpresion;
     private Lexema identificador;
-    private List<Expresion> expresiones;
-    private List<Expresion2> expresion2s;
+    private Lista<Expresion> expresiones;
+    private Lista<Expresion2> expresion2s;
 
     public Expresion() {
-        expresiones = new ArrayList<>();
-        expresion2s = new ArrayList<>();
+        expresiones = new Lista<>();
+        expresion2s = new Lista<>();
     }
 
     public Lexema getIdentificador() {
         return identificador;
     }
 
-    public List<Expresion2> getExpresion2s() {
+    public Lista<Expresion2> getExpresion2s() {
         return expresion2s;
     }
 
-    public void setExpresion2s(List<Expresion2> expresion2s) {
+    public void setExpresion2s(Lista<Expresion2> expresion2s) {
         this.expresion2s = expresion2s;
     }
 
@@ -44,11 +44,11 @@ public class Expresion extends Sentencia {
         this.identificador = identificador;
     }
 
-    public List<Expresion> getExpresiones() {
+    public Lista<Expresion> getExpresiones() {
         return expresiones;
     }
 
-    public void setExpresiones(List<Expresion> expresiones) {
+    public void setExpresiones(Lista<Expresion> expresiones) {
         this.expresiones = expresiones;
     }
 
@@ -68,7 +68,6 @@ public class Expresion extends Sentencia {
         this.expresionTest = expresionTest;
     }
 
-
     public CrearExpresion getCrearExpresion() {
         return crearExpresion;
     }
@@ -81,20 +80,27 @@ public class Expresion extends Sentencia {
     public List<Sentencia> llenarHijos() {
 
         hijos = new ArrayList<>();
-
+        hijos.add(expresionNumerica);
+        hijos.add(expresionTest);
+        hijos.add(crearExpresion);
         hijos.add(new SentenciaToken(identificador));
-
+        if (!expresiones.getSentencias().isEmpty()) {
+            hijos.add(expresiones);
+        }
+        if (!expresion2s.getSentencias().isEmpty()) {
+            hijos.add(expresion2s);
+        }
         return hijos;
 
-    }
+}
 
-    @Override
-    public String toString() {
+@Override
+        public String toString() {
         return "Expresion";
     }
 
     @Override
-    public String parse() {
+        public String parse() {
 
         StringBuilder str = new StringBuilder();
 
@@ -114,12 +120,12 @@ public class Expresion extends Sentencia {
 
         str.append(identificador.getToken());
 
-        for (Sentencia sentencia : expresiones) {
+        for (Sentencia sentencia : expresiones.getSentencias()) {
             str.append("Expresiones: ");
             str.append(sentencia.parse());
         }
 
-        for (Sentencia sentencia : expresion2s) {
+        for (Sentencia sentencia : expresion2s.getSentencias()) {
             str.append("Expresiones 2: ");
             str.append(sentencia);
         }

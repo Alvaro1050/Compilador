@@ -49,7 +49,7 @@ public class ExpresionNumerica extends Sentencia {
     }
 
     @Override
-    public List<co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia> llenarHijos() {
+    public List<Sentencia> llenarHijos() {
 
         hijos = new ArrayList<>();
         
