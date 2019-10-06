@@ -18,10 +18,20 @@ public class Expresion2 extends Sentencia {
 
     private Lista<Argumento> listaArg;
     private Expresion expresion;
+    private Lexema identificador;
 
     public Expresion2() {
         listaArg = new Lista<>();
     }
+
+    public Lexema getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(Lexema identificador) {
+        this.identificador = identificador;
+    }
+    
 
     public Lista<Argumento> getListaArg() {
         return listaArg;

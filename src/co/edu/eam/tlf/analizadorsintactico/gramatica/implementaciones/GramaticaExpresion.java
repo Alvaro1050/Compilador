@@ -62,19 +62,18 @@ public class GramaticaExpresion implements Gramatica {
                 continue;
             }
 
+            Expresion2 expresiona = gramaticaExpresion2.analizar(expresion, flujoTokens);
+
+            if (expresiona != null) {
+                expresion.getExpresion2s().add(expresiona);
+                lexema = flujoTokens.getTokenActual();
+                continue;
+            }
+
             lexema = flujoTokens.getTokenActual();
             if (lexema.getTipoLexema().equals("Identificador")) {
                 expresion.setIdentificador(lexema);
                 lexema = flujoTokens.avanzar();
-
-                Expresion2 expresiona = gramaticaExpresion2.analizar(expresion, flujoTokens);
-
-                if (expresiona != null) {
-                    expresion.getExpresion2s().add(expresiona);
-                    lexema = flujoTokens.getTokenActual();
-                    continue;
-                }
-
                 continue;
             }
 

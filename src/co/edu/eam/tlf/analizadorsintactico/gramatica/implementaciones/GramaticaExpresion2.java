@@ -28,55 +28,63 @@ public class GramaticaExpresion2 implements Gramatica {
 
         Lexema lexema = flujoTokens.getTokenActual();
 
-        if (lexema.getToken().equals("(")) {
+        if (lexema.getTipoLexema().equals("Identificador")) {
+            expresion2.setIdentificador(lexema);
             lexema = flujoTokens.avanzar();
-
-            Lista<Argumento> argumentos = new Lista<>();
-            GramaticaArgumento gramma = new GramaticaArgumento();
-            //Parametro parametro = grammma.verificar(flujoTokens);
-            /////
-            GramaticaLista<Argumento> grammaArgumentos = new GramaticaLista<>();
-            argumentos = grammaArgumentos.analizar(gramma, expresion2, flujoTokens, "Coma");
-            expresion2.setListaArg(argumentos);
-            lexema = flujoTokens.getTokenActual();
-
-            if (lexema.getToken().equals(")")) {
+            if (lexema.getToken().equals("(")) {
                 lexema = flujoTokens.avanzar();
-                return expresion2;
-            } else {
-                throw new SintacticException(lexema, ")");
 
-            }
-        }
-
-        GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
-        if (lexema.getToken().equals("[")) {
-            Expresion expresion = gramaticaExpresion.analizar(expresion2, flujoTokens);
-
-            if (expresion != null) {
-                expresion2.setExpresion(expresion);
+                Lista<Argumento> argumentos = new Lista<>();
+                GramaticaArgumento gramma = new GramaticaArgumento();
+                //Parametro parametro = grammma.verificar(flujoTokens);
+                /////
+                GramaticaLista<Argumento> grammaArgumentos = new GramaticaLista<>();
+                argumentos = grammaArgumentos.analizar(gramma, expresion2, flujoTokens, "Coma");
+                expresion2.setListaArg(argumentos);
                 lexema = flujoTokens.getTokenActual();
-                if (lexema.getToken().equals("]")) {
+
+                if (lexema.getToken().equals(")")) {
                     lexema = flujoTokens.avanzar();
                     return expresion2;
                 } else {
-                    throw new SintacticException(lexema, "]");
+                    throw new SintacticException(lexema, ")");
+
                 }
             }
-        }
 
-        if (lexema.getToken().equals(".") || lexema.getToken().equals(",")) {
-            lexema = flujoTokens.avanzar();
-            Expresion expresion = gramaticaExpresion.analizar(expresion2, flujoTokens);
+            GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
+            if (lexema.getToken().equals("[")) {
+                Expresion expresion = gramaticaExpresion.analizar(expresion2, flujoTokens);
 
-            if (expresion != null) {
-                expresion2.setExpresion(expresion);
-                return expresion2;
-            } else {
-                throw new SintacticException(lexema, "expresion");
+                if (expresion != null) {
+                    expresion2.setExpresion(expresion);
+                    lexema = flujoTokens.getTokenActual();
+                    if (lexema.getToken().equals("]")) {
+                        lexema = flujoTokens.avanzar();
+                        return expresion2;
+                    } else {
+                        throw new SintacticException(lexema, "]");
+                    }
+                }
             }
+
+            if (lexema.getToken().equals(".") || lexema.getToken().equals(",")) {
+                lexema = flujoTokens.avanzar();
+                Expresion expresion = gramaticaExpresion.analizar(expresion2, flujoTokens);
+
+                if (expresion != null) {
+                    expresion2.setExpresion(expresion);
+                    return expresion2;
+                } else {
+                    throw new SintacticException(lexema, "expresion");
+                }
+            }
+            flujoTokens.backTrack();
+            return null;
         }
+
         return null;
+
     }
 
 }
