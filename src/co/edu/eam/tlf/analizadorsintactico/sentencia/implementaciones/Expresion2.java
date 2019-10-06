@@ -5,18 +5,22 @@
  */
 package co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones;
 
+import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
+import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author alvar
  */
-public class Expresion2 extends Sentencia{
+public class Expresion2 extends Sentencia {
 
     private Lista<Argumento> listaArg;
     private Expresion expresion;
 
     public Expresion2() {
+        listaArg = new Lista<>();
     }
 
     public Lista<Argumento> getListaArg() {

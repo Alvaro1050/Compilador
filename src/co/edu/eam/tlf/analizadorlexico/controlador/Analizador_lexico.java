@@ -33,6 +33,7 @@ public class Analizador_lexico {
             automataEntero();
             automataBoo();
             automataMesaje();
+            automataNuevo();
             automataSumarNR();
             automataFlotante();
             automataHallarLimite();
@@ -66,6 +67,7 @@ public class Analizador_lexico {
             automataParentesisAbierto();
             automataParentesisCerrado();
             automataComa();
+            automataPunto();
             automataPuntoComa();
             automataIgual();
             automataDiples();
@@ -147,6 +149,22 @@ public class Analizador_lexico {
             validarEspacios(pos);
         }
         return pos;
+    }
+
+    public void automataPunto() {
+        Automata_Punto atf = new Automata_Punto();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataNuevo() {
+        Automata_nuevo atf = new Automata_nuevo();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
     }
 
     public void automataComentario() {

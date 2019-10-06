@@ -57,11 +57,11 @@ public class GramaticaIF implements Gramatica {
                                 GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
 
                                 Expresion expresion = gramaticaExpresion.analizar(si, flujoTokens);
-
+                                lexema = flujoTokens.getTokenActual();
                                 if (expresion != null) {
                                     si.getListaSentenciaSI().add(expresion);
                                     lexema = flujoTokens.getTokenActual();
-                                }
+                                }   
 
                                 if (lexema.getToken().equals(";")) {
                                     lexema = flujoTokens.avanzar();

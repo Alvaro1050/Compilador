@@ -41,6 +41,7 @@ public class GramaticaExpresion implements Gramatica {
 
         boolean continuar = true;
         do {
+            lexema = flujoTokens.getTokenActual();
             ExpresionNumerica expresionNumerica = gramaticaExpresionNumerica.analizar(expresion, flujoTokens);
 
             if (expresionNumerica != null) {
@@ -65,6 +66,15 @@ public class GramaticaExpresion implements Gramatica {
             if (lexema.getTipoLexema().equals("Identificador")) {
                 expresion.setIdentificador(lexema);
                 lexema = flujoTokens.avanzar();
+
+                Expresion2 expresiona = gramaticaExpresion2.analizar(expresion, flujoTokens);
+
+                if (expresiona != null) {
+                    expresion.getExpresion2s().add(expresiona);
+                    lexema = flujoTokens.getTokenActual();
+                    continue;
+                }
+
                 continue;
             }
 
@@ -95,14 +105,6 @@ public class GramaticaExpresion implements Gramatica {
                 } else {
                     throw new SintacticException(lexema, "expresion");
                 }
-            }
-
-            Expresion2 expresiona = gramaticaExpresion2.analizar(expresion, flujoTokens);
-
-            if (expresiona != null) {
-                expresion.getExpresion2s().add(expresiona);
-                lexema = flujoTokens.getTokenActual();
-                continue;
             }
 
             continuar = false;

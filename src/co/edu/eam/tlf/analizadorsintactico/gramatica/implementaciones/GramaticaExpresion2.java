@@ -66,6 +66,7 @@ public class GramaticaExpresion2 implements Gramatica {
         }
 
         if (lexema.getToken().equals(".") || lexema.getToken().equals(",")) {
+            lexema = flujoTokens.avanzar();
             Expresion expresion = gramaticaExpresion.analizar(expresion2, flujoTokens);
 
             if (expresion != null) {
