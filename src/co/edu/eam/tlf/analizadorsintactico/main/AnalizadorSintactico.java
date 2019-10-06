@@ -25,6 +25,8 @@ public class AnalizadorSintactico {
      */
     private final Analizador_lexico analizadorLexico;
 
+    private Sentencia raiz;
+
     /**
      * Raiz del arbol de derivacion
      */
@@ -49,9 +51,6 @@ public class AnalizadorSintactico {
     public void setErrores(List<Lexema> errores) {
         this.errores = errores;
     }
-    
-    
-    
 
     /**
      * Constrctor
@@ -82,13 +81,22 @@ public class AnalizadorSintactico {
 
             unidadCompilacion = gramm.analizar(null, flujo);
 
-            unidadCompilacion.llenarHijos();
-
-            System.out.println(unidadCompilacion.getHijos());
+            raiz = getUnidadCompilacion();
+            raiz.llenarHijos();
 
         }
     }
 
+    public Sentencia getRaiz() {
+        return raiz;
+    }
+
+    public void setRaiz(Sentencia raiz) {
+        this.raiz = raiz;
+    }
+
+    
+    
     public Analizador_lexico getAnalizadorLexico() {
         return analizadorLexico;
     }

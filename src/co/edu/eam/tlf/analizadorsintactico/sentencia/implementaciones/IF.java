@@ -93,7 +93,13 @@ public class IF extends Sentencia {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder str = new StringBuilder();
+        str.append("IF");
+
+        str.append("con condicione ").append(condicion.parse());
+        str.append(" y sentencias:  ").append(listaSentenciaSI.parse());
+
+        return str.toString();
     }
 
 }

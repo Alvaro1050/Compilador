@@ -46,21 +46,6 @@ public class Metodo extends Sentencia {
         listaSentencias = new Lista<>();
     }
 
-    /**
-     * Constructor.
-     *
-     * @param nombre
-     * @param retorno
-     * @param listaParametros
-     * @param listaSentencias
-     */
-    public Metodo(Lexema nombre, Lexema retorno, Lista<Parametro> listaParametros, Lista<Sentencia> listaSentencias) {
-        this.nombre = nombre;
-        this.retorno = retorno;
-        this.listaParametros = listaParametros;
-        this.listaSentencias = listaSentencias;
-    }
-
     @Override
     public List<Sentencia> llenarHijos() {
 

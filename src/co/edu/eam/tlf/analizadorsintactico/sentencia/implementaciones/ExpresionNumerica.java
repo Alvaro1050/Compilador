@@ -52,6 +52,10 @@ public class ExpresionNumerica extends Sentencia {
     public List<co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia> llenarHijos() {
 
         hijos = new ArrayList<>();
+        
+        hijos.add(new SentenciaToken(operador));
+        hijos.add(new SentenciaToken(expresion1));
+        hijos.add(new SentenciaToken(expresion2));
 
         return hijos;
 
@@ -59,7 +63,7 @@ public class ExpresionNumerica extends Sentencia {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Expresion Numerica: ";
     }
 
     @Override

@@ -63,12 +63,33 @@ public class ExpresionLogica extends Sentencia {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Expresion logica:";
     }
 
     @Override
     public String parse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        StringBuilder str = new StringBuilder();
+
+        str.append("(");
+
+        for (Sentencia sentencia : expresiones) {
+            str.append(sentencia.parse());
+        }
+
+        for (Lexema sentencia : operadores) {
+            str.append("Operadores: ");
+            str.append(sentencia);
+        }
+
+        for (Lexema sentencia : identificadores) {
+            str.append("Identificador: ");
+            str.append(sentencia.getToken());
+        }
+
+        str.append(")");
+
+        return str.toString();
     }
 
 }

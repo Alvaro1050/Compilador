@@ -18,15 +18,12 @@ public class Expresion extends Sentencia {
 
     private ExpresionNumerica expresionNumerica;
     private ExpresionTest expresionTest;
-    private ExpresionCadena expresionCadena;
     private CrearExpresion crearExpresion;
     private Lexema identificador;
-    private Lista<Parametro> listaArgumentos;
     private List<Expresion> expresiones;
     private List<Expresion2> expresion2s;
 
     public Expresion() {
-        listaArgumentos = new Lista<>();
         expresiones = new ArrayList<>();
         expresion2s = new ArrayList<>();
     }
@@ -71,13 +68,6 @@ public class Expresion extends Sentencia {
         this.expresionTest = expresionTest;
     }
 
-    public ExpresionCadena getExpresionCadena() {
-        return expresionCadena;
-    }
-
-    public void setExpresionCadena(ExpresionCadena expresionCadena) {
-        this.expresionCadena = expresionCadena;
-    }
 
     public CrearExpresion getCrearExpresion() {
         return crearExpresion;
@@ -87,14 +77,6 @@ public class Expresion extends Sentencia {
         this.crearExpresion = crearExpresion;
     }
 
-    public Lista<Parametro> getListaArgumentos() {
-        return listaArgumentos;
-    }
-
-    public void setListaArgumentos(Lista<Parametro> listaArgumentos) {
-        this.listaArgumentos = listaArgumentos;
-    }
-
     @Override
     public List<Sentencia> llenarHijos() {
 
@@ -102,22 +84,47 @@ public class Expresion extends Sentencia {
 
         hijos.add(new SentenciaToken(identificador));
 
-        if (!listaArgumentos.getSentencias().isEmpty()) {
-            hijos.add(listaArgumentos);
-        }
-
         return hijos;
 
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Expresion";
     }
 
     @Override
     public String parse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        StringBuilder str = new StringBuilder();
+
+        str.append("Expresion numerica");
+
+        str.append(expresionNumerica);
+        
+        str.append("Expresion Test");
+
+        str.append(expresionTest);
+        
+        str.append("Crear Expresion");
+
+        str.append(crearExpresion);
+        
+        str.append("Identificador Expresion");
+
+        str.append(identificador.getToken());
+
+        for (Sentencia sentencia : expresiones) {
+            str.append("Expresiones: ");
+            str.append(sentencia.parse());
+        }
+
+        for (Sentencia sentencia : expresion2s) {
+            str.append("Expresiones 2: ");
+            str.append(sentencia);
+        }
+
+        return str.toString();
     }
 
 }
