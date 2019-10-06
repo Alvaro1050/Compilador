@@ -18,6 +18,8 @@ public class Para extends Sentencia {
     private DeclaradorVariable declaradorVariable;
     private Expresion expresion;
     private ExpresionLogica expresionLogica;
+    private ExpresionNumerica expresionNumerica;
+    
     private Lista<Sentencia> listaSentencia;
 
     public Para(DeclaradorVariable declaradorVariable, Expresion expresion, ExpresionLogica expresionLogica, Lista<Sentencia> listaSentencia) {
@@ -27,7 +29,16 @@ public class Para extends Sentencia {
         this.listaSentencia = listaSentencia;
     }
 
+    public ExpresionNumerica getExpresionNumerica() {
+        return expresionNumerica;
+    }
+
+    public void setExpresionNumerica(ExpresionNumerica expresionNumerica) {
+        this.expresionNumerica = expresionNumerica;
+    }
+
     public Para() {
+        listaSentencia = new Lista<>();
     }
 
     public DeclaradorVariable getDeclaradorVariable() {
@@ -69,9 +80,17 @@ public class Para extends Sentencia {
         hijos.add(expresionLogica);
         hijos.add(listaSentencia);
         hijos.add(declaradorVariable);
+        hijos.add(expresionNumerica);
+        
+        if (!listaSentencia.getSentencias().isEmpty()) {
+            hijos.add(listaSentencia);
 
-        return hijos;
+
     }
+                return hijos;
+
+    }
+
 
     @Override
     public String toString() {
