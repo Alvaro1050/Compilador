@@ -17,21 +17,12 @@ import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 public class CrearExpresion extends Sentencia {
 
     private Expresion expresion;
-    private Expresion expresion2;
     private Lexema identificador;
     private Lexema tipoEspecificador;
     private Lista<Argumento> listaArgumentos;
 
     public CrearExpresion() {
         listaArgumentos = new Lista<>();
-    }
-
-    public Expresion getExpresion2() {
-        return expresion2;
-    }
-
-    public void setExpresion2(Expresion expresion2) {
-        this.expresion2 = expresion2;
     }
 
     public Expresion getExpresion() {

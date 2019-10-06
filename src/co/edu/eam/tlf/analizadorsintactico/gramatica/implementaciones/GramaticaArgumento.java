@@ -27,9 +27,10 @@ public class GramaticaArgumento implements Gramatica {
         if (lexema.getTipoLexema().equals("Identificador")) {
             nombre = lexema;
         } else {//si no se recibe <identificador> hay un error de sintaxis.
-            throw new SintacticException(lexema, "Identificador");
+            return null;
         }
         //se retorna la sentencia.
+        
         return new Argumento(nombre);
 
     }

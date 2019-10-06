@@ -57,7 +57,7 @@ public class GramaticaExpresionLogica implements Gramatica {
                 }
 
                 Expresion expresion1 = gramaticaExpresion.analizar(expresionLogica, flujoTokens);
-                if (expresion != null) {
+                if (expresion1 != null) {
                     expresionLogica.setExpresion2(expresion1);
                     return expresionLogica;
                 } else {

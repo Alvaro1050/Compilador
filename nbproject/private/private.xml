@@ -3,9 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Lenovo/Documents/Documents/EAM/OCTAVO%20SEMESTRE/Lenguajes%20formales/corte%202/Compilador/src/co/edu/eam/tlf/analizadorsintactico/sentencia/implementaciones/Clase.java</file>
-            <file>file:/C:/Users/Lenovo/Documents/Documents/EAM/OCTAVO%20SEMESTRE/Lenguajes%20formales/corte%202/Compilador/src/co/edu/eam/tlf/analizadorsintactico/sentencia/implementaciones/Atributo.java</file>
-            <file>file:/C:/Users/Lenovo/Documents/Documents/EAM/OCTAVO%20SEMESTRE/Lenguajes%20formales/corte%202/Compilador/src/co/edu/eam/tlf/analizadorsintactico/gramatica/implementaciones/GramaticaClase.java</file>
+            <file>file:/C:/Users/alvar/Documents/NetBeansProjects/Compilador/src/co/edu/eam/tlf/analizadorsintactico/gramatica/implementaciones/FlujoTokens.java</file>
+            <file>file:/C:/Users/alvar/Documents/NetBeansProjects/Compilador/src/co/edu/eam/tlf/analizadorsintactico/gramatica/implementaciones/GramaticaMetodoDeclaracion.java</file>
+            <file>file:/C:/Users/alvar/Documents/NetBeansProjects/Compilador/src/co/edu/eam/tlf/analizadorsintactico/gramatica/implementaciones/GramaticaIF.java</file>
+            <file>file:/C:/Users/alvar/Documents/NetBeansProjects/Compilador/src/co/edu/eam/tlf/analizadorsintactico/gramatica/implementaciones/GramaticaArgumento.java</file>
+            <file>file:/C:/Users/alvar/Documents/NetBeansProjects/Compilador/src/co/edu/eam/tlf/analizadorsintactico/gramatica/implementaciones/GramaticaClase.java</file>
+            <file>file:/C:/Users/alvar/Documents/NetBeansProjects/Compilador/src/co/edu/eam/tlf/analizadorsintactico/sentencia/implementaciones/ExpresionLogica.java</file>
+            <file>file:/C:/Users/alvar/Documents/NetBeansProjects/Compilador/src/co/edu/eam/tlf/analizadorsintactico/gramatica/implementaciones/GramaticaCrearExpresion.java</file>
+            <file>file:/C:/Users/alvar/Documents/NetBeansProjects/Compilador/src/co/edu/eam/tlf/analizadorsintactico/gramatica/implementaciones/GramaticaExpresionNumerica.java</file>
+            <file>file:/C:/Users/alvar/Documents/NetBeansProjects/Compilador/src/co/edu/eam/tlf/analizadorsintactico/gramatica/implementaciones/GramaticaExpresionLogica.java</file>
+            <file>file:/C:/Users/alvar/Documents/NetBeansProjects/Compilador/src/co/edu/eam/tlf/analizadorsintactico/gramatica/implementaciones/GramaticaExpresion.java</file>
+            <file>file:/C:/Users/alvar/Documents/NetBeansProjects/Compilador/src/co/edu/eam/tlf/analizadorsintactico/sentencia/implementaciones/Expresion.java</file>
+            <file>file:/C:/Users/alvar/Documents/NetBeansProjects/Compilador/src/co/edu/eam/tlf/analizadorsintactico/gramatica/implementaciones/GramaticaExpresionTest.java</file>
+            <file>file:/C:/Users/alvar/Documents/NetBeansProjects/Compilador/src/co/edu/eam/tlf/analizadorsintactico/gramatica/implementaciones/GramaticaLista.java</file>
         </group>
     </open-files>
 </project-private>

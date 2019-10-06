@@ -55,6 +55,13 @@ public class GramaticaExpresion implements Gramatica {
                 expresion.setCrearExpresion(crearExpresion);
                 continue;
             }
+
+            lexema = flujoTokens.getTokenActual();
+            if (lexema.getTipoLexema().equals("Identificador")) {
+                expresion.setIdentificador(lexema);
+                lexema = flujoTokens.avanzar();
+                continue;
+            }
             /*
              ExpresionCadena expresionCadena = gramaticaExpresionCadena.analizar(expresion, flujoTokens);
 
@@ -69,7 +76,7 @@ public class GramaticaExpresion implements Gramatica {
 
         lexema = flujoTokens.getTokenActual();
 
-        if (expresion.getExpresionNumerica() == null && expresion.getExpresionTest() == null && expresion.getExpresionCadena() == null) {
+        if (expresion.getIdentificador() == null && expresion.getExpresionNumerica() == null && expresion.getExpresionTest() == null && expresion.getCrearExpresion() == null) {
             return null;
         } else {
             return expresion;

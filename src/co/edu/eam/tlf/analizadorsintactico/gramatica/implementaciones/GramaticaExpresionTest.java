@@ -51,8 +51,8 @@ public class GramaticaExpresionTest implements Gramatica {
                 }
 
             } else {
-                throw new SintacticException(lexema, "operador");
-
+                flujoTokens.backTrack();
+                return null;
             }
         }
         return null;

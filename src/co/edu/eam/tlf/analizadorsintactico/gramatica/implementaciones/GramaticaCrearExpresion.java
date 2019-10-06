@@ -6,10 +6,12 @@
 package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
+import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Argumento;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Atributo;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.CrearExpresion;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Expresion;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Lista;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Parametro;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
@@ -30,14 +32,14 @@ public class GramaticaCrearExpresion implements Gramatica {
         Lexema lexema = flujoTokens.getTokenActual();
 
         if (lexema.getToken().equals("nuevo")) {
-            lexema = flujoTokens.getTokenActual();
+            lexema = flujoTokens.avanzar();
             if (lexema.getTipoLexema().equals("Identificador")) {
                 crearExpresion.setIdentificador(lexema);
                 lexema = flujoTokens.avanzar();
 
                 if (lexema.getToken().equals("(")) {
 
-                    lexema = flujoTokens.getTokenActual();
+                    lexema = flujoTokens.avanzar();
 
                     Lista<Argumento> argumentos = new Lista<>();
                     GramaticaArgumento gramma = new GramaticaArgumento();
@@ -52,8 +54,86 @@ public class GramaticaCrearExpresion implements Gramatica {
                         lexema = flujoTokens.getTokenActual();
 
                         return crearExpresion;
+                    } else {
+                        throw new SintacticException(lexema, ")");
+                    }
+                } else {
+                    throw new SintacticException(lexema, "(");
+
+                }
+            }
+
+            if (lexema.getToken().equals("(")) {
+                lexema = flujoTokens.avanzar();
+
+                if (lexema == null) {
+                    throw new SintacticException(new Lexema("", ""), "expresion");
+                }
+
+                GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
+
+                Expresion expresion = gramaticaExpresion.analizar(crearExpresion, flujoTokens);
+
+                if (expresion != null) {
+                    crearExpresion.setExpresion(expresion);
+
+                    lexema = flujoTokens.getTokenActual();
+
+                    if (lexema.getToken().equals(")")) {
+                        lexema = flujoTokens.avanzar();
+
+                        return crearExpresion;
+                    }
+                } else {
+                    throw new SintacticException(lexema, "expresion");
+                }
+            }
+
+            if (lexema.getTipoLexema().equals("Tipo Dato")) {
+                crearExpresion.setTipoEspecificador(lexema);
+                lexema = flujoTokens.avanzar();
+
+                if (lexema.getToken().equals("(")) {
+                    lexema = flujoTokens.avanzar();
+
+                    if (lexema == null) {
+                        throw new SintacticException(new Lexema("", ""), "expresion");
+                    }
+
+                    GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
+
+                    Expresion expresion = gramaticaExpresion.analizar(crearExpresion, flujoTokens);
+
+                    if (expresion != null) {
+                        crearExpresion.setExpresion(expresion);
+                        lexema = flujoTokens.getTokenActual();
+
+                        if (lexema.getToken().equals(")")) {
+                            lexema = flujoTokens.avanzar();
+                        }
+                    } else {
+                        throw new SintacticException(lexema, "expresion");
+
+                    }
+
+                }
+
+                if (lexema.getToken().equals("[")) {
+                    lexema = flujoTokens.avanzar();
+
+                    if (lexema == null) {
+                        throw new SintacticException(new Lexema("", ""), "]");
+                    }
+
+                    if (lexema.getToken().equals("]")) {
+                        lexema = flujoTokens.avanzar();
+                    } else {
+                        throw new SintacticException(lexema, "]");
                     }
                 }
+
+                return crearExpresion;
+
             }
         }
         return null;

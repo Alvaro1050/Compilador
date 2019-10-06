@@ -21,13 +21,6 @@ public class IF extends Sentencia {
         listaSentenciaSI = new Lista<>();
     }
 
-    public IF(ExpresionLogica condicion, Lista<Sentencia> listaSentenciaSI, Lista<Sentencia> listaSentenciaContrario, IF contrario) {
-        this.condicion = condicion;
-        this.listaSentenciaSI = listaSentenciaSI;
-        this.listaSentenciaContrario = listaSentenciaContrario;
-        this.contrario = contrario;
-    }
-
     public Lista<Sentencia> getListaSentenciaSI() {
         return listaSentenciaSI;
     }
@@ -51,27 +44,22 @@ public class IF extends Sentencia {
     public void setContrario(IF contrario) {
         this.contrario = contrario;
     }
-    
-    
-    
 
     @Override
     public List<Sentencia> llenarHijos() {
-       
+
         hijos = new ArrayList<>();
         hijos.add(condicion);
         hijos.add(contrario);
-        if (!listaSentenciaContrario.getSentencias().isEmpty()){
+        if (!listaSentenciaContrario.getSentencias().isEmpty()) {
             hijos.add(listaSentenciaContrario);
         }
         if (!listaSentenciaSI.getSentencias().isEmpty()) {
             hijos.add(listaSentenciaSI);
-            
+
         }
         return hijos;
     }
-
-    
 
     @Override
     public String parse() {

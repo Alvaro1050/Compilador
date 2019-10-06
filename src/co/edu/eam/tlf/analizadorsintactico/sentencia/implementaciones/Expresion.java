@@ -20,7 +20,7 @@ public class Expresion extends Sentencia {
     private ExpresionTest expresionTest;
     private ExpresionCadena expresionCadena;
     private CrearExpresion crearExpresion;
-    private Lexema tipo;
+    private Lexema identificador;
     private Lista<Parametro> listaArgumentos;
 
     public Expresion() {
@@ -28,12 +28,12 @@ public class Expresion extends Sentencia {
 
     }
 
-    public Lexema getTipo() {
-        return tipo;
+    public Lexema getIdentificador() {
+        return identificador;
     }
 
-    public void setTipo(Lexema tipo) {
-        this.tipo = tipo;
+    public void setIdentificador(Lexema identificador) {
+        this.identificador = identificador;
     }
 
     public ExpresionNumerica getExpresionNumerica() {
@@ -81,7 +81,7 @@ public class Expresion extends Sentencia {
 
         hijos = new ArrayList<>();
 
-        hijos.add(new SentenciaToken(tipo));
+        hijos.add(new SentenciaToken(identificador));
 
         if (!listaArgumentos.getSentencias().isEmpty()) {
             hijos.add(listaArgumentos);
