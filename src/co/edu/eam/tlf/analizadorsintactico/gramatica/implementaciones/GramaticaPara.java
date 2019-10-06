@@ -8,7 +8,7 @@ package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.IF;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Para;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 
 /**
@@ -18,44 +18,33 @@ import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 public class GramaticaPara implements Gramatica {
 
     @Override
-    public IF analizar(Sentencia raiz, FlujoTokens flujoTokens) {
-        IF si = new IF();
+    public Para analizar(Sentencia raiz, FlujoTokens flujoTokens) {
+        Para para = new Para();
         flujoTokens.guardarPosicion();
 
         Lexema lexema = flujoTokens.getTokenActual();
 
         if (lexema.getToken().equals("para")) {
             lexema = flujoTokens.avanzar();
+
             if (lexema == null) {
                 throw new SintacticException(new Lexema("", ""), "(");
             } else if (lexema.getToken().equals("(")) {
-                /*  GramaticaCondicion gc = new GramaticaCondicion();
-                 lexema = flujoTokens.avanzar();
-                 Condicion condicion = gc.analizar(si, flujoTokens);
-
-                 if (condicion != null) {
-                 si.setCondicion(condicion);
-                 lexema = flujoTokens.avanzar();
-                 } else if (lexema == null) {
-                 throw new SintacticException(new Lexema("", ""), ")");
-                 }*/
-                lexema = flujoTokens.avanzar();
 
                 if (lexema.getToken().equals(")")) {
                     lexema = flujoTokens.avanzar();
                     if (lexema.getToken().equals("{")) {
                         lexema = flujoTokens.avanzar();
-                        /* se analiza el cuerpo del for todas las sentencias que puedan haber dentro*/
-                        if (lexema.getToken().equals("}")) {
-                            return si;
-                        }
                     } else if (lexema == null) {
                         throw new SintacticException(new Lexema("", ""), "}");
                     }
+                    if (lexema.getToken().equals("}")) {
+                            return para;
+                        }
+
                 } else if (lexema == null) {
                     throw new SintacticException(new Lexema("", ""), "{");
                 }
-
             } else {
                 throw new SintacticException(lexema, "(");
             }
@@ -64,7 +53,6 @@ public class GramaticaPara implements Gramatica {
             flujoTokens.backTrack();
             return null;
         }
-
         return null;
 
     }
