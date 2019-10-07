@@ -18,6 +18,7 @@ public class Analizador_lexico {
 
     public static List<Lexema> listaLexema = new ArrayList<>();
     public static List<Lexema> listaErrores = new ArrayList<>();
+    public static int fila = 1;
     Lexema lexe;
     public static Flujo_caracteres flujo = new Flujo_caracteres(0, null);
     int posInicial = 0;
