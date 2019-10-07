@@ -25,7 +25,8 @@ public class SintacticException extends RuntimeException {
 
     public SintacticException(Lexema antes, String esperado) {
 
-        super("Simbolo no esperado: " + antes.getToken() + ". se esperaba " + esperado
+        super("Error en " + antes.getFila() + "-" + antes.getColumna()
+                + ": Simbolo no esperado: " + antes.getToken() + ". se esperaba " + esperado
         );
 
         this.antes = antes;
