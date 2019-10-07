@@ -21,7 +21,7 @@ public class GramaticaExpresionLogicaTest {
     
     @Test
     public void GramaticaExpresionLogicaTest() {
-    String texto = "!4+4 & 5+5";
+    String texto = "4+4 | 5+5";
         char[] caracteres = texto.toCharArray();
 
         Flujo_caracteres fc = new Flujo_caracteres(0, caracteres);

@@ -10,7 +10,6 @@ import co.edu.eam.tlf.analizadorlexico.modelo.Flujo_caracteres;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones.FlujoTokens;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones.GramaticaMetodoDeclaracion;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Metodo;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.MetodoDeclaracion;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
