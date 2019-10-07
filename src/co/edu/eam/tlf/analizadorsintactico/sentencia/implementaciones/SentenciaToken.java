@@ -28,7 +28,6 @@ public class SentenciaToken extends Sentencia {
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        hijos.add(new SentenciaToken(simbolo));
         return hijos;
 
     }

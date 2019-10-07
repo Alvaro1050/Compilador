@@ -52,14 +52,13 @@ public class ExpresionNumerica extends Sentencia {
     public List<Sentencia> llenarHijos() {
 
         hijos = new ArrayList<>();
-
+        if (expresion1 != null) {
+            hijos.add(new SentenciaToken(expresion1));
+        }
         if (operador != null) {
             hijos.add(new SentenciaToken(operador));
         }
 
-        if (expresion1 != null) {
-            hijos.add(new SentenciaToken(expresion1));
-        }
         if (expresion2 != null) {
             hijos.add(new SentenciaToken(expresion2));
         }
@@ -82,16 +81,16 @@ public class ExpresionNumerica extends Sentencia {
             str.append(expresion1.getToken());
 
         }
-        if (expresion2 != null) {
-            str.append("Tipo Especificacion");
-
-            str.append(expresion2.getToken());
-
-        }
         if (operador != null) {
             str.append("Tipo Especificacion");
 
             str.append(operador.getToken());
+
+        }
+        if (expresion2 != null) {
+            str.append("Tipo Especificacion");
+
+            str.append(expresion2.getToken());
 
         }
 
