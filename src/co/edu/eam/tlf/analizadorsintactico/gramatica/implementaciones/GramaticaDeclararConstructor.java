@@ -14,7 +14,6 @@ import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Declarador
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Expresion;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Lista;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.IF;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Metodo;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Para;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Parametro;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.SentenciaToken;
