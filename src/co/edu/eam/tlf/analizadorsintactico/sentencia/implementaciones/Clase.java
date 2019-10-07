@@ -55,8 +55,7 @@ public class Clase extends Sentencia {
 
     @Override
     public String toString() {
-        return "Clase:" + nombreClase.getToken() + "En la fila: " + nombreClase.getFila()
-                + "y columna " + nombreClase.getColumna();
+        return "Clase:" + nombreClase.getToken();
     }
 
     public Lista<Metodo> getListaMetodos() {

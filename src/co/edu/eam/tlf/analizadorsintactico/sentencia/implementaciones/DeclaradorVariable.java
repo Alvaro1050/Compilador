@@ -6,6 +6,7 @@
 package co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones;
 
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
+import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,12 +64,32 @@ public class DeclaradorVariable extends co.edu.eam.tlf.analizadorsintactico.sent
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Declarar variable: " + identificador.getToken();
     }
 
     @Override
     public String parse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        StringBuilder str = new StringBuilder();
+        if (identificador != null) {
+            str.append("Identificador Expresion");
+
+            str.append(identificador.getToken());
+
+        }
+        if (tipo != null) {
+            str.append("Tipo Especificacion");
+
+            str.append(tipo.getToken());
+
+        }
+
+        for (Sentencia sentencia : listaDeclaradorVariable.getSentencias()) {
+            str.append("Argumentos: ");
+            str.append(sentencia.parse());
+        }
+
+        return str.toString();
     }
 
 }

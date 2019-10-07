@@ -62,7 +62,10 @@ public class Constructor extends Sentencia {
 
         hijos = new ArrayList<>();
 
-        hijos.add(new SentenciaToken(nombre));
+        if (nombre != null) {
+
+            hijos.add(new SentenciaToken(nombre));
+        }
         if (!listaParametros.getSentencias().isEmpty()) {
             hijos.add(listaParametros);
         }
@@ -76,14 +79,31 @@ public class Constructor extends Sentencia {
     @Override
     public String toString() {
 
-        return "Constructor:" + nombre.getToken() + "En la fila: " + nombre.getFila()
-                + "y columna " + nombre.getColumna();
+        return "Constructor:" + nombre.getToken();
 
     }
 
     @Override
     public String parse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        StringBuilder str = new StringBuilder();
+
+        str.append("clase");
+
+        str.append(nombre.getToken());
+        str.append("[");
+
+        for (Sentencia sentencia : listaParametros.getSentencias()) {
+            str.append(sentencia.parse());
+        }
+
+        for (Sentencia sentencia : listaSentencia.getSentencias()) {
+            str.append(sentencia.parse());
+        }
+
+        str.append("]");
+
+        return str.toString();
     }
 
 }

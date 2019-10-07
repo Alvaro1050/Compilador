@@ -80,17 +80,48 @@ public class Main extends Sentencia {
             hijos.add(listaSentencia);
         }
         return hijos;
-        
-        
+
     }
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Main" + main.getToken();
     }
 
     @Override
     public String parse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        StringBuilder str = new StringBuilder();
+        if (main != null) {
+            str.append("Main");
+
+            str.append(main.getToken());
+
+        }
+        if (retorno != null) {
+            str.append("Retorno");
+
+            str.append(retorno.getToken());
+
+        }
+        if (tipoIdentidicador != null) {
+            str.append("Parametro");
+
+            str.append(tipoIdentidicador.getToken());
+
+        }
+        if (nombreParametro != null) {
+            str.append("Parametro");
+
+            str.append(nombreParametro.getToken());
+
+        }
+
+        for (Sentencia sentencia : listaSentencia.getSentencias()) {
+            str.append("Sentencias: ");
+            str.append(sentencia.parse());
+        }
+
+        return str.toString();
     }
 }

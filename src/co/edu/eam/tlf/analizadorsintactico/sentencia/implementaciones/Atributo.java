@@ -45,9 +45,7 @@ public class Atributo extends Sentencia {
 
     @Override
     public String toString() {
-        return "Atributo:" + tipoDato.getToken() + "-" + nombre.getToken() 
-                + "En la fila: " + nombre.getFila()
-                + "y columna " + nombre.getColumna();
+        return "Atributo:" + tipoDato.getToken() + "-" + nombre.getToken();
     }
 
     public Lexema getNombre() {

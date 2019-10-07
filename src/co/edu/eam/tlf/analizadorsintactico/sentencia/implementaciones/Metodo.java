@@ -64,8 +64,7 @@ public class Metodo extends Sentencia {
 
     @Override
     public String toString() {
-        return "Metodo:  " + nombre.getToken() + "En la fila: " + nombre.getFila()
-                + "y columna " + nombre.getColumna();
+        return "Metodo:  " + nombre.getToken();
     }
 
     public Lexema getNombre() {

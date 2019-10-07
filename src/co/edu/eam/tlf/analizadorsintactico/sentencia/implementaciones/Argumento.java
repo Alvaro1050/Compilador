@@ -45,7 +45,7 @@ public class Argumento extends Sentencia {
 
     @Override
     public String toString() {
-        return "Argumento:  " + nombre.getToken() + "En la fila: " + nombre.getFila() + " y columna: " + nombre.getColumna();
+        return "Argumento:  " + nombre.getToken();
 
     }
 

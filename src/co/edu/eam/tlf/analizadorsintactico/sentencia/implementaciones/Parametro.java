@@ -55,8 +55,7 @@ public class Parametro extends Sentencia {
     @Override
     public String toString() {
 
-        return "Parametro:" + nombre.getToken() + "En la fila: " + nombre.getFila()
-                + "y columna " + nombre.getColumna();
+        return "Parametro:" + nombre.getToken();
 
     }
 
