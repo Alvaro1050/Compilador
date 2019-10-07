@@ -29,7 +29,7 @@ public class Automata_comilla {
         q0();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema("'" + contenido + "'", "Cadena");
+            return new Lexema("'" + contenido + "'", "Cadena", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -77,7 +77,11 @@ public class Automata_comilla {
     }
 
     public void validarEspacios() {
-        if (car[cont] == ' ' || car[cont] == '\n') {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

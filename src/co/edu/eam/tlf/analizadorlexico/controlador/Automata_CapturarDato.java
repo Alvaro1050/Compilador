@@ -31,7 +31,7 @@ public class Automata_CapturarDato {
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
 
-            return new Lexema("capturarDato", "Palabra reservada");
+            return new Lexema("capturarDato", "Palabra reservada", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -278,8 +278,5 @@ public class Automata_CapturarDato {
             validarEspacios();
         }
 
-    }
-
-    {
     }
 }

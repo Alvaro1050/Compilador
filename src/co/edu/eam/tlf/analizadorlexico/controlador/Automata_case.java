@@ -31,7 +31,7 @@ public class Automata_case {
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
 
-            return new Lexema("case", "Palabra reservada");
+            return new Lexema("case", "Palabra reservada", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -109,14 +109,17 @@ public class Automata_case {
                 aceptada = false;
                 cont--;
 
-             } else if (car[cont] == ' ' || car[cont] == '\n') {
+            } else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
     }
 
     public void validarEspacios() {
-        if (car[cont] == ' ' || car[cont] == '\n') {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
             cont++;
             validarEspacios();
         }

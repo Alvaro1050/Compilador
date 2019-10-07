@@ -28,7 +28,7 @@ public class Automata_Coma {
         q0F();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema(car[posInicial] + "", "Coma");
+            return new Lexema(car[posInicial] + "", "Coma", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -43,14 +43,18 @@ public class Automata_Coma {
                 aceptada = true;
                 q0F();
 
-            }  else if (car[cont] == ' ' || car[cont] == '\n') {
+            } else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
     }
 
     public void validarEspacios() {
-        if (car[cont] == ' ' || car[cont] == '\n') {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

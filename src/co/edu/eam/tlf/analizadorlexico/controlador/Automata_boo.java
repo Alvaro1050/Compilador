@@ -29,7 +29,7 @@ public class Automata_boo {
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
 
-            return new Lexema("boo", "Tipo Dato");//retorno de token y tipo lexema
+            return new Lexema("boo", "Tipo Dato", cont, Analizador_lexico.fila);//retorno de token y tipo lexema
         } else {
             return null;
         }
@@ -94,7 +94,11 @@ public class Automata_boo {
     }
 
     public void validarEspacios() {
-        if (car[cont] == ' ' || car[cont] == '\n') {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

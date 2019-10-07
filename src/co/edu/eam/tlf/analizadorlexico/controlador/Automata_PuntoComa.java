@@ -28,7 +28,7 @@ public class Automata_PuntoComa {
         q0F();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema(car[posInicial] + "", "PuntoComa");
+            return new Lexema(car[posInicial] + "", "PuntoComa", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -50,7 +50,11 @@ public class Automata_PuntoComa {
     }
 
     public void validarEspacios() {
-        if (car[cont] == ' ' || car[cont] == '\n') {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

@@ -28,7 +28,7 @@ public class Automata_OperadoresAritmeticos {
         q0F();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema(car[posInicial] + "", "Operador aritmetico");
+            return new Lexema(car[posInicial] + "", "Operador aritmetico", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -50,7 +50,11 @@ public class Automata_OperadoresAritmeticos {
     }
 
     public void validarEspacios() {
-        if (car[cont] == ' ' || car[cont] == '\n') {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }
