@@ -9,8 +9,6 @@ import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.event.TreeModelListener;
-import javax.swing.tree.TreePath;
 
 /**
  *
@@ -66,7 +64,8 @@ public class Metodo extends Sentencia {
 
     @Override
     public String toString() {
-        return "Metodo:  " + nombre.getToken();
+        return "Metodo:  " + nombre.getToken() + "En la fila: " + nombre.getFila()
+                + "y columna " + nombre.getColumna();
     }
 
     public Lexema getNombre() {

@@ -9,8 +9,6 @@ import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.event.TreeModelListener;
-import javax.swing.tree.TreePath;
 
 /**
  *
@@ -57,7 +55,8 @@ public class Parametro extends Sentencia {
     @Override
     public String toString() {
 
-        return "Parametro:" + nombre.getToken();
+        return "Parametro:" + nombre.getToken() + "En la fila: " + nombre.getFila()
+                + "y columna " + nombre.getColumna();
 
     }
 

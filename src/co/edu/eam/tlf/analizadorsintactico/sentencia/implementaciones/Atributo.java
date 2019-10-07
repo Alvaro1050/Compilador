@@ -9,8 +9,6 @@ import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.event.TreeModelListener;
-import javax.swing.tree.TreePath;
 
 /**
  *
@@ -47,7 +45,9 @@ public class Atributo extends Sentencia {
 
     @Override
     public String toString() {
-        return "Atributo:" + tipoDato.getToken() + "-" + nombre.getToken();
+        return "Atributo:" + tipoDato.getToken() + "-" + nombre.getToken() 
+                + "En la fila: " + nombre.getFila()
+                + "y columna " + nombre.getColumna();
     }
 
     public Lexema getNombre() {

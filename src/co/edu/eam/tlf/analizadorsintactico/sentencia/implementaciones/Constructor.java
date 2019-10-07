@@ -60,7 +60,6 @@ public class Constructor extends Sentencia {
     @Override
     public List<Sentencia> llenarHijos() {
 
-        
         hijos = new ArrayList<>();
 
         hijos.add(new SentenciaToken(nombre));
@@ -71,13 +70,14 @@ public class Constructor extends Sentencia {
             hijos.add(listaSentencia);
         }
         return hijos;
-    
+
     }
 
     @Override
     public String toString() {
 
-            return "Constructor:" + nombre.getToken();
+        return "Constructor:" + nombre.getToken() + "En la fila: " + nombre.getFila()
+                + "y columna " + nombre.getColumna();
 
     }
 

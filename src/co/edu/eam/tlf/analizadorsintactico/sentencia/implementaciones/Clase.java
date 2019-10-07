@@ -9,9 +9,6 @@ import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.event.TreeModelListener;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreePath;
 
 /**
  *
@@ -58,7 +55,8 @@ public class Clase extends Sentencia {
 
     @Override
     public String toString() {
-        return "Clase:" + nombreClase.getToken();
+        return "Clase:" + nombreClase.getToken() + "En la fila: " + nombreClase.getFila()
+                + "y columna " + nombreClase.getColumna();
     }
 
     public Lista<Metodo> getListaMetodos() {

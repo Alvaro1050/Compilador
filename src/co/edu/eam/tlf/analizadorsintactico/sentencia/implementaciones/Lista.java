@@ -5,9 +5,7 @@
  */
 package co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones;
 
-import co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones.FlujoTokens;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
-import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 
