@@ -10,8 +10,6 @@ import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Parametro;
-import javax.swing.event.TreeModelListener;
-import javax.swing.tree.TreePath;
 
 /**
  * Gramatica para identificar a un parametro de un metodo. la regla sintactica

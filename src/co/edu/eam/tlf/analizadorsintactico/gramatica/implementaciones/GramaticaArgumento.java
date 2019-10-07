@@ -6,10 +6,8 @@
 package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
-import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Argumento;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Parametro;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 
 /**
