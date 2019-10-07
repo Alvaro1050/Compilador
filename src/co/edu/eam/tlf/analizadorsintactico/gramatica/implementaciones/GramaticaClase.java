@@ -43,7 +43,6 @@ public class GramaticaClase implements Gramatica {
                 }
                 if (lexema.getTipoLexema().equals("corchete abierto")) {
                     //se analiza el cuerpo del metodo.....
-                    lexema = flujoTokens.avanzar();
                     boolean continuar = true;
                     GramaticaAtributo gramaticaAtributo = new GramaticaAtributo();
                     GramaticaMetodoDeclaracion gramaticaMetodo = new GramaticaMetodoDeclaracion();
@@ -54,12 +53,11 @@ public class GramaticaClase implements Gramatica {
 
                     GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
                     do {
-                        lexema = flujoTokens.getTokenActual();
+                        lexema = flujoTokens.avanzar();
                         Metodo met = gramaticaMetodo.analizar(clase, flujoTokens);
                         if (met != null) {
                             clase.getListaMetodos().add(met);
                             lexema = flujoTokens.getTokenActual();
-
                             continue;
                         }
 

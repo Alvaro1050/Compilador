@@ -135,7 +135,6 @@ public class GramaticaPara implements Gramatica {
                 if (lexema.getToken().equals(")")) {
                     lexema = flujoTokens.avanzar();
                     if (lexema.getToken().equals("{")) {
-                        lexema = flujoTokens.avanzar();
                         if (lexema == null) {
                             throw new SintacticException(new Lexema("", ""), "}");
                         }

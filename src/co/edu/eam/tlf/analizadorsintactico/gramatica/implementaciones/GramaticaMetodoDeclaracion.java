@@ -90,7 +90,6 @@ public class GramaticaMetodoDeclaracion implements Gramatica {
 
                             if (declaradorVariable != null) {
                                 lexema = flujoTokens.getTokenActual();
-
                                 metodo.getListaSentencias().add(declaradorVariable);
                                 continue;
                             }
