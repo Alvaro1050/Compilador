@@ -52,9 +52,15 @@ public class ExpresionTest extends Sentencia {
     public List<Sentencia> llenarHijos() {
 
         hijos = new ArrayList<>();
-        hijos.add(new SentenciaToken(expresion1));
-        hijos.add(new SentenciaToken(expresion2));
-        hijos.add(new SentenciaToken(operador));
+        if (expresion1 != null) {
+            hijos.add(new SentenciaToken(expresion1));
+        }
+        if (expresion2 != null) {
+            hijos.add(new SentenciaToken(expresion2));
+        }
+        if (operador != null) {
+            hijos.add(new SentenciaToken(operador));
+        }
 
         return hijos;
     }

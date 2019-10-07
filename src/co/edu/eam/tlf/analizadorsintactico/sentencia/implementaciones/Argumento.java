@@ -51,7 +51,7 @@ public class Argumento extends Sentencia {
 
     @Override
     public String parse() {
-          StringBuilder str = new StringBuilder();
+        StringBuilder str = new StringBuilder();
         str.append("Argumento ");
 
         str.append("con nombre ").append(nombre.getToken());

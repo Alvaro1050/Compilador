@@ -52,8 +52,12 @@ public class Expresion2 extends Sentencia {
     public List<Sentencia> llenarHijos() {
 
         hijos = new ArrayList<>();
-        hijos.add(expresion);
-        hijos.add(new SentenciaToken(identificador));
+        if (expresion != null) {
+            hijos.add(expresion);
+        }
+        if (identificador != null) {
+            hijos.add(new SentenciaToken(identificador));
+        }
         if (!listaArg.getSentencias().isEmpty()) {
             hijos.add(listaArg);
         }
@@ -64,12 +68,28 @@ public class Expresion2 extends Sentencia {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Expresion";
     }
 
     @Override
     public String parse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        StringBuilder str = new StringBuilder();
+
+        str.append("Identificador");
+
+        str.append(identificador);
+
+        str.append("Expresion");
+
+        str.append(expresion);
+
+        for (Sentencia sentencia : listaArg.getSentencias()) {
+            str.append("Argumentos: ");
+            str.append(sentencia.parse());
+        }
+
+        return str.toString();
     }
 
 }

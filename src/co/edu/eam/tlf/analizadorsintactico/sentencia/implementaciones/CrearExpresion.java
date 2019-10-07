@@ -60,10 +60,19 @@ public class CrearExpresion extends Sentencia {
     @Override
     public List<co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        hijos.add(expresion);
 
-        hijos.add(new SentenciaToken(identificador));
-        hijos.add(new SentenciaToken(tipoEspecificador));
+        if (expresion != null) {
+
+            hijos.add(expresion);
+        }
+
+        if (identificador != null) {
+            hijos.add(new SentenciaToken(identificador));
+        }
+
+        if (tipoEspecificador != null) {
+            hijos.add(new SentenciaToken(tipoEspecificador));
+        }
 
         if (!listaArgumentos.getSentencias().isEmpty()) {
             hijos.add(listaArgumentos);

@@ -53,10 +53,16 @@ public class ExpresionNumerica extends Sentencia {
 
         hijos = new ArrayList<>();
 
-        hijos.add(new SentenciaToken(operador));
-        hijos.add(new SentenciaToken(expresion1));
-        hijos.add(new SentenciaToken(expresion2));
+        if (operador != null) {
+            hijos.add(new SentenciaToken(operador));
+        }
 
+        if (expresion1 != null) {
+            hijos.add(new SentenciaToken(expresion1));
+        }
+        if (expresion2 != null) {
+            hijos.add(new SentenciaToken(expresion2));
+        }
         return hijos;
 
     }

@@ -80,10 +80,22 @@ public class Expresion extends Sentencia {
     public List<Sentencia> llenarHijos() {
 
         hijos = new ArrayList<>();
-        hijos.add(expresionNumerica);
-        hijos.add(expresionTest);
-        hijos.add(crearExpresion);
-        hijos.add(new SentenciaToken(identificador));
+        if (expresionNumerica != null) {
+
+            hijos.add(expresionNumerica);
+        }
+        if (expresionTest != null) {
+
+            hijos.add(expresionTest);
+        }
+        if (crearExpresion != null) {
+
+            hijos.add(crearExpresion);
+        }
+        if (identificador != null) {
+
+            hijos.add(new SentenciaToken(identificador));
+        }
         if (!expresiones.getSentencias().isEmpty()) {
             hijos.add(expresiones);
         }

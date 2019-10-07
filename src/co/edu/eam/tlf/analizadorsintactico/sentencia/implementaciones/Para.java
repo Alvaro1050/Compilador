@@ -76,10 +76,19 @@ public class Para extends Sentencia {
     @Override
     public List<Sentencia> llenarHijos() {
         hijos = new ArrayList<>();
-        hijos.add(expresion);
-        hijos.add(expresionLogica);
-        hijos.add(declaradorVariable);
-        hijos.add(expresionNumerica);
+        if (expresion != null) {
+            hijos.add(expresion);
+        }
+
+        if (expresionLogica != null) {
+            hijos.add(expresionLogica);
+        }
+        if (declaradorVariable != null) {
+            hijos.add(declaradorVariable);
+        }
+        if (expresionNumerica != null) {
+            hijos.add(expresionNumerica);
+        }
 
         if (!listaSentencia.getSentencias().isEmpty()) {
             hijos.add(listaSentencia);

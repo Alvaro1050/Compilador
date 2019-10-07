@@ -49,7 +49,9 @@ public class IF extends Sentencia {
 
         hijos = new ArrayList<>();
         hijos.add(condicion);
-        hijos.add(contrario);
+        if (contrario != null) {
+            hijos.add(contrario);
+        }
         if (!listaSentenciaContrario.getSentencias().isEmpty()) {
             hijos.add(listaSentenciaContrario);
         }
