@@ -104,8 +104,13 @@ public class GramaticaClase implements Gramatica {
 
                     //se acabo el metodo.....
                     if (lexema.getTipoLexema().equals("corchete cerrado")) {
+                        lexema = flujoTokens.avanzar();
+                        if (lexema != null) {
+                            throw new SintacticException(lexema, "la clase finalizada");
 
-                        return clase;
+                        } else {
+                            return clase;
+                        }
                     } else {//si no se termina con llave cerrada, excepcion...
                         throw new SintacticException(lexema, "corchete cerrado");
                     }
