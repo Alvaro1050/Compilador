@@ -20,7 +20,7 @@ import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Metodo;
 /**
  * Gramatica que representa la regla de una clase.
  *
- * @author alvaro
+ * @author juan
  */
 public class GramaticaClase implements Gramatica {
 
@@ -40,8 +40,10 @@ public class GramaticaClase implements Gramatica {
                 lexema = flujoTokens.avanzar();
                 if (lexema == null) {
                     throw new SintacticException(new Lexema("", ""), "{");
-                } else if (lexema.getTipoLexema().equals("corchete abierto")) {
+                }
+                if (lexema.getTipoLexema().equals("corchete abierto")) {
                     //se analiza el cuerpo del metodo.....
+                    lexema = flujoTokens.avanzar();
                     boolean continuar = true;
                     GramaticaAtributo gramaticaAtributo = new GramaticaAtributo();
                     GramaticaMetodoDeclaracion gramaticaMetodo = new GramaticaMetodoDeclaracion();
@@ -52,10 +54,12 @@ public class GramaticaClase implements Gramatica {
 
                     GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
                     do {
-                        lexema = flujoTokens.avanzar();
+                        lexema = flujoTokens.getTokenActual();
                         Metodo met = gramaticaMetodo.analizar(clase, flujoTokens);
                         if (met != null) {
                             clase.getListaMetodos().add(met);
+                            lexema = flujoTokens.getTokenActual();
+
                             continue;
                         }
 

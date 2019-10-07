@@ -8,19 +8,18 @@ package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Atributo;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Constructor;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Lista;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.DeclaradorVariable;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Expresion;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.IF;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Main;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Metodo;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Parametro;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Para;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.SentenciaToken;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 
 /**
  * Clase que represetna la gramatica de un metodo.
  *
- * @author alvar
+ * @author juan
  */
 public class GramaticaMain implements Gramatica {
 
@@ -95,15 +94,68 @@ public class GramaticaMain implements Gramatica {
                                             /*se analiza las sentencias del main*/
 
                                             boolean continuar = true;
-                                            GramaticaAtributo gramaticaAtributo = new GramaticaAtributo();
+                                            GramaticaIF gramaticaIF = new GramaticaIF();
+                                            GramaticaPara gramaticaPara = new GramaticaPara();
+                                            GramaticaDeclaradorVariable gramaticaDeclaradorVariable = new GramaticaDeclaradorVariable();
+                                            GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
+
                                             do {
                                                 lexema = flujoTokens.avanzar();
-                                                Atributo atributo = gramaticaAtributo.analizar(main, flujoTokens);
-                                                if (atributo != null) {
-                                                    main.getListaSentencia().add(atributo);
+                                                Para para = gramaticaPara.analizar(main, flujoTokens);
+                                                if (para != null) {
+                                                    main.getListaSentencia().add(para);
                                                     continue;
                                                 }
 
+                                                DeclaradorVariable declaradorVariable = gramaticaDeclaradorVariable.analizar(main, flujoTokens);
+
+                                                if (declaradorVariable != null) {
+                                                    main.getListaSentencia().add(declaradorVariable);
+                                                    continue;
+                                                }
+
+                                                IF si = gramaticaIF.analizar(main, flujoTokens);
+                                                if (si != null) {
+                                                    main.getListaSentencia().add(si);
+                                                    continue;
+                                                }
+
+                                                if (lexema.getToken().equals("retornar")) {
+                                                    lexema = flujoTokens.avanzar();
+
+                                                    Expresion expresion = gramaticaExpresion.analizar(si, flujoTokens);
+                                                    lexema = flujoTokens.getTokenActual();
+                                                    if (expresion != null) {
+                                                        main.getListaSentencia().add(expresion);
+                                                        lexema = flujoTokens.getTokenActual();
+                                                    }
+
+                                                    if (lexema.getToken().equals(";")) {
+                                                        lexema = flujoTokens.avanzar();
+                                                    } else {
+                                                        throw new SintacticException(lexema, ";");
+
+                                                    }
+                                                }
+
+                                                if (lexema.getToken().equals("romper") || lexema.getToken().equals("continue")) {
+                                                    lexema = flujoTokens.avanzar();
+
+                                                    if (lexema == null) {
+                                                        throw new SintacticException(new Lexema("", ""), ";");
+                                                    }
+
+                                                    if (lexema.getTipoLexema().equals("Identificador")) {
+                                                        main.getListaSentencia().add(new SentenciaToken(lexema));
+                                                        lexema = flujoTokens.avanzar();
+                                                    }
+
+                                                    if (lexema.getToken().equals(";")) {
+                                                        lexema = flujoTokens.avanzar();
+                                                    } else {
+                                                        throw new SintacticException(lexema, ";");
+                                                    }
+                                                }
                                                 continuar = false;
 
                                             } while (continuar);

@@ -8,6 +8,14 @@ import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Expresion;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionLogica;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.IF;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Para;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.SentenciaToken;
+
+/**
+*Gramatica que representa la regla de un if
+*
+*@author juan
+*/
 
 public class GramaticaIF implements Gramatica {
 
@@ -40,29 +48,34 @@ public class GramaticaIF implements Gramatica {
                         lexema = flujoTokens.avanzar();
                         /* se analiza lo que esta dentro del if las sentencias*/
                         boolean continuar = true;
-                        GramaticaDeclaradorVariable gramaticaDeclaradorVariable = new GramaticaDeclaradorVariable();
                         GramaticaIF gramaticaIF = new GramaticaIF();
+                        GramaticaPara gramaticaPara = new GramaticaPara();
+                        GramaticaDeclaradorVariable gramaticaDeclaradorVariable = new GramaticaDeclaradorVariable();
+                        GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
+
                         do {
+                            lexema = flujoTokens.getTokenActual();
+                            Para para = gramaticaPara.analizar(si, flujoTokens);
+                            if (para != null) {
+                                si.getListaSentenciaSI().add(para);
+                                continue;
+                            }
 
                             DeclaradorVariable declaradorVariable = gramaticaDeclaradorVariable.analizar(si, flujoTokens);
 
                             if (declaradorVariable != null) {
                                 si.getListaSentenciaSI().add(declaradorVariable);
-                                lexema = flujoTokens.getTokenActual();
                                 continue;
                             }
 
                             IF si2 = gramaticaIF.analizar(si, flujoTokens);
-
                             if (si2 != null) {
-                                si.getListaSentenciaSI().add(si2);
-                                lexema = flujoTokens.avanzar();
+                                si.getListaSentenciaSI().add(si);
+                                continue;
                             }
 
                             if (lexema.getToken().equals("retornar")) {
                                 lexema = flujoTokens.avanzar();
-
-                                GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
 
                                 Expresion expresion = gramaticaExpresion.analizar(si, flujoTokens);
                                 lexema = flujoTokens.getTokenActual();
@@ -73,12 +86,32 @@ public class GramaticaIF implements Gramatica {
 
                                 if (lexema.getToken().equals(";")) {
                                     lexema = flujoTokens.avanzar();
+                                    continue;
                                 } else {
                                     throw new SintacticException(lexema, ";");
 
                                 }
                             }
 
+                            if (lexema.getToken().equals("romper") || lexema.getToken().equals("continue")) {
+                                lexema = flujoTokens.avanzar();
+
+                                if (lexema == null) {
+                                    throw new SintacticException(new Lexema("", ""), ";");
+                                }
+
+                                if (lexema.getTipoLexema().equals("Identificador")) {
+                                    si.getListaSentenciaSI().add(new SentenciaToken(lexema));
+                                    lexema = flujoTokens.avanzar();
+                                }
+
+                                if (lexema.getToken().equals(";")) {
+                                    lexema = flujoTokens.avanzar();
+                                    continue;
+                                } else {
+                                    throw new SintacticException(lexema, ";");
+                                }
+                            }
                             continuar = false;
 
                         } while (continuar);

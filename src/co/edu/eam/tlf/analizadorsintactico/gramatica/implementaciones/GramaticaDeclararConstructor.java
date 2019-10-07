@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,16 +10,20 @@ import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Constructor;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.DeclaradorVariable;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Expresion;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Lista;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.IF;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Metodo;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Para;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Parametro;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.SentenciaToken;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 
 /**
  * Clase que represetna la gramatica de un metodo.
  *
- * @author alvar
+ * @author juan
  */
 public class GramaticaDeclararConstructor implements Gramatica {
 
@@ -64,12 +69,22 @@ public class GramaticaDeclararConstructor implements Gramatica {
                         //se analiza el cuerpo del metodo.....
                         boolean continuar = true;
                         GramaticaIF gramaticaIF = new GramaticaIF();
-                        GramaticaMetodoDeclaracion gramaticaMetodo = new GramaticaMetodoDeclaracion();
+                        GramaticaPara gramaticaPara = new GramaticaPara();
+                        GramaticaDeclaradorVariable gramaticaDeclaradorVariable = new GramaticaDeclaradorVariable();
+                        GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
+
                         do {
                             lexema = flujoTokens.avanzar();
-                            Metodo met = gramaticaMetodo.analizar(constructor, flujoTokens);
-                            if (met != null) {
-                                constructor.getListaSentencia().add(met);
+                            Para para = gramaticaPara.analizar(constructor, flujoTokens);
+                            if (para != null) {
+                                constructor.getListaSentencia().add(para);
+                                continue;
+                            }
+
+                            DeclaradorVariable declaradorVariable = gramaticaDeclaradorVariable.analizar(constructor, flujoTokens);
+
+                            if (declaradorVariable != null) {
+                                constructor.getListaSentencia().add(declaradorVariable);
                                 continue;
                             }
 
@@ -77,6 +92,43 @@ public class GramaticaDeclararConstructor implements Gramatica {
                             if (si != null) {
                                 constructor.getListaSentencia().add(si);
                                 continue;
+                            }
+
+                            if (lexema.getToken().equals("retornar")) {
+                                lexema = flujoTokens.avanzar();
+
+                                Expresion expresion = gramaticaExpresion.analizar(constructor, flujoTokens);
+                                lexema = flujoTokens.getTokenActual();
+                                if (expresion != null) {
+                                    constructor.getListaSentencia().add(expresion);
+                                    lexema = flujoTokens.getTokenActual();
+                                }
+
+                                if (lexema.getToken().equals(";")) {
+                                    lexema = flujoTokens.avanzar();
+                                } else {
+                                    throw new SintacticException(lexema, ";");
+
+                                }
+                            }
+
+                            if (lexema.getToken().equals("romper") || lexema.getToken().equals("continue")) {
+                                lexema = flujoTokens.avanzar();
+
+                                if (lexema == null) {
+                                    throw new SintacticException(new Lexema("", ""), ";");
+                                }
+
+                                if (lexema.getTipoLexema().equals("Identificador")) {
+                                    constructor.getListaSentencia().add(new SentenciaToken(lexema));
+                                    lexema = flujoTokens.avanzar();
+                                }
+
+                                if (lexema.getToken().equals(";")) {
+                                    lexema = flujoTokens.avanzar();
+                                } else {
+                                    throw new SintacticException(lexema, ";");
+                                }
                             }
                             continuar = false;
 
