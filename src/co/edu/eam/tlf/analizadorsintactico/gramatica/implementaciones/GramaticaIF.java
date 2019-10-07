@@ -41,6 +41,7 @@ public class GramaticaIF implements Gramatica {
                         /* se analiza lo que esta dentro del if las sentencias*/
                         boolean continuar = true;
                         GramaticaDeclaradorVariable gramaticaDeclaradorVariable = new GramaticaDeclaradorVariable();
+                        GramaticaIF gramaticaIF = new GramaticaIF();
                         do {
 
                             DeclaradorVariable declaradorVariable = gramaticaDeclaradorVariable.analizar(si, flujoTokens);
@@ -49,6 +50,13 @@ public class GramaticaIF implements Gramatica {
                                 si.getListaSentenciaSI().add(declaradorVariable);
                                 lexema = flujoTokens.getTokenActual();
                                 continue;
+                            }
+
+                            IF si2 = gramaticaIF.analizar(si, flujoTokens);
+
+                            if (si2 != null) {
+                                si.getListaSentenciaSI().add(si2);
+                                lexema = flujoTokens.avanzar();
                             }
 
                             if (lexema.getToken().equals("retornar")) {
@@ -61,7 +69,7 @@ public class GramaticaIF implements Gramatica {
                                 if (expresion != null) {
                                     si.getListaSentenciaSI().add(expresion);
                                     lexema = flujoTokens.getTokenActual();
-                                }   
+                                }
 
                                 if (lexema.getToken().equals(";")) {
                                     lexema = flujoTokens.avanzar();

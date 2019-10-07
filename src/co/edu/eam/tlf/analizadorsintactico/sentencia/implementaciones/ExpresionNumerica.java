@@ -52,7 +52,7 @@ public class ExpresionNumerica extends Sentencia {
     public List<Sentencia> llenarHijos() {
 
         hijos = new ArrayList<>();
-        
+
         hijos.add(new SentenciaToken(operador));
         hijos.add(new SentenciaToken(expresion1));
         hijos.add(new SentenciaToken(expresion2));
@@ -68,7 +68,28 @@ public class ExpresionNumerica extends Sentencia {
 
     @Override
     public String parse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        StringBuilder str = new StringBuilder();
+        if (expresion1 != null) {
+            str.append("Identificador Expresion");
+
+            str.append(expresion1.getToken());
+
+        }
+        if (expresion2 != null) {
+            str.append("Tipo Especificacion");
+
+            str.append(expresion2.getToken());
+
+        }
+        if (operador != null) {
+            str.append("Tipo Especificacion");
+
+            str.append(operador.getToken());
+
+        }
+
+        return str.toString();
     }
 
 }

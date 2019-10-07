@@ -8,6 +8,10 @@ package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.DeclaradorVariable;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Expresion;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionLogica;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionNumerica;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Para;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 
@@ -29,18 +33,114 @@ public class GramaticaPara implements Gramatica {
 
             if (lexema == null) {
                 throw new SintacticException(new Lexema("", ""), "(");
-            } else if (lexema.getToken().equals("(")) {
+            }
+            if (lexema.getToken().equals("(")) {
+                lexema = flujoTokens.avanzar();
+
+                if (lexema == null) {
+                    throw new SintacticException(new Lexema("", ""), "(");
+                }
+
+                GramaticaDeclaradorVariable gramaticaDeclaradorVariable = new GramaticaDeclaradorVariable();
+
+                DeclaradorVariable declaradorVariable = gramaticaDeclaradorVariable.analizar(para, flujoTokens);
+
+                if (declaradorVariable != null) {
+                    para.setDeclaradorVariable(declaradorVariable);
+                    lexema = flujoTokens.getTokenActual();
+
+                    GramaticaExpresionLogica gramaticaExpresionLogica = new GramaticaExpresionLogica();
+                    ExpresionLogica expresionLogica = gramaticaExpresionLogica.analizar(para, flujoTokens);
+
+                    if (expresionLogica != null) {
+                        para.setExpresionLogica(expresionLogica);
+                        lexema = flujoTokens.avanzar();
+
+                        if (lexema.getToken().equals(";")) {
+
+                            lexema = flujoTokens.avanzar();
+
+                            if (lexema == null) {
+                                throw new SintacticException(new Lexema("", ""), "Expresion numerica");
+                            }
+
+                            GramaticaExpresionNumerica gramaticaExpresionNumerica = new GramaticaExpresionNumerica();
+
+                            ExpresionNumerica expresionNumerica = gramaticaExpresionNumerica.analizar(para, flujoTokens);
+
+                            if (expresionNumerica != null) {
+                                para.setExpresionNumerica(expresionNumerica);
+                                lexema = flujoTokens.getTokenActual();
+                            } else {
+                                throw new SintacticException(lexema, "Expresion numerica");
+                            }
+                        } else {
+                            throw new SintacticException(lexema, ";");
+                        }
+
+                    } else {
+                        throw new SintacticException(lexema, "Expresion logica");
+
+                    }
+                } else {
+                    GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
+
+                    Expresion expresion = gramaticaExpresion.analizar(para, flujoTokens);
+                    para.setExpresion(expresion);
+                    lexema = flujoTokens.getTokenActual();
+
+                    if (lexema.getToken().equals(";")) {
+                        lexema = flujoTokens.avanzar();
+
+                        GramaticaExpresionLogica gramaticaExpresionLogica = new GramaticaExpresionLogica();
+                        ExpresionLogica expresionLogica = gramaticaExpresionLogica.analizar(para, flujoTokens);
+
+                        if (expresionLogica != null) {
+                            para.setExpresionLogica(expresionLogica);
+                            lexema = flujoTokens.getTokenActual();
+
+                            if (lexema.getToken().equals(";")) {
+
+                                lexema = flujoTokens.avanzar();
+
+                                if (lexema == null) {
+                                    throw new SintacticException(new Lexema("", ""), "Expresion numerica");
+                                }
+
+                                GramaticaExpresionNumerica gramaticaExpresionNumerica = new GramaticaExpresionNumerica();
+
+                                ExpresionNumerica expresionNumerica = gramaticaExpresionNumerica.analizar(para, flujoTokens);
+
+                                if (expresionNumerica != null) {
+                                    para.setExpresionNumerica(expresionNumerica);
+                                    lexema = flujoTokens.getTokenActual();
+                                } else {
+                                    throw new SintacticException(lexema, "Expresion numerica");
+                                }
+                            } else {
+                                throw new SintacticException(lexema, ";");
+                            }
+
+                        } else {
+                            throw new SintacticException(lexema, "Expresion logica");
+
+                        }
+                    } else {
+                        throw new SintacticException(lexema, ";");
+                    }
+                }
 
                 if (lexema.getToken().equals(")")) {
                     lexema = flujoTokens.avanzar();
                     if (lexema.getToken().equals("{")) {
                         lexema = flujoTokens.avanzar();
-                    } else if (lexema == null) {
+                    }
+                    if (lexema == null) {
                         throw new SintacticException(new Lexema("", ""), "}");
                     }
                     if (lexema.getToken().equals("}")) {
-                            return para;
-                        }
+                        return para;
+                    }
 
                 } else if (lexema == null) {
                     throw new SintacticException(new Lexema("", ""), "{");

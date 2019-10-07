@@ -92,33 +92,36 @@ public class Expresion extends Sentencia {
         }
         return hijos;
 
-}
+    }
 
-@Override
-        public String toString() {
+    @Override
+    public String toString() {
         return "Expresion";
     }
 
     @Override
-        public String parse() {
+    public String parse() {
 
         StringBuilder str = new StringBuilder();
 
         str.append("Expresion numerica");
 
         str.append(expresionNumerica);
-        
+
         str.append("Expresion Test");
 
         str.append(expresionTest);
-        
+
         str.append("Crear Expresion");
 
         str.append(crearExpresion);
-        
-        str.append("Identificador Expresion");
 
-        str.append(identificador.getToken());
+        if (identificador != null) {
+            str.append("Identificador Expresion");
+
+            str.append(identificador.getToken());
+
+        }
 
         for (Sentencia sentencia : expresiones.getSentencias()) {
             str.append("Expresiones: ");

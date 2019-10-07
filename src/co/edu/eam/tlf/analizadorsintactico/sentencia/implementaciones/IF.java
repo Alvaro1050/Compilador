@@ -1,6 +1,5 @@
 package co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones;
 
-import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import java.util.List;
 
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;

@@ -8,14 +8,11 @@ package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Argumento;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.CrearExpresion;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Expresion;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Expresion2;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionCadena;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionNumerica;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.ExpresionTest;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Lista;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 
 /**

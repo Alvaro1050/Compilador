@@ -57,6 +57,14 @@ public class ExpresionLogica extends Sentencia {
             hijos.add(expresiones.get(i));
         }
 
+        for (int i = 0; i < identificadores.size(); i++) {
+            hijos.add(new SentenciaToken(identificadores.get(i)));
+        }
+
+        for (int i = 0; i < operadores.size(); i++) {
+            hijos.add(new SentenciaToken(operadores.get(i)));
+        }
+
         return hijos;
 
     }

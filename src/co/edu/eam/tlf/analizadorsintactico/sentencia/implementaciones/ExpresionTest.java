@@ -61,11 +61,34 @@ public class ExpresionTest extends Sentencia {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Expresion Test: ";
     }
 
     @Override
     public String parse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        StringBuilder str = new StringBuilder();
+        if (expresion1 != null) {
+            str.append("Identificador Expresion");
+
+            str.append(expresion1.getToken());
+
+        }
+
+        if (operador != null) {
+            str.append("Operador");
+
+            str.append(operador.getToken());
+
+        }
+        if (expresion2 != null) {
+            str.append("identificador Expresion");
+
+            str.append(expresion2.getToken());
+
+        }
+
+        return str.toString();
     }
+
 }

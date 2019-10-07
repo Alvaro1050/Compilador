@@ -90,13 +90,53 @@ public class Para extends Sentencia {
     }
 
     @Override
-    public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String parse() {
+
+        StringBuilder str = new StringBuilder();
+
+        str.append("para").append("(");
+        if (declaradorVariable != null) {
+            str.append(declaradorVariable.parse());
+
+        } else {
+            str.append(expresion.parse());
+        }
+
+        str.append(";");
+
+        str.append(expresionLogica.parse());
+        str.append(";");
+
+        str.append(expresionNumerica.parse());
+        str.append(")");
+        str.append("{");
+
+        for (Sentencia sentencia : listaSentencia.getSentencias()) {
+            str.append(sentencia.parse());
+        }
+        str.append("}");
+
+        return str.toString();
     }
 
     @Override
-    public String parse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("para");
+
+        if (expresion != null) {
+            str.append("con expresion ").append(expresion.parse());
+
+        } else {
+            str.append("con declaracion de variable ").append(declaradorVariable.parse());
+        }
+        str.append("con condicion ").append(expresionLogica.parse());
+
+        str.append("con expresion numerica ").append(expresionNumerica.parse());
+
+        str.append(" y sentencias:  ").append(listaSentencia.parse());
+
+        return str.toString();
     }
 
 }

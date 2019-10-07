@@ -75,11 +75,37 @@ public class CrearExpresion extends Sentencia {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Crear expresion:";
     }
 
     @Override
     public String parse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        StringBuilder str = new StringBuilder();
+        if (identificador != null) {
+            str.append("Identificador Expresion");
+
+            str.append(identificador.getToken());
+
+        }
+        if (tipoEspecificador != null) {
+            str.append("Tipo Especificacion");
+
+            str.append(tipoEspecificador.getToken());
+
+        }
+        if (expresion != null) {
+            str.append("Expresion:");
+
+            str.append(expresion);
+
+        }
+
+        for (Sentencia sentencia : listaArgumentos.getSentencias()) {
+            str.append("Argumentos: ");
+            str.append(sentencia.parse());
+        }
+
+        return str.toString();
     }
 }

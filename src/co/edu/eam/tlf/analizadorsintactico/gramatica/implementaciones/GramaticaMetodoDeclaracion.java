@@ -11,6 +11,7 @@ import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Lista;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.IF;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Metodo;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Para;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Parametro;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 
@@ -69,12 +70,12 @@ public class GramaticaMetodoDeclaracion implements Gramatica {
                         //se analiza el cuerpo del metodo.....
                         boolean continuar = true;
                         GramaticaIF gramaticaIF = new GramaticaIF();
-                        GramaticaMetodoDeclaracion gramaticaMetodo = new GramaticaMetodoDeclaracion();
+                        GramaticaPara gramaticaPara = new GramaticaPara();
                         do {
                             lexema = flujoTokens.avanzar();
-                            Metodo met = gramaticaMetodo.analizar(metodo, flujoTokens);
-                            if (met != null) {
-                                metodo.getListaSentencias().add(met);
+                            Para para = gramaticaPara.analizar(metodo, flujoTokens);
+                            if (para != null) {
+                                metodo.getListaSentencias().add(para);
                                 continue;
                             }
 
