@@ -30,7 +30,7 @@ public class Automata_menos_menos {
         q0();
         if (aceptada) {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
             Analizador_lexico.flujo.setPosActual(cont);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-            return new Lexema("--", "Operador aritmetico decremental");//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            return new Lexema("--", "Operador aritmetico decremental", cont, Analizador_lexico.fila);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         } else {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
             return null;//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         }//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -66,7 +66,7 @@ public class Automata_menos_menos {
                 aceptada = true;
                 qF();
 
-              } else if (car[cont] == ' ' || car[cont] == '\n') {
+            } else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
@@ -74,6 +74,10 @@ public class Automata_menos_menos {
 
     public void validarEspacios() {
         if (car[cont] == ' ' || car[cont] == '\n') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

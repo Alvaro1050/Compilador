@@ -30,7 +30,7 @@ public class Automata_llave_cerrado {
         q0F();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema(car[posInicial] + "", "Llave cerrada");
+            return new Lexema(car[posInicial] + "", "Llave cerrada", cont, Analizador_lexico.fila);
 
         } else {
             return null;
@@ -54,6 +54,10 @@ public class Automata_llave_cerrado {
 
     public void validarEspacios() {
         if (car[cont] == ' ' || car[cont] == '\n') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

@@ -29,7 +29,7 @@ public class Automata_defecto {
         q0();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema("defecto", "Palabra Reservada");
+            return new Lexema("defecto", "Palabra Reservada", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -164,7 +164,7 @@ public class Automata_defecto {
                 aceptada = false;
                 cont--;
 
-              }  else if (car[cont] == ' ' || car[cont] == '\n') {
+            } else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
@@ -172,6 +172,10 @@ public class Automata_defecto {
 
     public void validarEspacios() {
         if (car[cont] == ' ' || car[cont] == '\n') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

@@ -29,7 +29,7 @@ public class Automata_dividirNR {
         q0();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema("dividirNR", "Palabra reservada");
+            return new Lexema("dividirNR", "Palabra reservada", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -187,8 +187,6 @@ public class Automata_dividirNR {
         }
     }
 
-   
-
     public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -204,7 +202,7 @@ public class Automata_dividirNR {
                 aceptada = false;
                 cont--;
 
-              } else if (car[cont] == ' ' || car[cont] == '\n') {
+            } else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
@@ -212,6 +210,10 @@ public class Automata_dividirNR {
 
     public void validarEspacios() {
         if (car[cont] == ' ' || car[cont] == '\n') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

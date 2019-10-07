@@ -29,7 +29,7 @@ public class Automata_restarNR {
         q0();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema("restarNR", "Palabra reservada");
+            return new Lexema("restarNR", "Palabra reservada", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -183,7 +183,7 @@ public class Automata_restarNR {
                 aceptada = false;
                 cont--;
 
-              } else if (car[cont] == ' ' || car[cont] == '\n') {
+            } else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
@@ -191,6 +191,10 @@ public class Automata_restarNR {
 
     public void validarEspacios() {
         if (car[cont] == ' ' || car[cont] == '\n') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

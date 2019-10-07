@@ -26,9 +26,9 @@ public class Automata_entero {
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
-         if (aceptada) {
+        if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema("entero", "Tipo Dato");
+            return new Lexema("entero", "Tipo Dato", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -145,7 +145,7 @@ public class Automata_entero {
                 aceptada = false;
                 cont--;
 
-              }  else if (car[cont] == ' ' || car[cont] == '\n') {
+            } else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
@@ -153,6 +153,10 @@ public class Automata_entero {
 
     public void validarEspacios() {
         if (car[cont] == ' ' || car[cont] == '\n') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

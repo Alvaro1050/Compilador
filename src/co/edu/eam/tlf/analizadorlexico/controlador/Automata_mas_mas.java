@@ -28,7 +28,7 @@ public class Automata_mas_mas {
         q0();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema("++", "Operador aritmetico incremental");
+            return new Lexema("++", "Operador aritmetico incremental", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -71,6 +71,10 @@ public class Automata_mas_mas {
 
     public void validarEspacios() {
         if (car[cont] == ' ' || car[cont] == '\n') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

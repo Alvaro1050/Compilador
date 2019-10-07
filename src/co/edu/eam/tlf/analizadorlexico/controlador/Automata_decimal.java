@@ -31,7 +31,7 @@ public class Automata_decimal {
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
 
-            return new Lexema("decimal", "Tipo Dato");
+            return new Lexema("decimal", "Tipo Dato", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -166,7 +166,7 @@ public class Automata_decimal {
                 aceptada = false;
                 cont--;
 
-            }  else if (car[cont] == ' ' || car[cont] == '\n') {
+            } else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
@@ -174,6 +174,10 @@ public class Automata_decimal {
 
     public void validarEspacios() {
         if (car[cont] == ' ' || car[cont] == '\n') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

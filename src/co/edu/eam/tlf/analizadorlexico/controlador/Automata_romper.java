@@ -29,7 +29,7 @@ public class Automata_romper {
         q0();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema("romper", "Palabra reservada");
+            return new Lexema("romper", "Palabra reservada", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -146,7 +146,7 @@ public class Automata_romper {
                 aceptada = false;
                 cont--;
 
-             } else if (car[cont] == ' ' || car[cont] == '\n') {
+            } else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
@@ -154,6 +154,10 @@ public class Automata_romper {
 
     public void validarEspacios() {
         if (car[cont] == ' ' || car[cont] == '\n') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

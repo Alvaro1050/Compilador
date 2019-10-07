@@ -29,7 +29,7 @@ public class Automata_resolverVectores {
         q0();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema("resolverVectores", "Palabra reservada");
+            return new Lexema("resolverVectores", "Palabra reservada", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -333,7 +333,7 @@ public class Automata_resolverVectores {
                 aceptada = false;
                 cont--;
 
-             }  else if (car[cont] == ' ' || car[cont] == '\n') {
+            } else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
@@ -341,6 +341,10 @@ public class Automata_resolverVectores {
 
     public void validarEspacios() {
         if (car[cont] == ' ' || car[cont] == '\n') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

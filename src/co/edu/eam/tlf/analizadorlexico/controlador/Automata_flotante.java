@@ -29,7 +29,7 @@ public class Automata_flotante {
         q0();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema("flotante", "Tipo Dato");
+            return new Lexema("flotante", "Tipo Dato", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -191,6 +191,10 @@ public class Automata_flotante {
 
     public void validarEspacios() {
         if (car[cont] == ' ' || car[cont] == '\n') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

@@ -28,7 +28,7 @@ public class Automata_diples {
         q0();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema(car[posInicial] + "", "Operador de asignación");
+            return new Lexema(car[posInicial] + "", "Operador de asignación", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -44,7 +44,7 @@ public class Automata_diples {
                 aceptada = true;
                 q0();
 
-            }  else if (car[cont] == ' ' || car[cont] == '\n') {
+            } else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
@@ -52,6 +52,10 @@ public class Automata_diples {
 
     public void validarEspacios() {
         if (car[cont] == ' ' || car[cont] == '\n') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

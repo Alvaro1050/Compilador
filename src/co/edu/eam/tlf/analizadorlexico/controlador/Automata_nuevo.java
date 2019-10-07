@@ -29,7 +29,7 @@ public class Automata_nuevo {
         q0();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema("nuevo", "Palabra reservada");
+            return new Lexema("nuevo", "Palabra reservada", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -135,6 +135,10 @@ public class Automata_nuevo {
 
     public void validarEspacios() {
         if (car[cont] == ' ' || car[cont] == '\n') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

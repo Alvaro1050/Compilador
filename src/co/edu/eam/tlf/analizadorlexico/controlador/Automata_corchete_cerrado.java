@@ -30,7 +30,7 @@ public class Automata_corchete_cerrado {
         q0F();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema(car[posInicial] + "", "corchete cerrado");
+            return new Lexema(car[posInicial] + "", "corchete cerrado", cont, Analizador_lexico.fila);
 
         } else {
             return null;
@@ -46,7 +46,7 @@ public class Automata_corchete_cerrado {
                 cont++;
                 aceptada = true;
                 q0F();
-            }  else if (car[cont] == ' ' || car[cont] == '\n') {
+            } else if (car[cont] == ' ' || car[cont] == '\n') {
                 validarEspacios();
             }
         }
@@ -54,6 +54,10 @@ public class Automata_corchete_cerrado {
 
     public void validarEspacios() {
         if (car[cont] == ' ' || car[cont] == '\n') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }

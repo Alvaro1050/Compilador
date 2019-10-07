@@ -30,7 +30,7 @@ public class Automata_parentesis_abierto {
         q0F();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema(car[posInicial] + "", "parentesis abierto");
+            return new Lexema(car[posInicial] + "", "parentesis abierto", cont, Analizador_lexico.fila);
 
         } else {
             return null;
@@ -54,6 +54,10 @@ public class Automata_parentesis_abierto {
 
     public void validarEspacios() {
         if (car[cont] == ' ' || car[cont] == '\n') {
+            cont++;
+            validarEspacios();
+        } else if (car[cont] == '\n') {
+            Analizador_lexico.fila++;
             cont++;
             validarEspacios();
         }
