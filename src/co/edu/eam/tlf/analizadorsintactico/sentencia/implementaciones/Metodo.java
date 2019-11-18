@@ -102,12 +102,30 @@ public class Metodo extends Sentencia {
     @Override
     public String parse() {
         StringBuilder str = new StringBuilder();
-        str.append("metodo ");
+        str.append(" \n");
 
-        str.append("con nombre ").append(nombre.getToken());
-        str.append(" y paramatros:  ").append(listaParametros.parse());
-        str.append(" retornando ").append(retorno.getToken());
+        if (retorno.getToken().equals("cadena")) {
+            str.append("String").append(" ");
 
+        } else if (retorno.getToken().equals("entero")) {
+            str.append("int").append(" ");
+        }
+        str.append(nombre.getToken());
+        str.append("( ");
+        for (int i = 0; i < listaParametros.getSentencias().size(); i++) {
+            str.append(listaParametros.getSentencias().get(i).parse());
+            if (i == listaParametros.getSentencias().size() - 1) {
+
+            } else {
+                str.append(", ");
+            }
+        }
+        str.append("){ \n");
+
+        for (Sentencia sentencia : listaSentencias.getSentencias()) {
+            str.append(sentencia.parse());
+        }
+        str.append("} \n");
         return str.toString();
     }
 

@@ -75,17 +75,14 @@ public class Expresion2 extends Sentencia {
     public String parse() {
 
         StringBuilder str = new StringBuilder();
-
-        str.append("Identificador");
-
         str.append(identificador);
 
-        str.append("Expresion");
+        if (expresion != null) {
 
-        str.append(expresion);
+            str.append(expresion.parse());
+        }
 
         for (Sentencia sentencia : listaArg.getSentencias()) {
-            str.append("Argumentos: ");
             str.append(sentencia.parse());
         }
 

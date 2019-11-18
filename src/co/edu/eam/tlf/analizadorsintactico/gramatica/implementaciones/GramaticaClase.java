@@ -57,7 +57,6 @@ public class GramaticaClase implements Gramatica {
                         Metodo met = gramaticaMetodo.analizar(clase, flujoTokens);
                         if (met != null) {
                             clase.getListaMetodos().add(met);
-                            lexema = flujoTokens.getTokenActual();
                             continue;
                         }
 

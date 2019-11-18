@@ -88,20 +88,21 @@ public class Constructor extends Sentencia {
 
         StringBuilder str = new StringBuilder();
 
-        str.append("clase");
+        str.append("public");
 
         str.append(nombre.getToken());
-        str.append("[");
+        str.append("(");
 
         for (Sentencia sentencia : listaParametros.getSentencias()) {
             str.append(sentencia.parse());
         }
 
+        str.append("){");
         for (Sentencia sentencia : listaSentencia.getSentencias()) {
             str.append(sentencia.parse());
         }
 
-        str.append("]");
+        str.append("}");
 
         return str.toString();
     }

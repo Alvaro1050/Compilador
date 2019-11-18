@@ -27,6 +27,8 @@ public class AnalizadorSintactico {
 
     private Sentencia raiz;
 
+    public static String codigoJava;
+
     /**
      * Raiz del arbol de derivacion
      */
@@ -81,6 +83,7 @@ public class AnalizadorSintactico {
 
             unidadCompilacion = gramm.analizar(null, flujo);
 
+            System.out.println(unidadCompilacion.parse());
             raiz = getUnidadCompilacion();
             raiz.llenarHijos();
 
@@ -95,8 +98,6 @@ public class AnalizadorSintactico {
         this.raiz = raiz;
     }
 
-    
-    
     public Analizador_lexico getAnalizadorLexico() {
         return analizadorLexico;
     }

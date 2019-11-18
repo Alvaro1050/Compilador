@@ -92,33 +92,32 @@ public class Main extends Sentencia {
     public String parse() {
 
         StringBuilder str = new StringBuilder();
-        if (main != null) {
-            str.append("Main");
-
-            str.append(main.getToken());
-
-        }
+        
+        str.append("public static");
+        
         if (retorno != null) {
-            str.append("Retorno");
-
             str.append(retorno.getToken());
 
         }
-        if (tipoIdentidicador != null) {
-            str.append("Parametro");
+        
+        if (main != null) {
+            str.append(main.getToken());
 
-            str.append(tipoIdentidicador.getToken());
+        }
+        
+        str.append("( ");
+        
+        if (tipoIdentidicador != null) {
+            str.append(tipoIdentidicador.getToken()).append("[] ");
 
         }
         if (nombreParametro != null) {
-            str.append("Parametro");
-
+            str.append(" ");
             str.append(nombreParametro.getToken());
 
         }
 
         for (Sentencia sentencia : listaSentencia.getSentencias()) {
-            str.append("Sentencias: ");
             str.append(sentencia.parse());
         }
 

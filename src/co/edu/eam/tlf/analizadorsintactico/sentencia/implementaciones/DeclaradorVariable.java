@@ -72,14 +72,10 @@ public class DeclaradorVariable extends co.edu.eam.tlf.analizadorsintactico.sent
 
         StringBuilder str = new StringBuilder();
         if (identificador != null) {
-            str.append("Identificador Expresion");
-
             str.append(identificador.getToken());
 
         }
         if (tipo != null) {
-            str.append("Tipo Especificacion");
-
             str.append(tipo.getToken());
 
         }

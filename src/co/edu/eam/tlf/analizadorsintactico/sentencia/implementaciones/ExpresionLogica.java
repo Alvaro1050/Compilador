@@ -56,16 +56,14 @@ public class ExpresionLogica extends Sentencia {
         for (int i = 0; i < expresiones.size(); i++) {
             hijos.add(expresiones.get(i));
         }
-        
-         for (int i = 0; i < operadores.size(); i++) {
+
+        for (int i = 0; i < operadores.size(); i++) {
             hijos.add(new SentenciaToken(operadores.get(i)));
         }
 
         for (int i = 0; i < identificadores.size(); i++) {
             hijos.add(new SentenciaToken(identificadores.get(i)));
         }
-
-       
 
         return hijos;
 
@@ -81,24 +79,18 @@ public class ExpresionLogica extends Sentencia {
 
         StringBuilder str = new StringBuilder();
 
-        str.append("(");
-
         for (Sentencia sentencia : expresiones) {
             str.append(sentencia.parse());
         }
 
         for (Lexema sentencia : operadores) {
-            str.append("Operadores: ");
-            str.append(sentencia);
-        }
-
-        for (Lexema sentencia : identificadores) {
-            str.append("Identificador: ");
             str.append(sentencia.getToken());
         }
 
-        str.append(")");
-
+        for (Lexema sentencia : identificadores) {
+            str.append(" ");
+            str.append(sentencia.getToken());
+        }
         return str.toString();
     }
 

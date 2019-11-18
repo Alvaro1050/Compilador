@@ -92,26 +92,19 @@ public class CrearExpresion extends Sentencia {
 
         StringBuilder str = new StringBuilder();
         if (identificador != null) {
-            str.append("Identificador Expresion");
-
             str.append(identificador.getToken());
 
         }
         if (tipoEspecificador != null) {
-            str.append("Tipo Especificacion");
-
             str.append(tipoEspecificador.getToken());
 
         }
         if (expresion != null) {
-            str.append("Expresion:");
-
-            str.append(expresion);
+            str.append(expresion.parse());
 
         }
 
         for (Sentencia sentencia : listaArgumentos.getSentencias()) {
-            str.append("Argumentos: ");
             str.append(sentencia.parse());
         }
 

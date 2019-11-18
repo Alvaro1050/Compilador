@@ -68,10 +68,8 @@ public class Atributo extends Sentencia {
     public String parse() {
         StringBuilder str = new StringBuilder();
 
-        str.append("atributo ");
-
-        str.append("con nombre ").append(nombre.getToken());
-        str.append(" y de tipo ").append(tipoDato.getToken());
+        str.append(tipoDato.getToken()).append(" ");
+        str.append(nombre.getToken());
         str.append(";");
 
         return str.toString();

@@ -116,32 +116,28 @@ public class Expresion extends Sentencia {
 
         StringBuilder str = new StringBuilder();
 
-        str.append("Expresion numerica");
+        if (expresionNumerica != null) {
+            str.append(expresionNumerica.parse());
+        }
 
-        str.append(expresionNumerica);
+        if (expresionTest != null) {
+            str.append(expresionTest.parse());
+        }
+        if (crearExpresion != null) {
+            str.append(crearExpresion.parse());
 
-        str.append("Expresion Test");
-
-        str.append(expresionTest);
-
-        str.append("Crear Expresion");
-
-        str.append(crearExpresion);
+        }
 
         if (identificador != null) {
-            str.append("Identificador Expresion");
-
             str.append(identificador.getToken());
 
         }
 
         for (Sentencia sentencia : expresiones.getSentencias()) {
-            str.append("Expresiones: ");
             str.append(sentencia.parse());
         }
 
         for (Sentencia sentencia : expresion2s.getSentencias()) {
-            str.append("Expresiones 2: ");
             str.append(sentencia);
         }
 

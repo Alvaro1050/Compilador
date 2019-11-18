@@ -67,22 +67,22 @@ public class IF extends Sentencia {
 
         StringBuilder str = new StringBuilder();
 
-        str.append("si").append("(");
+        str.append("if").append("(");
         str.append(condicion.parse());
         str.append(")");
-        str.append("{");
+        str.append("{ \n");
 
         for (Sentencia sentencia : listaSentenciaSI.getSentencias()) {
             str.append(sentencia.parse());
         }
-        str.append("}");
+        str.append("} \n");
 
         if (!listaSentenciaContrario.getSentencias().isEmpty()) {
-            str.append("contrario").append("{");
+            str.append("contrario").append("{ \n");
             for (Sentencia sentencia : listaSentenciaContrario.getSentencias()) {
                 str.append(sentencia.parse());
             }
-            str.append("}");
+            str.append("} \n");
         }
 
         return str.toString();
@@ -95,7 +95,7 @@ public class IF extends Sentencia {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("IF");
+        str.append("if");
 
         str.append("con condicione ").append(condicion.parse());
         str.append(" y sentencias:  ").append(listaSentenciaSI.parse());

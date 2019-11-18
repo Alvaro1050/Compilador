@@ -95,10 +95,10 @@ public class Clase extends Sentencia {
 
         StringBuilder str = new StringBuilder();
 
-        str.append("clase");
+        str.append("class ");
 
         str.append(nombreClase.getToken());
-        str.append("[");
+        str.append(" { \n");
 
         for (Sentencia sentencia : listaAtributos.getSentencias()) {
             str.append(sentencia.parse());
@@ -108,7 +108,7 @@ public class Clase extends Sentencia {
             str.append(sentencia.parse());
         }
 
-        str.append("]");
+        str.append("}");
 
         return str.toString();
     }

@@ -75,21 +75,15 @@ public class ExpresionTest extends Sentencia {
 
         StringBuilder str = new StringBuilder();
         if (expresion1 != null) {
-            str.append("Identificador Expresion");
-
             str.append(expresion1.getToken());
 
         }
 
         if (operador != null) {
-            str.append("Operador");
-
             str.append(operador.getToken());
 
         }
         if (expresion2 != null) {
-            str.append("identificador Expresion");
-
             str.append(expresion2.getToken());
 
         }

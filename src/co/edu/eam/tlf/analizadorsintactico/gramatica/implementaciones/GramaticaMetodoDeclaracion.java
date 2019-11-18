@@ -97,7 +97,6 @@ public class GramaticaMetodoDeclaracion implements Gramatica {
                             IF si = gramaticaIF.analizar(metodo, flujoTokens);
                             if (si != null) {
                                 lexema = flujoTokens.getTokenActual();
-
                                 metodo.getListaSentencias().add(si);
                                 continue;
                             }

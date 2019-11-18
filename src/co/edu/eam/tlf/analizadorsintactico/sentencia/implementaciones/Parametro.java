@@ -25,6 +25,8 @@ public class Parametro extends Sentencia {
      */
     private Lexema tipo;
 
+    int comas = 0;
+
     /**
      * COnstructor
      */
@@ -61,8 +63,22 @@ public class Parametro extends Sentencia {
 
     @Override
     public String parse() {
-        // TODO Auto-generated method stub
-        return null;
+        StringBuilder str = new StringBuilder();
+
+        if (tipo.getToken().equals("cadena")) {
+            str.append("String").append(" ");
+        } else if (tipo.getToken().equals("entero")) {
+            str.append("int").append(" ");
+        } else if (tipo.getToken().equals("decimal")) {
+            str.append("double").append(" ");
+        } else if (tipo.getToken().equals("flotante")) {
+            str.append("float").append(" ");
+        } else if (tipo.getToken().equals("boo")) {
+            str.append("boolean").append(" ");
+        }
+
+        str.append(nombre.getToken());
+        return str.toString();
     }
 
 }

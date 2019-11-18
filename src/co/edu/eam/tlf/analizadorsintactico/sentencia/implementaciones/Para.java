@@ -103,7 +103,7 @@ public class Para extends Sentencia {
 
         StringBuilder str = new StringBuilder();
 
-        str.append("para").append("(");
+        str.append("for").append("(");
         if (declaradorVariable != null) {
             str.append(declaradorVariable.parse());
 
@@ -118,12 +118,12 @@ public class Para extends Sentencia {
 
         str.append(expresionNumerica.parse());
         str.append(")");
-        str.append("{");
+        str.append("{ \n");
 
         for (Sentencia sentencia : listaSentencia.getSentencias()) {
             str.append(sentencia.parse());
         }
-        str.append("}");
+        str.append("} \n");
 
         return str.toString();
     }

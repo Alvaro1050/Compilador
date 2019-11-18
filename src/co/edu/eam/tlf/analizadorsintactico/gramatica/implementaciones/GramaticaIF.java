@@ -83,7 +83,6 @@ public class GramaticaIF implements Gramatica {
                                 }
 
                                 if (lexema.getToken().equals(";")) {
-                                    lexema = flujoTokens.avanzar();
                                     continue;
                                 } else {
                                     throw new SintacticException(lexema, ";");
