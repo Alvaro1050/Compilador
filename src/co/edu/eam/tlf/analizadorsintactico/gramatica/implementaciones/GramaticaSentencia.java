@@ -96,7 +96,9 @@ public class GramaticaSentencia implements Gramatica {
         //ACA EMPIEZA A HACER TODO INGENIERO QUIRAMA
         //ACA EMPIEZA A HACER TODO INGENIERO QUIRAMA
         //ACA EMPIEZA A HACER TODO INGENIERO QUIRAMA
-        return sentencia;
+        flujoTokens.backTrack();
+
+        return null;
     }
 
 }

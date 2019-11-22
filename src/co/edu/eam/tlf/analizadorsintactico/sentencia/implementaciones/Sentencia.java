@@ -21,6 +21,7 @@ public class Sentencia extends co.edu.eam.tlf.analizadorsintactico.sentencias.de
     private IF si;
     private Para para;
     private Lexema identificadorRomper;
+
     public Sentencia() {
     }
 
@@ -68,7 +69,6 @@ public class Sentencia extends co.edu.eam.tlf.analizadorsintactico.sentencias.de
         this.identificadorRomper = identificadorRomper;
     }
 
-    
     public void setPara(Para para) {
         this.para = para;
     }
@@ -94,7 +94,7 @@ public class Sentencia extends co.edu.eam.tlf.analizadorsintactico.sentencias.de
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Sentencia: ";
     }
 
     @Override
@@ -104,7 +104,11 @@ public class Sentencia extends co.edu.eam.tlf.analizadorsintactico.sentencias.de
         if (declaradorVariable != null) {
             str.append(declaradorVariable.parse());
         }
-        
+        if (identificadorRomper != null) {
+            str.append(identificadorRomper.getToken()).append(" ");
+            str.append(identificador.getToken());
+        }
+
         if (si != null) {
             str.append(si.parse());
         }
@@ -112,6 +116,7 @@ public class Sentencia extends co.edu.eam.tlf.analizadorsintactico.sentencias.de
             str.append(para.parse());
         }
         if (expresion != null) {
+            str.append("return ");
             str.append(expresion.parse());
         }
         return str.toString();
