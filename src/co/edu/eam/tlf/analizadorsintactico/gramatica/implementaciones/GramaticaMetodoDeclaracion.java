@@ -83,6 +83,7 @@ public class GramaticaMetodoDeclaracion implements Gramatica {
                             Sentencia sentencia = gramaticaSentencia.analizar(metodo, flujoTokens);
                             if (sentencia != null) {
                                 lexema = flujoTokens.getTokenActual();
+                                metodo.getListaSentencias().add(sentencia);
                                 continue;
 
                             }

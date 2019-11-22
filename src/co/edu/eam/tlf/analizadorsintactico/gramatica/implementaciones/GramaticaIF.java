@@ -91,6 +91,7 @@ public class GramaticaIF implements Gramatica {
                                             Sentencia sentencia = gramaticaSentencia.analizar(si, flujoTokens);
                                             if (sentencia != null) {
                                                 lexema = flujoTokens.getTokenActual();
+                                                si.getListaSentenciaSI().add(sentencia);
                                                 continue;
 
                                             }
