@@ -20,7 +20,7 @@ public class Sentencia extends co.edu.eam.tlf.analizadorsintactico.sentencias.de
     private Expresion expresion;
     private IF si;
     private Para para;
-
+    private Lexema identificadorRomper;
     public Sentencia() {
     }
 
@@ -60,6 +60,15 @@ public class Sentencia extends co.edu.eam.tlf.analizadorsintactico.sentencias.de
         return para;
     }
 
+    public Lexema getIdentificadorRomper() {
+        return identificadorRomper;
+    }
+
+    public void setIdentificadorRomper(Lexema identificadorRomper) {
+        this.identificadorRomper = identificadorRomper;
+    }
+
+    
     public void setPara(Para para) {
         this.para = para;
     }

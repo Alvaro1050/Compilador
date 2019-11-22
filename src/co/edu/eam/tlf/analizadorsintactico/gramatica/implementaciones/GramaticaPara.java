@@ -143,63 +143,15 @@ public class GramaticaPara implements Gramatica {
                         GramaticaPara gramaticaPara = new GramaticaPara();
                         GramaticaDeclaradorVariable gramaticaDeclaradorVariable2 = new GramaticaDeclaradorVariable();
                         GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
+                        GramaticaSentencia gramaticaSentencia = new GramaticaSentencia();
 
                         do {
                             lexema = flujoTokens.avanzar();
-                            Para para2 = gramaticaPara.analizar(para, flujoTokens);
-                            if (para2 != null) {
-                                para.getListaSentencia().add(para2);
-                                continue;
-                            }
-
-                            DeclaradorVariable declaradorVariable2 = gramaticaDeclaradorVariable.analizar(para, flujoTokens);
-
-                            if (declaradorVariable != null) {
-                                para.getListaSentencia().add(declaradorVariable);
-                                continue;
-                            }
-
-                            IF si = gramaticaIF.analizar(para, flujoTokens);
-                            if (si != null) {
-                                para.getListaSentencia().add(si);
-                                continue;
-                            }
-
-                            if (lexema.getToken().equals("retornar")) {
-                                lexema = flujoTokens.avanzar();
-
-                                Expresion expresion = gramaticaExpresion.analizar(si, flujoTokens);
+                            Sentencia sentencia = gramaticaSentencia.analizar(para, flujoTokens);
+                            if (sentencia != null) {
                                 lexema = flujoTokens.getTokenActual();
-                                if (expresion != null) {
-                                    para.getListaSentencia().add(expresion);
-                                    lexema = flujoTokens.getTokenActual();
-                                }
+                                continue;
 
-                                if (lexema.getToken().equals(";")) {
-                                    lexema = flujoTokens.avanzar();
-                                } else {
-                                    throw new SintacticException(lexema, ";");
-
-                                }
-                            }
-
-                            if (lexema.getToken().equals("romper") || lexema.getToken().equals("continue")) {
-                                lexema = flujoTokens.avanzar();
-
-                                if (lexema == null) {
-                                    throw new SintacticException(new Lexema("", ""), ";");
-                                }
-
-                                if (lexema.getTipoLexema().equals("Identificador")) {
-                                    para.getListaSentencia().add(new SentenciaToken(lexema));
-                                    lexema = flujoTokens.avanzar();
-                                }
-
-                                if (lexema.getToken().equals(";")) {
-                                    lexema = flujoTokens.avanzar();
-                                } else {
-                                    throw new SintacticException(lexema, ";");
-                                }
                             }
                             continuar = false;
 
