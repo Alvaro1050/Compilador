@@ -94,10 +94,6 @@ public class GramaticaMain implements Gramatica {
                                             /*se analiza las sentencias del main*/
 
                                             boolean continuar = true;
-                                            GramaticaIF gramaticaIF = new GramaticaIF();
-                                            GramaticaPara gramaticaPara = new GramaticaPara();
-                                            GramaticaDeclaradorVariable gramaticaDeclaradorVariable = new GramaticaDeclaradorVariable();
-                                            GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
                                             GramaticaSentencia gramaticaSentencia = new GramaticaSentencia();
 
                                             do {
@@ -105,6 +101,8 @@ public class GramaticaMain implements Gramatica {
                                                 Sentencia sentencia = gramaticaSentencia.analizar(main, flujoTokens);
                                                 if (sentencia != null) {
                                                     lexema = flujoTokens.getTokenActual();
+                                                    main.getListaSentencia().add(sentencia);
+
                                                     continue;
 
                                                 }

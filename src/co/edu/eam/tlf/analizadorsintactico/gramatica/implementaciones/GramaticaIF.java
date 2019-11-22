@@ -46,10 +46,6 @@ public class GramaticaIF implements Gramatica {
                     if (lexema.getToken().equals("{")) {
                         /* se analiza lo que esta dentro del if las sentencias*/
                         boolean continuar = true;
-                        GramaticaIF gramaticaIF = new GramaticaIF();
-                        GramaticaPara gramaticaPara = new GramaticaPara();
-                        GramaticaDeclaradorVariable gramaticaDeclaradorVariable = new GramaticaDeclaradorVariable();
-                        GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
                         GramaticaSentencia gramaticaSentencia = new GramaticaSentencia();
 
                         do {
@@ -57,6 +53,8 @@ public class GramaticaIF implements Gramatica {
                             Sentencia sentencia = gramaticaSentencia.analizar(si, flujoTokens);
                             if (sentencia != null) {
                                 lexema = flujoTokens.getTokenActual();
+                                si.getListaSentenciaSI().add(sentencia);
+
                                 continue;
 
                             }
@@ -82,16 +80,13 @@ public class GramaticaIF implements Gramatica {
                                     if (lexema.getToken().equals("{")) {
 
                                         boolean continuar2 = true;
-                                        GramaticaIF gramaticaIF2 = new GramaticaIF();
-                                        GramaticaPara gramaticaPara2 = new GramaticaPara();
-                                        GramaticaDeclaradorVariable gramaticaDeclaradorVariable2 = new GramaticaDeclaradorVariable();
-
+                                     
                                         do {
                                             lexema = flujoTokens.avanzar();
                                             Sentencia sentencia = gramaticaSentencia.analizar(si, flujoTokens);
                                             if (sentencia != null) {
                                                 lexema = flujoTokens.getTokenActual();
-                                                si.getListaSentenciaSI().add(sentencia);
+                                                si.getListaSentenciaContrario().add(sentencia);
                                                 continue;
 
                                             }

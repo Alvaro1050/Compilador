@@ -139,17 +139,15 @@ public class GramaticaPara implements Gramatica {
                             throw new SintacticException(new Lexema("", ""), "}");
                         }
                         boolean continuar = true;
-                        GramaticaIF gramaticaIF = new GramaticaIF();
-                        GramaticaPara gramaticaPara = new GramaticaPara();
-                        GramaticaDeclaradorVariable gramaticaDeclaradorVariable2 = new GramaticaDeclaradorVariable();
-                        GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
-                        GramaticaSentencia gramaticaSentencia = new GramaticaSentencia();
+                       GramaticaSentencia gramaticaSentencia = new GramaticaSentencia();
 
                         do {
                             lexema = flujoTokens.avanzar();
                             Sentencia sentencia = gramaticaSentencia.analizar(para, flujoTokens);
                             if (sentencia != null) {
                                 lexema = flujoTokens.getTokenActual();
+                                para.getListaSentencia().add(sentencia);
+
                                 continue;
 
                             }

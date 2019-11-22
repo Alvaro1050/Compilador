@@ -67,17 +67,15 @@ public class GramaticaDeclararConstructor implements Gramatica {
                     if (lexema.getTipoLexema().equals("corchete abierto")) {
                         //se analiza el cuerpo del metodo.....
                         boolean continuar = true;
-                        GramaticaIF gramaticaIF = new GramaticaIF();
-                        GramaticaPara gramaticaPara = new GramaticaPara();
-                        GramaticaDeclaradorVariable gramaticaDeclaradorVariable = new GramaticaDeclaradorVariable();
-                        GramaticaExpresion gramaticaExpresion = new GramaticaExpresion();
-                        GramaticaSentencia gramaticaSentencia = new GramaticaSentencia();
+                       GramaticaSentencia gramaticaSentencia = new GramaticaSentencia();
 
                         do {
                             lexema = flujoTokens.avanzar();
                             Sentencia sentencia = gramaticaSentencia.analizar(constructor, flujoTokens);
                             if (sentencia != null) {
                                 lexema = flujoTokens.getTokenActual();
+                                constructor.getListaSentencia().add(sentencia);
+
                                 continue;
 
                             }
