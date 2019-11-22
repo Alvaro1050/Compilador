@@ -68,6 +68,7 @@ public class Analizador_lexico {
             automataParentesisAbierto();
             automataParentesisCerrado();
             automataComa();
+            automataInto();
             automataPunto();
             automataPuntoComa();
             automataIgual();
@@ -211,6 +212,13 @@ public class Analizador_lexico {
     public void automataPuntoComa() {
         Automata_PuntoComa atf = new Automata_PuntoComa();
         lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+    public void automataInto() {
+        Automata_Into into = new Automata_Into();
+        lexe = into.inicio(flujo);
         if (lexe != null) {
             listaLexema.add(lexe);
         }
