@@ -19,6 +19,8 @@ public class Expresion2 extends Sentencia {
     private Lista<Argumento> listaArg;
     private Expresion expresion;
     private Lexema identificador;
+    private Lexema parentesisA;
+    private Lexema parentesisC;
 
     public Expresion2() {
         listaArg = new Lista<>();
@@ -30,6 +32,22 @@ public class Expresion2 extends Sentencia {
 
     public void setIdentificador(Lexema identificador) {
         this.identificador = identificador;
+    }
+
+    public Lexema getParentesisA() {
+        return parentesisA;
+    }
+
+    public void setParentesisA(Lexema parentesisA) {
+        this.parentesisA = parentesisA;
+    }
+
+    public Lexema getParentesisC() {
+        return parentesisC;
+    }
+
+    public void setParentesisC(Lexema parentesisC) {
+        this.parentesisC = parentesisC;
     }
 
     public Lista<Argumento> getListaArg() {

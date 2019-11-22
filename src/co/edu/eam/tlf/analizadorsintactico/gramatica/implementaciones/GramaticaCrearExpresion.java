@@ -30,13 +30,14 @@ public class GramaticaCrearExpresion implements Gramatica {
         Lexema lexema = flujoTokens.getTokenActual();
 
         if (lexema.getToken().equals("nuevo")) {
+            crearExpresion.setNuevo(lexema);
             lexema = flujoTokens.avanzar();
             if (lexema.getTipoLexema().equals("Identificador")) {
                 crearExpresion.setIdentificador(lexema);
                 lexema = flujoTokens.avanzar();
 
                 if (lexema.getToken().equals("(")) {
-
+                    crearExpresion.setParentesisA1(lexema);
                     lexema = flujoTokens.avanzar();
 
                     Lista<Argumento> argumentos = new Lista<>();
@@ -49,6 +50,7 @@ public class GramaticaCrearExpresion implements Gramatica {
                     lexema = flujoTokens.getTokenActual();
 
                     if (lexema.getToken().equals(")")) {
+                        crearExpresion.setParentesisC1(lexema);
                         lexema = flujoTokens.getTokenActual();
 
                         return crearExpresion;
@@ -62,6 +64,7 @@ public class GramaticaCrearExpresion implements Gramatica {
             }
 
             if (lexema.getToken().equals("(")) {
+                crearExpresion.setParentesisA2(lexema);
                 lexema = flujoTokens.avanzar();
 
                 if (lexema == null) {
@@ -78,6 +81,7 @@ public class GramaticaCrearExpresion implements Gramatica {
                     lexema = flujoTokens.getTokenActual();
 
                     if (lexema.getToken().equals(")")) {
+                        crearExpresion.setParentesisC2(lexema);
                         lexema = flujoTokens.avanzar();
 
                         return crearExpresion;
@@ -92,6 +96,7 @@ public class GramaticaCrearExpresion implements Gramatica {
                 lexema = flujoTokens.avanzar();
 
                 if (lexema.getToken().equals("(")) {
+                    crearExpresion.setParentesisA3(lexema);
                     lexema = flujoTokens.avanzar();
 
                     if (lexema == null) {
@@ -107,6 +112,7 @@ public class GramaticaCrearExpresion implements Gramatica {
                         lexema = flujoTokens.getTokenActual();
 
                         if (lexema.getToken().equals(")")) {
+                            crearExpresion.setParentesisC3(lexema);
                             lexema = flujoTokens.avanzar();
                         }
                     } else {

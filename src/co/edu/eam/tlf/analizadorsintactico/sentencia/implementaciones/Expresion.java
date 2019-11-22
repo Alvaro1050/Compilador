@@ -22,6 +22,8 @@ public class Expresion extends Sentencia {
     private Lexema identificador;
     private Lista<Expresion> expresiones;
     private Lista<Expresion2> expresion2s;
+    private Lexema parentesisA;
+    private Lexema parentesisC;
 
     public Expresion() {
         expresiones = new Lista<>();
@@ -58,6 +60,22 @@ public class Expresion extends Sentencia {
 
     public void setExpresionNumerica(ExpresionNumerica expresionNumerica) {
         this.expresionNumerica = expresionNumerica;
+    }
+
+    public Lexema getParentesisA() {
+        return parentesisA;
+    }
+
+    public void setParentesisA(Lexema parentesisA) {
+        this.parentesisA = parentesisA;
+    }
+
+    public Lexema getParentesisC() {
+        return parentesisC;
+    }
+
+    public void setParentesisC(Lexema parentesisC) {
+        this.parentesisC = parentesisC;
     }
 
     public ExpresionTest getExpresionTest() {
@@ -125,7 +143,6 @@ public class Expresion extends Sentencia {
         }
         if (crearExpresion != null) {
             str.append(crearExpresion.parse());
-
         }
 
         if (identificador != null) {
@@ -133,8 +150,15 @@ public class Expresion extends Sentencia {
 
         }
 
+        if (parentesisA != null) {
+            str.append(parentesisA.getToken());
+        }
         for (Sentencia sentencia : expresiones.getSentencias()) {
             str.append(sentencia.parse());
+        }
+
+        if (parentesisA != null) {
+            str.append(parentesisA.getToken());
         }
 
         for (Sentencia sentencia : expresion2s.getSentencias()) {

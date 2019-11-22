@@ -1,5 +1,6 @@
 package co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones;
 
+import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import java.util.List;
 
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
@@ -14,6 +15,8 @@ public class IF extends Sentencia {
     private Lista<Sentencia> listaSentenciaContrario;
 
     private IF contrario;
+
+    private Lexema retornar;
 
     public IF() {
         listaSentenciaContrario = new Lista<>();
@@ -30,6 +33,14 @@ public class IF extends Sentencia {
 
     public Lista<Sentencia> getListaSentenciaContrario() {
         return listaSentenciaContrario;
+    }
+
+    public Lexema getRetornar() {
+        return retornar;
+    }
+
+    public void setRetornar(Lexema retornar) {
+        this.retornar = retornar;
     }
 
     public void setListaSentenciaContrario(Lista<Sentencia> listaSentenciaContrario) {
@@ -72,13 +83,16 @@ public class IF extends Sentencia {
         str.append(")");
         str.append("{ \n");
 
+        if (retornar != null) {
+            str.append("return ");
+        }
         for (Sentencia sentencia : listaSentenciaSI.getSentencias()) {
             str.append(sentencia.parse());
         }
         str.append("} \n");
 
         if (!listaSentenciaContrario.getSentencias().isEmpty()) {
-            str.append("contrario").append("{ \n");
+            str.append("else").append("{ \n");
             for (Sentencia sentencia : listaSentenciaContrario.getSentencias()) {
                 str.append(sentencia.parse());
             }

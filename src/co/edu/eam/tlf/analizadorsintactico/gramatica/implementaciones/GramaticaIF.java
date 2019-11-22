@@ -73,6 +73,7 @@ public class GramaticaIF implements Gramatica {
                             }
 
                             if (lexema.getToken().equals("retornar")) {
+                                si.setRetornar(lexema);
                                 lexema = flujoTokens.avanzar();
 
                                 Expresion expresion = gramaticaExpresion.analizar(si, flujoTokens);

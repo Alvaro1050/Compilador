@@ -84,7 +84,12 @@ public class ExpresionLogica extends Sentencia {
         }
 
         for (Lexema sentencia : operadores) {
-            str.append(sentencia.getToken());
+            if (sentencia.getToken().equals("|")) {
+                str.append("||");
+            } else if (sentencia.getToken().equals("&")) {
+                str.append("&&");
+            }
+
         }
 
         for (Lexema sentencia : identificadores) {

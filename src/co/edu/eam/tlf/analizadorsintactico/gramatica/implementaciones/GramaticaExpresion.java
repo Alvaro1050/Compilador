@@ -81,6 +81,7 @@ public class GramaticaExpresion implements Gramatica {
             }
 
             if (lexema.getToken().equals("(")) {
+                expresion.setParentesisA(lexema);
                 lexema = flujoTokens.avanzar();
 
                 if (lexema == null) {
@@ -93,6 +94,7 @@ public class GramaticaExpresion implements Gramatica {
                     expresion.getExpresiones().add(expresion);
                     lexema = flujoTokens.getTokenActual();
                     if (lexema.getToken().equals(")")) {
+                        expresion.setParentesisC(lexema);
                         lexema = flujoTokens.avanzar();
                         continue;
                     } else {

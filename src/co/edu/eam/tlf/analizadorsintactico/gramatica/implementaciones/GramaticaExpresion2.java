@@ -32,6 +32,7 @@ public class GramaticaExpresion2 implements Gramatica {
             expresion2.setIdentificador(lexema);
             lexema = flujoTokens.avanzar();
             if (lexema.getToken().equals("(")) {
+                expresion2.setParentesisA(lexema);
                 lexema = flujoTokens.avanzar();
 
                 Lista<Argumento> argumentos = new Lista<>();
@@ -44,6 +45,7 @@ public class GramaticaExpresion2 implements Gramatica {
                 lexema = flujoTokens.getTokenActual();
 
                 if (lexema.getToken().equals(")")) {
+                    expresion2.setParentesisC(lexema);
                     lexema = flujoTokens.avanzar();
                     return expresion2;
                 } else {

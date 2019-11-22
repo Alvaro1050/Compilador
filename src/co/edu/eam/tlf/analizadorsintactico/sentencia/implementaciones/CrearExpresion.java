@@ -18,8 +18,15 @@ public class CrearExpresion extends Sentencia {
 
     private Expresion expresion;
     private Lexema identificador;
+    private Lexema nuevo;
     private Lexema tipoEspecificador;
     private Lista<Argumento> listaArgumentos;
+    private Lexema parentesisA1;
+    private Lexema parentesisC1;
+    private Lexema parentesisA2;
+    private Lexema parentesisC2;
+    private Lexema parentesisA3;
+    private Lexema parentesisC3;
 
     public CrearExpresion() {
         listaArgumentos = new Lista<>();
@@ -29,12 +36,68 @@ public class CrearExpresion extends Sentencia {
         return expresion;
     }
 
+    public Lexema getNuevo() {
+        return nuevo;
+    }
+
+    public void setNuevo(Lexema nuevo) {
+        this.nuevo = nuevo;
+    }
+
     public void setExpresion(Expresion expresion) {
         this.expresion = expresion;
     }
 
     public Lexema getIdentificador() {
         return identificador;
+    }
+
+    public Lexema getParentesisA1() {
+        return parentesisA1;
+    }
+
+    public void setParentesisA1(Lexema parentesisA1) {
+        this.parentesisA1 = parentesisA1;
+    }
+
+    public Lexema getParentesisC1() {
+        return parentesisC1;
+    }
+
+    public void setParentesisC1(Lexema parentesisC1) {
+        this.parentesisC1 = parentesisC1;
+    }
+
+    public Lexema getParentesisA2() {
+        return parentesisA2;
+    }
+
+    public void setParentesisA2(Lexema parentesisA2) {
+        this.parentesisA2 = parentesisA2;
+    }
+
+    public Lexema getParentesisC2() {
+        return parentesisC2;
+    }
+
+    public void setParentesisC2(Lexema parentesisC2) {
+        this.parentesisC2 = parentesisC2;
+    }
+
+    public Lexema getParentesisA3() {
+        return parentesisA3;
+    }
+
+    public void setParentesisA3(Lexema parentesisA3) {
+        this.parentesisA3 = parentesisA3;
+    }
+
+    public Lexema getParentesisC3() {
+        return parentesisC3;
+    }
+
+    public void setParentesisC3(Lexema parentesisC3) {
+        this.parentesisC3 = parentesisC3;
     }
 
     public void setIdentificador(Lexema identificador) {
@@ -91,21 +154,41 @@ public class CrearExpresion extends Sentencia {
     public String parse() {
 
         StringBuilder str = new StringBuilder();
+
+        str.append("new ");
+
         if (identificador != null) {
             str.append(identificador.getToken());
 
+            str.append(parentesisA1.getToken());
+
+            for (Sentencia sentencia : listaArgumentos.getSentencias()) {
+                str.append(sentencia.parse());
+            }
+
+            str.append(parentesisC1.getToken());
+
+            return str.toString();
         }
+
         if (tipoEspecificador != null) {
             str.append(tipoEspecificador.getToken());
 
+            if (parentesisA2 != null) {
+                str.append(parentesisA3.getToken());
+
+                str.append(expresion.parse());
+                str.append(parentesisC3.getToken());
+                return str.toString();
+
+            }
+
         }
+
         if (expresion != null) {
+            str.append(parentesisA2.getToken());
             str.append(expresion.parse());
-
-        }
-
-        for (Sentencia sentencia : listaArgumentos.getSentencias()) {
-            str.append(sentencia.parse());
+            str.append(parentesisC2.getToken());
         }
 
         return str.toString();
