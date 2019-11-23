@@ -29,7 +29,7 @@ public class Automata_comilla {
         q0();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema("'" + contenido + "'", "Cadena", cont, Analizador_lexico.fila);
+            return new Lexema("\"" + contenido + "\"", "Cadena", cont, Analizador_lexico.fila);
         } else {
             return null;
         }
@@ -39,7 +39,7 @@ public class Automata_comilla {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == '\'') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == '\"') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
 
@@ -56,7 +56,7 @@ public class Automata_comilla {
     public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == '\'') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == '\"') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;
                 aceptada = true;
