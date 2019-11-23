@@ -87,30 +87,22 @@ public class GramaticaSentencia implements Gramatica {
         }
 
         if (lexema.getToken().equals("mensaje")) {
+            sentencia.setMensaje(lexema);
             lexema = flujoTokens.avanzar();
 
             if (lexema.getToken().equals("(")) {
                 lexema = flujoTokens.avanzar();
 
-                if (lexema.getToken().equals("\"")) {
-                    sentencia.setComillaAbierta(lexema);
-                    lexema = flujoTokens.avanzar();
-                }
 
                 Expresion ex = ge.analizar(sentencia, flujoTokens);
 
                 if (ex != null) {
-                    sentencia.setExpresion(ex);
+                    sentencia.setExpresion2(ex);
                     lexema = flujoTokens.getTokenActual();
                 }
 
-                if (lexema.getToken().equals("\"")) {
-                    sentencia.setComillaCerrada(lexema);
-                    lexema = flujoTokens.avanzar();
-                }
 
                 if (lexema.getToken().equals(")")) {
-                    lexema = flujoTokens.avanzar();
                     return sentencia;
                 }
 
@@ -118,26 +110,16 @@ public class GramaticaSentencia implements Gramatica {
         }
 
         if (lexema.getToken().equals("into")) {
+            sentencia.setInto(lexema);
             lexema = flujoTokens.avanzar();
 
             if (lexema.getToken().equals("(")) {
                 lexema = flujoTokens.avanzar();
 
-                if (lexema.getToken().equals("\"")) {
+                if (lexema.getTipoLexema().equals("Cadena")) {
+                    sentencia.setIdentificador(lexema);
                     lexema = flujoTokens.avanzar();
-
-                    if (lexema.getTipoLexema().equals("Identificador")) {
-                        sentencia.setIdentificador(lexema);
-                        lexema = flujoTokens.avanzar();
-
-                        if (lexema.getToken().equals("\"")) {
-                            lexema = flujoTokens.avanzar();
-                            if (lexema.getToken().equals(")")) {
-                                lexema = flujoTokens.avanzar();
-                                return sentencia;
-                            }
-                        }
-                    }
+                    return sentencia;
                 }
             }
 

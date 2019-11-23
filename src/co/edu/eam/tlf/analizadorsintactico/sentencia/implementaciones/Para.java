@@ -103,7 +103,7 @@ public class Para extends Sentencia {
 
         StringBuilder str = new StringBuilder();
 
-        str.append("for").append("(");
+        str.append("for").append("(int ");
         if (declaradorVariable != null) {
             str.append(declaradorVariable.parse());
 

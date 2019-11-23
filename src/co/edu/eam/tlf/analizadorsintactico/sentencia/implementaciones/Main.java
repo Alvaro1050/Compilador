@@ -92,23 +92,23 @@ public class Main extends Sentencia {
     public String parse() {
 
         StringBuilder str = new StringBuilder();
-        
-        str.append("public static");
-        
+
+        str.append("public static ");
+
         if (retorno != null) {
-            str.append(retorno.getToken());
+            str.append("void ");
 
         }
-        
+
         if (main != null) {
             str.append(main.getToken());
 
         }
-        
+
         str.append("( ");
-        
+
         if (tipoIdentidicador != null) {
-            str.append(tipoIdentidicador.getToken()).append("[] ");
+            str.append("String").append("[] ");
 
         }
         if (nombreParametro != null) {
@@ -117,10 +117,12 @@ public class Main extends Sentencia {
 
         }
 
+        str.append("){ \n");
         for (Sentencia sentencia : listaSentencia.getSentencias()) {
             str.append(sentencia.parse());
         }
 
+        str.append("}");
         return str.toString();
     }
 }

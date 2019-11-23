@@ -12,6 +12,10 @@ import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorlexico.vista.FrmAnalizar;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones.GramaticaClase;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -66,7 +70,7 @@ public class AnalizadorSintactico {
      *
      * @param codigo
      */
-    public void analizar(String codigo) {
+    public void analizar(String codigo) throws IOException {
         caracteres = codigo.toCharArray();
 
         Flujo_caracteres fc = new Flujo_caracteres(0, caracteres);
@@ -84,6 +88,17 @@ public class AnalizadorSintactico {
             unidadCompilacion = gramm.analizar(null, flujo);
 
             System.out.println(unidadCompilacion.parse());
+            String ruta = "C:\\Users\\alvar\\Documents\\NetBeansProjects\\Compilador\\src\\compilador.java";
+            File archivo = new File(ruta);
+            BufferedWriter bw;
+            if (archivo.exists()) {
+                bw = new BufferedWriter(new FileWriter(archivo));
+                bw.write(unidadCompilacion.parse());
+            } else {
+                bw = new BufferedWriter(new FileWriter(archivo));
+                bw.write(unidadCompilacion.parse());
+            }
+            bw.close();
             raiz = getUnidadCompilacion();
             raiz.llenarHijos();
 

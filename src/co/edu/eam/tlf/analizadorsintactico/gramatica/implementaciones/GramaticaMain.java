@@ -8,12 +8,7 @@ package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.DeclaradorVariable;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Expresion;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.IF;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Main;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Para;
-import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.SentenciaToken;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 
 /**

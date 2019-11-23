@@ -19,6 +19,7 @@ public class Sentencia extends co.edu.eam.tlf.analizadorsintactico.sentencias.de
     private DeclaradorVariable declaradorVariable;
     private Lexema identificador;
     private Expresion expresion;
+    private Expresion expresion2;
     private Lexema comillaAbierta;
     private Lexema mensaje;
     private Lexema into;
@@ -40,6 +41,14 @@ public class Sentencia extends co.edu.eam.tlf.analizadorsintactico.sentencias.de
 
     public void setComillaAbierta(Lexema comillaAbierta) {
         this.comillaAbierta = comillaAbierta;
+    }
+
+    public Expresion getExpresion2() {
+        return expresion2;
+    }
+
+    public void setExpresion2(Expresion expresion2) {
+        this.expresion2 = expresion2;
     }
 
     public Lexema getComillaCerrada() {
@@ -147,30 +156,23 @@ public class Sentencia extends co.edu.eam.tlf.analizadorsintactico.sentencias.de
         }
 
         if (into != null) {
-            str.append("JOptionPane.showInputDialog").append("(\"");
+            str.append("JOptionPane.showInputDialog").append("(this,");
 
             if (identificador != null) {
                 str.append(identificador.getToken());
             }
-            str.append("\")");
+            str.append(");");
         }
 
         if (mensaje != null) {
             str.append("System.out.println");
-            str.append("( ");
-            if (comillaAbierta != null) {
-                str.append(comillaAbierta.getToken());
+            str.append("( \"");
+
+            if (expresion2 != null) {
+                str.append(expresion2.parse());
             }
 
-            if (expresion != null) {
-                str.append(expresion.parse());
-            }
-
-            if (comillaCerrada != null) {
-                str.append(comillaCerrada.getToken());
-            }
-
-            str.append(" ; ");
+            str.append("\"); ");
 
         }
 

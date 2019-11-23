@@ -74,11 +74,6 @@ public class GramaticaExpresion implements Gramatica {
                 continue;
             }
 
-            if (lexema.getToken().equals("vacio")) {
-                expresion.setIdentificador(lexema);
-                lexema = flujoTokens.avanzar();
-                continue;
-            }
 
             if (lexema.getToken().equals("(")) {
                 expresion.setParentesisA(lexema);

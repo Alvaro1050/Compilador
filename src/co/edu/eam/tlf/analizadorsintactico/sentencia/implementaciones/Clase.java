@@ -50,6 +50,9 @@ public class Clase extends Sentencia {
         if (!listaMetodos.getSentencias().isEmpty()) {
             hijos.add(listaMetodos);
         }
+        if (!listaSentencia.getSentencias().isEmpty()) {
+            hijos.add(listaSentencia);
+        }
         return hijos;
     }
 
@@ -105,6 +108,9 @@ public class Clase extends Sentencia {
         }
 
         for (Sentencia sentencia : listaMetodos.getSentencias()) {
+            str.append(sentencia.parse());
+        }
+        for (Sentencia sentencia : listaSentencia.getSentencias()) {
             str.append(sentencia.parse());
         }
 
