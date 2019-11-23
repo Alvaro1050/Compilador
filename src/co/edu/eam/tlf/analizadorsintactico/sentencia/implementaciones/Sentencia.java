@@ -178,11 +178,6 @@ public class Sentencia extends co.edu.eam.tlf.analizadorsintactico.sentencias.de
 
         }
 
-        if (identificador != null) {
-            str.append(identificador.getToken()).append("();");
-        }
-
-        
         if (si != null) {
             str.append(si.parse());
         }

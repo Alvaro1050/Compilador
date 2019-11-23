@@ -68,15 +68,6 @@ public class GramaticaSentencia implements Gramatica {
                 }
             }
         }
-
-        if (lexema.getTipoLexema().equals("Identificador")) {
-            sentencia.setIdentificador(lexema);
-            lexema = flujoTokens.avanzar();
-
-            if (lexema.getToken().equals(";")) {
-                return sentencia;
-            }
-        }
         GramaticaIF gif = new GramaticaIF();
         IF si = gif.analizar(sentencia, flujoTokens);
         if (si != null) {

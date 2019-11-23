@@ -1,16 +1,20 @@
-
 import javax.swing.JOptionPane;
-
-class que {
-
-    public static int a = 1;
-    public static int b = 2;
-
-    public static void metodo1() {
-        System.out.println(a + b);
-    }
-
-    public static void main(String[] args) {
-        metodo1();
-    }
+class qwe { 
+ 
+public static int metodo1( ){ 
+if(4+5alvar||){ 
+return new (new (12))} 
+for(int i=0;alvaro<=12;i++){ 
+} 
+} 
+ 
+public static String metodo2( int param1){ 
+if(1>=4){ 
+} 
+} 
+ 
+public static int metodo3( String param2, int param3){ 
+if(alvar<=5){ 
+} 
+} 
 }
