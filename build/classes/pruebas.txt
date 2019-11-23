@@ -1,0 +1,75 @@
+clase qwe{
+entero metodo3(cadena param2,entero param3,decimal param4,flotante param5,boo param6){
+  si(alvar <= 5){
+para(i=0;1<100;i++){
+}
+}
+}
+}
+
+ejemplo 2 
+clase qwe{
+    entero metodo1(){
+       si(4+5|alvar){
+               retornar nuevo ( nuevo (-12));
+         }
+        para (i=0;alvaro<=12;i++){
+}
+    }
+cadena metodo2(entero param1){
+       si(1>=4){
+
+}
+}
+entero metodo3(cadena param2,entero param3){
+   si(alvar <= 5){
+}
+}
+}
+
+ejemplo 3
+
+clase qwe{
+decimal sof;
+entero metodo(cadena param2){
+para(i=0;1<100;i++){
+}
+}
+}
+
+
+ejemplo 4
+
+clase qwe{
+    entero metodo1(){
+       si(4+5|alvar){
+               retornar nuevo ( nuevo (-12));
+         }
+        para (i=0;alvaro<=12;i++){
+}
+    }
+cadena metodo2(entero param1){
+       si(1>=4){
+
+}
+}
+entero metodo3(cadena param2,entero param3){
+      into(' quirama ')
+}
+}
+
+ejemplo 5 main
+
+clase qwe{
+
+vacio main(cadena[] args){
+ para (i=0;alvaro<=12;i++){
+  mensaje( quirama )
+}
+}
+    entero metodo1(){
+        para (i=0;alvaro<=12;i++){
+ into(' quirama ')
+}
+    }
+}
