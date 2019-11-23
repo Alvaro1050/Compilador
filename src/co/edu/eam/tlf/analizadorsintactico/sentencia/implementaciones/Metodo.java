@@ -104,6 +104,8 @@ public class Metodo extends Sentencia {
         StringBuilder str = new StringBuilder();
         str.append(" \n");
 
+        str.append("public static ");
+
         if (retorno.getToken().equals("cadena")) {
             str.append("String").append(" ");
 
@@ -115,6 +117,8 @@ public class Metodo extends Sentencia {
             str.append("double").append(" ");
         } else if (retorno.getToken().equals("flotante")) {
             str.append("float").append(" ");
+        } else if (retorno.getToken().equals("vacio")) {
+            str.append("void").append(" ");
         }
         str.append(nombre.getToken());
         str.append("( ");

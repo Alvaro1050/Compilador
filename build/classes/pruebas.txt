@@ -82,3 +82,19 @@ vacio main(cadena[] args){
 mensaje(a+b)
 }
 }
+
+ejemplo 7
+
+clase que{
+entero a  = 1;
+entero b = 2;
+vacio main(cadena[] args){
+metodo1;
+}
+entero metodo1(){
+        para (i=0;i<=12;i++){
+
+mensaje(i+b)
+}
+ }
+}

@@ -34,7 +34,7 @@ public class GramaticaMetodoDeclaracion implements Gramatica {
         Lexema lexema = flujoTokens.getTokenActual();
 
         //tipo de retorno.....
-        if (lexema.getTipoLexema().equals("Tipo Dato")) {
+        if (lexema.getTipoLexema().equals("Tipo Dato") || lexema.getToken().equals("vacio")) {
             metodo.setRetorno(lexema);
             lexema = flujoTokens.avanzar();
             if (lexema == null) {
@@ -72,7 +72,7 @@ public class GramaticaMetodoDeclaracion implements Gramatica {
                     if (lexema.getTipoLexema().equals("corchete abierto")) {
                         //se analiza el cuerpo del metodo.....
                         boolean continuar = true;
-                      GramaticaSentencia gramaticaSentencia = new GramaticaSentencia();
+                        GramaticaSentencia gramaticaSentencia = new GramaticaSentencia();
 
                         do {
                             lexema = flujoTokens.avanzar();

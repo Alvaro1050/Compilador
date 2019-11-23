@@ -67,7 +67,15 @@ public class GramaticaSentencia implements Gramatica {
                     return sentencia;
                 }
             }
+        }
 
+        if (lexema.getTipoLexema().equals("Identificador")) {
+            sentencia.setIdentificador(lexema);
+            lexema = flujoTokens.avanzar();
+
+            if (lexema.getToken().equals(";")) {
+                return sentencia;
+            }
         }
         GramaticaIF gif = new GramaticaIF();
         IF si = gif.analizar(sentencia, flujoTokens);
@@ -93,14 +101,12 @@ public class GramaticaSentencia implements Gramatica {
             if (lexema.getToken().equals("(")) {
                 lexema = flujoTokens.avanzar();
 
-
                 Expresion ex = ge.analizar(sentencia, flujoTokens);
 
                 if (ex != null) {
                     sentencia.setExpresion2(ex);
                     lexema = flujoTokens.getTokenActual();
                 }
-
 
                 if (lexema.getToken().equals(")")) {
                     return sentencia;
