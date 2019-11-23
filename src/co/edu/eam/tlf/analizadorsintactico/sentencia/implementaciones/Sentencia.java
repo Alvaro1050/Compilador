@@ -159,20 +159,22 @@ public class Sentencia extends co.edu.eam.tlf.analizadorsintactico.sentencias.de
             str.append("JOptionPane.showInputDialog").append("(this,");
 
             if (identificador != null) {
-                str.append(identificador.getToken());
+                String limpio;
+                limpio = identificador.getToken().substring(1, identificador.getToken().length() - 1);
+                str.append("\"").append(limpio).append("\"");
             }
             str.append(");");
         }
 
         if (mensaje != null) {
             str.append("System.out.println");
-            str.append("( \"");
+            str.append("(");
 
             if (expresion2 != null) {
                 str.append(expresion2.parse());
             }
 
-            str.append("\"); ");
+            str.append("); ");
 
         }
 

@@ -26,12 +26,9 @@ public class Atributo extends Sentencia {
      */
     private Lexema tipoDato;
 
-    public Atributo() {
-    }
+    private Lexema valor;
 
-    public Atributo(Lexema nombre, Lexema tipoDato) {
-        this.nombre = nombre;
-        this.tipoDato = tipoDato;
+    public Atributo() {
     }
 
     @Override
@@ -40,7 +37,16 @@ public class Atributo extends Sentencia {
 
         hijos.add(new SentenciaToken(tipoDato));
         hijos.add(new SentenciaToken(nombre));
+        hijos.add(new SentenciaToken(valor));
         return hijos;
+    }
+
+    public Lexema getValor() {
+        return valor;
+    }
+
+    public void setValor(Lexema valor) {
+        this.valor = valor;
     }
 
     @Override
@@ -68,8 +74,25 @@ public class Atributo extends Sentencia {
     public String parse() {
         StringBuilder str = new StringBuilder();
 
-        str.append(tipoDato.getToken()).append(" ");
+        str.append("public static ");
+        if (tipoDato.getToken().equals("cadena")) {
+            str.append("String").append(" ");
+
+        } else if (tipoDato.getToken().equals("entero")) {
+            str.append("int").append(" ");
+
+        } else if (tipoDato.getToken().equals("boo")) {
+            str.append("boolean").append(" ");
+        } else if (tipoDato.getToken().equals("decimal")) {
+            str.append("double").append(" ");
+        } else if (tipoDato.getToken().equals("flotante")) {
+            str.append("float").append(" ");
+        }
         str.append(nombre.getToken());
+
+        if (valor != null) {
+            str.append(" = ").append(valor.getToken());
+        }
         str.append(";");
 
         return str.toString();

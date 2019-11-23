@@ -73,3 +73,12 @@ vacio main(cadena[] args){
 }
     }
 }
+
+ejemplo 6
+clase que{
+entero a  = 1;
+entero b = 2;
+vacio main(cadena[] args){
+mensaje(a+b)
+}
+}

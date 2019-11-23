@@ -7,6 +7,7 @@ package co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones;
 
 import co.edu.eam.tlf.analizadorsintactico.gramatica.definiciones.Gramatica;
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
+import co.edu.eam.tlf.analizadorsintactico.excepciones.SintacticException;
 import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Atributo;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 
@@ -35,6 +36,18 @@ public class GramaticaAtributo implements Gramatica {
             if (lexema.getTipoLexema().equals("Identificador")) {
                 atributo.setNombre(lexema);
                 lexema = flujoTokens.avanzar();
+
+                if (lexema.getToken().equals("=")) {
+                    lexema = flujoTokens.avanzar();
+
+                    if (lexema.getTipoLexema().equals("Identificador") || lexema.getTipoLexema().equals("Cadena")) {
+                        atributo.setValor(lexema);
+                        lexema = flujoTokens.avanzar();
+                    } else {
+                        throw new SintacticException(lexema, "Identificador");
+
+                    }
+                }
 
                 if (lexema.getTipoLexema().equals("PuntoComa")) {
                     //derivar...

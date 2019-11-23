@@ -11,6 +11,7 @@ import co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones.FlujoToken
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import co.edu.eam.tlf.analizadorlexico.vista.FrmAnalizar;
 import co.edu.eam.tlf.analizadorsintactico.gramatica.implementaciones.GramaticaClase;
+import co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones.Clase;
 import co.edu.eam.tlf.analizadorsintactico.sentencias.definicion.Sentencia;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -36,7 +37,7 @@ public class AnalizadorSintactico {
     /**
      * Raiz del arbol de derivacion
      */
-    private Sentencia unidadCompilacion;
+    private Clase unidadCompilacion;
     private char[] caracteres;
 
     List<Lexema> tokens;
@@ -90,6 +91,27 @@ public class AnalizadorSintactico {
             System.out.println(unidadCompilacion.parse());
             String ruta = "C:\\Users\\alvar\\Documents\\NetBeansProjects\\Compilador\\src\\compilador.java";
             File archivo = new File(ruta);
+
+            for (int i = 0; i < unidadCompilacion.getListaMetodos().getSentencias().size(); i++) {
+                System.out.println(unidadCompilacion.getListaMetodos().getSentencias().get(i).getNombre().getToken());
+                if (i == unidadCompilacion.getListaMetodos().getSentencias().size() - 1) {
+
+                } else {
+                    if (unidadCompilacion.getListaMetodos().getSentencias().get(i).getNombre().getToken().equals(unidadCompilacion.getListaMetodos().getSentencias().get(i + 1).getNombre().getToken())) {
+                        System.out.println("HAY METODOS CON NOMBRES IGUALES: " + unidadCompilacion.getListaMetodos().getSentencias().get(i).getNombre().getToken());
+                    }
+                }
+            }
+            for (int i = 0; i < unidadCompilacion.getListaAtributos().getSentencias().size(); i++) {
+                System.out.println(unidadCompilacion.getListaAtributos().getSentencias().get(i).getNombre().getToken());
+                if (i == unidadCompilacion.getListaAtributos().getSentencias().size() - 1) {
+
+                } else {
+                    if (unidadCompilacion.getListaAtributos().getSentencias().get(i).getNombre().getToken().equals(unidadCompilacion.getListaAtributos().getSentencias().get(i + 1).getNombre().getToken())) {
+                        System.out.println("HAY ATRIBUTOS CON NOMBRES IGUALES: " + unidadCompilacion.getListaAtributos().getSentencias().get(i).getNombre().getToken());
+                    }
+                }
+            }
             BufferedWriter bw;
             if (archivo.exists()) {
                 bw = new BufferedWriter(new FileWriter(archivo));

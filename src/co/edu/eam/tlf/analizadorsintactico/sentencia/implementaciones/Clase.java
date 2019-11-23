@@ -97,7 +97,8 @@ public class Clase extends Sentencia {
     public String parse() {
 
         StringBuilder str = new StringBuilder();
-
+        str.append("import javax.swing.JOptionPane;\n"
+                + "");
         str.append("class ");
 
         str.append(nombreClase.getToken());

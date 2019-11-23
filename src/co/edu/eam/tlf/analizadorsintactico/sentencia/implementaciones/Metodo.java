@@ -109,6 +109,12 @@ public class Metodo extends Sentencia {
 
         } else if (retorno.getToken().equals("entero")) {
             str.append("int").append(" ");
+        } else if (retorno.getToken().equals("boo")) {
+            str.append("boolean").append(" ");
+        } else if (retorno.getToken().equals("decimal")) {
+            str.append("double").append(" ");
+        } else if (retorno.getToken().equals("flotante")) {
+            str.append("float").append(" ");
         }
         str.append(nombre.getToken());
         str.append("( ");
