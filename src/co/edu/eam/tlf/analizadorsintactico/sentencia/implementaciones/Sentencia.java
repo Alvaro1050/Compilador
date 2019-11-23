@@ -8,6 +8,7 @@ package co.edu.eam.tlf.analizadorsintactico.sentencia.implementaciones;
 import co.edu.eam.tlf.analizadorlexico.modelo.Lexema;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +19,10 @@ public class Sentencia extends co.edu.eam.tlf.analizadorsintactico.sentencias.de
     private DeclaradorVariable declaradorVariable;
     private Lexema identificador;
     private Expresion expresion;
+    private Lexema comillaAbierta;
+    private Lexema mensaje;
+    private Lexema into;
+    private Lexema comillaCerrada;
     private IF si;
     private Para para;
     private Lexema identificadorRomper;
@@ -27,6 +32,38 @@ public class Sentencia extends co.edu.eam.tlf.analizadorsintactico.sentencias.de
 
     public DeclaradorVariable getDeclaradorVariable() {
         return declaradorVariable;
+    }
+
+    public Lexema getComillaAbierta() {
+        return comillaAbierta;
+    }
+
+    public void setComillaAbierta(Lexema comillaAbierta) {
+        this.comillaAbierta = comillaAbierta;
+    }
+
+    public Lexema getComillaCerrada() {
+        return comillaCerrada;
+    }
+
+    public Lexema getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(Lexema mensaje) {
+        this.mensaje = mensaje;
+    }
+
+    public Lexema getInto() {
+        return into;
+    }
+
+    public void setInto(Lexema into) {
+        this.into = into;
+    }
+
+    public void setComillaCerrada(Lexema comillaCerrada) {
+        this.comillaCerrada = comillaCerrada;
     }
 
     public void setDeclaradorVariable(DeclaradorVariable declaradorVariable) {
@@ -107,6 +144,34 @@ public class Sentencia extends co.edu.eam.tlf.analizadorsintactico.sentencias.de
         if (identificadorRomper != null) {
             str.append(identificadorRomper.getToken()).append(" ");
             str.append(identificador.getToken());
+        }
+
+        if (into != null) {
+            str.append("JOptionPane.showInputDialog").append("(\"");
+
+            if (identificador != null) {
+                str.append(identificador.getToken());
+            }
+            str.append("\")");
+        }
+
+        if (mensaje != null) {
+            str.append("System.out.println");
+            str.append("( ");
+            if (comillaAbierta != null) {
+                str.append(comillaAbierta.getToken());
+            }
+
+            if (expresion != null) {
+                str.append(expresion.parse());
+            }
+
+            if (comillaCerrada != null) {
+                str.append(comillaCerrada.getToken());
+            }
+
+            str.append(" ; ");
+
         }
 
         if (si != null) {

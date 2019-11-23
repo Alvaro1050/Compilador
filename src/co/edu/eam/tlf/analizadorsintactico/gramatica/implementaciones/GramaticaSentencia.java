@@ -34,11 +34,11 @@ public class GramaticaSentencia implements Gramatica {
             sentencia.setDeclaradorVariable(dc);
             return sentencia;
         }
+        GramaticaExpresion ge = new GramaticaExpresion();
+
         lexema = flujoTokens.getTokenActual();
         if (lexema.getToken().equals("retornar")) {
             lexema = flujoTokens.avanzar();
-
-            GramaticaExpresion ge = new GramaticaExpresion();
 
             Expresion ex = ge.analizar(sentencia, flujoTokens);
 
@@ -84,6 +84,63 @@ public class GramaticaSentencia implements Gramatica {
             lexema = flujoTokens.getTokenActual();
 
             return sentencia;
+        }
+
+        if (lexema.getToken().equals("mensaje")) {
+            lexema = flujoTokens.avanzar();
+
+            if (lexema.getToken().equals("(")) {
+                lexema = flujoTokens.avanzar();
+
+                if (lexema.getToken().equals("\"")) {
+                    sentencia.setComillaAbierta(lexema);
+                    lexema = flujoTokens.avanzar();
+                }
+
+                Expresion ex = ge.analizar(sentencia, flujoTokens);
+
+                if (ex != null) {
+                    sentencia.setExpresion(ex);
+                    lexema = flujoTokens.getTokenActual();
+                }
+
+                if (lexema.getToken().equals("\"")) {
+                    sentencia.setComillaCerrada(lexema);
+                    lexema = flujoTokens.avanzar();
+                }
+
+                if (lexema.getToken().equals(")")) {
+                    lexema = flujoTokens.avanzar();
+                    return sentencia;
+                }
+
+            }
+        }
+
+        if (lexema.getToken().equals("into")) {
+            lexema = flujoTokens.avanzar();
+
+            if (lexema.getToken().equals("(")) {
+                lexema = flujoTokens.avanzar();
+
+                if (lexema.getToken().equals("\"")) {
+                    lexema = flujoTokens.avanzar();
+
+                    if (lexema.getTipoLexema().equals("Identificador")) {
+                        sentencia.setIdentificador(lexema);
+                        lexema = flujoTokens.avanzar();
+
+                        if (lexema.getToken().equals("\"")) {
+                            lexema = flujoTokens.avanzar();
+                            if (lexema.getToken().equals(")")) {
+                                lexema = flujoTokens.avanzar();
+                                return sentencia;
+                            }
+                        }
+                    }
+                }
+            }
+
         }
 
         //ACA EMPIEZA A HACER TODO INGENIERO QUIRAMA
